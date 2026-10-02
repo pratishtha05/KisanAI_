@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/Card";
 import {
   CloudSun,
+  Cloud,
+  CloudDrizzle,
+  CloudLightning,
+  Sun,
   Wind,
   Droplets,
   Sprout,
@@ -85,11 +89,11 @@ export default function WeatherPage() {
       <div className="min-h-[60vh] flex items-center justify-center px-6">
         <Card className="max-w-md p-6 text-center">
           <Sprout className="mx-auto mb-3 text-green-600" size={32} />
-    
+
           <h2 className="font-semibold text-gray-900">
             No farm information found
           </h2>
-    
+
           <p className="text-sm text-gray-500 mt-2">
             Please add your crop and farm details before viewing
             weather intelligence.
@@ -190,7 +194,53 @@ export default function WeatherPage() {
     return `${displayHour}:${String(minute).padStart(2, "0")} ${suffix}`;
   };
 
+  const getWeatherEmoji = (weatherCode: number | null) => {
+    if (weatherCode === null || weatherCode === undefined) {
+      return "🌤️";
+    }
   
+    // Clear sky
+    if (weatherCode === 0) {
+      return "☀️";
+    }
+  
+    // Mainly clear / partly cloudy
+    if ([1, 2].includes(weatherCode)) {
+      return "🌤️";
+    }
+  
+    // Overcast
+    if (weatherCode === 3) {
+      return "☁️";
+    }
+  
+    // Fog
+    if ([45, 48].includes(weatherCode)) {
+      return "🌫️";
+    }
+  
+    // Drizzle
+    if ([51, 53, 55, 56, 57].includes(weatherCode)) {
+      return "🌦️";
+    }
+  
+    // Rain
+    if ([61, 63, 65, 66, 67, 80, 81, 82].includes(weatherCode)) {
+      return "🌧️";
+    }
+  
+    // Snow
+    if ([71, 73, 75, 77, 85, 86].includes(weatherCode)) {
+      return "❄️";
+    }
+  
+    // Thunderstorm
+    if ([95, 96, 99].includes(weatherCode)) {
+      return "⛈️";
+    }
+  
+    return "🌤️";
+  };
 
   
 
@@ -419,7 +469,7 @@ export default function WeatherPage() {
                           {adv.message}
                         </p>
 
-                        {/* Forecast evidence */}
+                        {/* Forecast evidence
                         <div className="mt-4 rounded-xl bg-white/70 border border-black/5 px-4 py-3">
                           <p className="text-xs font-semibold text-gray-600 mb-1">
                             What the forecast shows
@@ -428,7 +478,7 @@ export default function WeatherPage() {
                           <p className="text-sm leading-5 text-gray-700">
                             {adv.message}
                           </p>
-                        </div>
+                        </div> */}
 
                         {/* Action */}
                         <div className="mt-4">
@@ -578,14 +628,20 @@ export default function WeatherPage() {
                   )}
                 </div>
 
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="p-2 rounded-lg bg-orange-50 text-orange-500">
-                    <Thermometer size={19} />
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="text-4xl leading-none">
+                    {getWeatherEmoji(f.weather_code)}
                   </div>
 
-                  <span className="text-lg font-bold text-gray-900">
-                    {f.temperature_max_c}° / {f.temperature_min_c}°C
-                  </span>
+                  <div>
+                    <div className="text-lg font-bold text-gray-900">
+                      {f.temperature_max_c}° / {f.temperature_min_c}°C
+                    </div>
+
+                    <div className="text-xs text-gray-500 mt-0.5">
+                      {f.rain_probability_label}
+                    </div>
+                  </div>
                 </div>
 
                 <div className="space-y-2.5 text-sm">
