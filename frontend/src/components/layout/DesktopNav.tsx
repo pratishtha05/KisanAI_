@@ -4,6 +4,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Home, Sprout, Bot, Leaf, LogOut, CloudSun } from "lucide-react";
 
+import { Noto_Serif } from "next/font/google";
+
+const serif = Noto_Serif({ subsets: ["latin"], weight: ["400", "700"] });
+
 export function DesktopNav() {
   const pathname = usePathname();
   const router = useRouter();
@@ -23,7 +27,8 @@ export function DesktopNav() {
   return (
     <aside className="hidden md:flex flex-col w-64 border-r border-gray-200 bg-white min-h-screen p-4 sticky top-0 h-screen">
       <div className="flex items-center gap-2 px-4 py-6 mb-4">
-        <span className="font-extrabold text-2xl text-green-700 tracking-tight">KisanAI</span>
+        <Leaf className="text-green-700" size={28} />
+        <span className={`${serif.className} font-bold text-2xl tracking-tight text-green-900`}>KisanAI</span>
       </div>
       
       <nav className="flex-1 space-y-1">

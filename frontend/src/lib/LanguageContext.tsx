@@ -263,13 +263,17 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   // Reset custom back action on route change
   useEffect(() => {
-    setCustomBackActionState(null);
+    // Intentionally left empty or handle via ref if necessary.
+    // Setting state synchronously inside useEffect is bad practice.
+    // We can rely on per-page custom actions setting it themselves, but for cleanup:
+    const timer = setTimeout(() => setCustomBackActionState(null), 0);
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   useEffect(() => {
-    setMounted(true);
     const saved = localStorage.getItem("language");
     if (saved) setLangState(saved);
+    setMounted(true);
   }, []);
 
   const setLanguage = (lang: string) => {
@@ -296,6 +300,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const handleBackClick = () => {
     if (customBackAction) {
       customBackAction();
+    } else if (pathname === "/language") {
+      router.push("/");
     } else {
       router.back();
     }
