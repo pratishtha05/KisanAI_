@@ -7,12 +7,14 @@ from app.core.config import settings
 from app.db.database import Base
 from app.db.session import engine
 from app.services.farm_advisor_service import farm_advisor_service
+from app.core.crypto import check_configured
 
 # Create tables
 Base.metadata.create_all(bind=engine)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    check_configured()  # logs an ERROR if CHAT_ENCRYPTION_KEY is missing/invalid
     if settings.LLM_PRELOAD:
         farm_advisor_service.warmup()
     yield

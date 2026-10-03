@@ -35,6 +35,12 @@ class Settings(BaseSettings):
     LLM_TEMPERATURE: float = 0.3
     LLM_TOP_P: float = 0.9
 
+    # --- Chat history encryption (AES-256-GCM) ---
+    # 32 random bytes, base64. Generate with:
+    #   python -c "import os,base64;print(base64.b64encode(os.urandom(32)).decode())"
+    # Keep it out of git. If it is lost or changed, saved chats cannot be read again.
+    CHAT_ENCRYPTION_KEY: str = ""
+
     # --- Knowledge base (ChromaDB) ---
     RAG_PERSIST_DIR: str = "./chroma_db"
     RAG_COLLECTION: str = "rag_docs"
