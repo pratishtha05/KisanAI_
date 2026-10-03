@@ -49,12 +49,18 @@ export default function WeatherPage() {
 
       setFarm(selectedFarm);
 
+      if (selectedFarm.latitude == null || selectedFarm.longitude == null) {
+        setError(true);
+        return;
+      }
+
       // Then fetch weather using that farm's crop and stage.
       // Location remains temporary for now.
+      // Fetch weather using the farm's saved GPS coordinates.
       const weatherRes = await api.get("/weather/intelligence", {
         params: {
-          latitude: 30.7333,
-          longitude: 76.7794,
+          latitude: selectedFarm.latitude,
+          longitude: selectedFarm.longitude,
           crop: selectedFarm.crop,
           crop_stage: selectedFarm.stage,
         },
@@ -465,11 +471,11 @@ export default function WeatherPage() {
                           )}
                         </div>
 
-                        <p className="text-sm leading-6 text-gray-700">
+                        {/* <p className="text-sm leading-6 text-gray-700">
                           {adv.message}
-                        </p>
+                        </p> */}
 
-                        {/* Forecast evidence
+                        {/* Forecast evidence */}
                         <div className="mt-4 rounded-xl bg-white/70 border border-black/5 px-4 py-3">
                           <p className="text-xs font-semibold text-gray-600 mb-1">
                             What the forecast shows
@@ -478,7 +484,7 @@ export default function WeatherPage() {
                           <p className="text-sm leading-5 text-gray-700">
                             {adv.message}
                           </p>
-                        </div> */}
+                        </div>
 
                         {/* Action */}
                         <div className="mt-4">
@@ -500,14 +506,14 @@ export default function WeatherPage() {
                             {adv.source}
                           </span>
 
-                          {adv.evidence_level && (
+                          {/* {adv.evidence_level && (
                             <span className="whitespace-nowrap">
                               <strong className="text-gray-600">
                                 Basis:
                               </strong>{" "}
                               {getEvidenceLabel(adv.evidence_level)}
                             </span>
-                          )}
+                          )} */}
                         </div>
                       </div>
                     </div>

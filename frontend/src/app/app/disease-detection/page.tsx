@@ -10,10 +10,21 @@ type Result = {
   predicted_disease?: string | null;
   confidence: number;
   message: string;
+
   description?: string | null;
   symptoms?: string[];
   causes?: string[];
+  favourable_conditions?: string[];
+  prevention?: string[];
   recommended_actions?: string[];
+
+  source?: {
+    organization: string;
+    title: string;
+    source_type: string;
+    url: string;
+  } | null;
+
   model_name?: string;
   model_version?: string;
 };
@@ -555,7 +566,15 @@ function ResultCard({
             <BulletList items={result.causes} />
           </section>
         )}
-
+      {!healthy &&
+        result.favourable_conditions &&
+        result.favourable_conditions.length > 0 && (
+          <section className="mt-6">
+            <SectionTitle>Favourable conditions</SectionTitle>
+        
+            <BulletList items={result.favourable_conditions} />
+          </section>
+        )}
       {!healthy &&
         result.recommended_actions &&
         result.recommended_actions.length > 0 && (
@@ -579,18 +598,51 @@ function ResultCard({
           </section>
         )}
 
+        {!healthy &&
+          result.prevention &&
+          result.prevention.length > 0 && (
+            <section className="mt-6">
+              <SectionTitle>How to prevent it</SectionTitle>
+          
+              <BulletList items={result.prevention} />
+            </section>
+          )}
+
       {/* Source */}
       <div className="mt-6 border-t border-[#edf0eb] pt-5">
-
         <p className="text-xs font-semibold uppercase tracking-wide text-[#697468]">
           Farming guidance
         </p>
-
+              
         <p className="mt-2 text-xs leading-5 text-[#7a8478]">
-          The disease is identified by KisanAI's image model, while the symptoms and management information are based on the agricultural reference below. Confirm the diagnosis with a local agricultural expert before applying pesticides or other crop-protection products.
+          The disease is identified by KisanAI's image model, while the
+          symptoms and management information are based on the agricultural
+          reference below. Confirm the diagnosis with a local agricultural
+          expert before applying pesticides or other crop-protection products.
         </p>
-
+              
+        {result.source && (
+          <div className="mt-4 rounded-xl bg-[#f7f9f5] px-4 py-3">
+            <p className="text-sm font-medium text-[#40513e]">
+              {result.source.title}
+            </p>
         
+            <p className="mt-1 text-xs text-[#707a6e]">
+              {result.source.organization}
+            </p>
+        
+            {result.source.url && (
+              <a
+                href={result.source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-block text-xs font-medium text-[#58764f] hover:underline"
+              >
+                View source →
+              </a>
+            )}
+          </div>
+        )}
       </div>
 
       <button

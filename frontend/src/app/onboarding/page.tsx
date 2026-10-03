@@ -101,10 +101,45 @@ export default function Onboarding() {
   };
 
   const handleNext = () => setStep(s => s + 1);
-  
+
+  const geocodeManualLocation = async () => {
+    const query = [data.village, data.district, data.state, "India"]
+      .filter(Boolean)
+      .join(", ");
+
+    const res = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(query)}`
+    );
+
+    const results = await res.json();
+
+    if (!results || results.length === 0) {
+      return null;
+    }
+
+    return {
+      latitude: Number(results[0].lat),
+      longitude: Number(results[0].lon),
+    };
+  };
+
   const handleFinish = async () => {
     setIsSaving(true);
     try {
+      let latitude = data.latitude;
+      let longitude = data.longitude;
+    
+      if (locationMode === "manual") {
+        const coordinates = await geocodeManualLocation();
+      
+        if (!coordinates) {
+          alert("Could not determine coordinates for the selected location. Please try again.");
+          return;
+        }
+      
+        latitude = coordinates.latitude;
+        longitude = coordinates.longitude;
+      }
       // 1. Save User Profile
       await api.post("/users/profile", { name: data.name, state: data.state, district: data.district });
       
@@ -122,8 +157,8 @@ export default function Onboarding() {
           cycle_time: crop.cycle,
           land_size: parseFloat(standardizedLandSize.toFixed(2)), 
           soil_type: data.soil_type || "Unknown",
-          latitude: data.latitude,
-          longitude: data.longitude
+          latitude,
+          longitude
         });
       }
       
