@@ -15,4 +15,4 @@ backend/chroma_db/
 backend/tests
 backend/model_weights_1.5b
 backend/scripts/*
-
+backend/checkpoints/*.pt
