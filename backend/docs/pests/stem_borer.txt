@@ -1,0 +1,29 @@
+STEM BORER - PEST ADVISORY
+
+Overview:
+Stem borers are moth larvae (caterpillars) that bore into the stems of cereal crops, most notably rice (yellow stem borer, Scirpophaga incertulas) and maize (stem borer, Chilo partellus). They are among the most significant insect pests in rice cultivation across North India.
+
+Damage Symptoms:
+Two distinct damage symptoms are associated with stem borer infestation depending on the crop growth stage:
+1. "Dead heart" - during the vegetative stage, larval feeding kills the central growing shoot, causing it to dry up and turn brown while surrounding leaves remain green. The dead central shoot can be easily pulled out, revealing a bored/tunneled stem base.
+2. "White ear" (or "whitehead") - during the reproductive stage, larval feeding on the panicle-bearing stem causes the entire panicle to turn white/empty (chaffy, no grain fill), since the borer cuts off water and nutrient supply to the developing panicle.
+
+Favorable Conditions:
+Continuous rice cropping, high Nitrogen application (excess vegetative growth attracts egg-laying moths), and warm humid weather favor stem borer buildup. Populations tend to peak in the later part of the kharif season.
+
+Economic Threshold Level (ETL):
+For rice, an ETL of 5% dead hearts during the vegetative stage, or 1 egg mass per square metre, is commonly used to decide on intervention. During the reproductive stage, even a lower threshold (around 1% whitehead incidence) may justify treatment given the direct yield impact of whitehead symptoms (each affected tiller produces zero grain).
+
+Management - Cultural:
+- Avoid excessive Nitrogen application, particularly late top-dressing, which promotes lush growth attractive to egg-laying moths.
+- Clip and destroy egg masses (visible as clusters on leaf tips) during regular field monitoring, before larvae hatch and bore into stems.
+- Maintain field bunds and remove stubble after harvest to reduce carry-over of larvae/pupae to the next season.
+
+Management - Biological:
+Release of Trichogramma japonicum (an egg parasitoid) at 5-6 releases of 50,000-100,000 parasitized eggs per hectare, timed with moth activity, is an effective and increasingly recommended biological control method that reduces reliance on chemical insecticides.
+
+Management - Chemical:
+If ETL is exceeded, granular insecticides such as Cartap Hydrochloride 4G or Chlorantraniliprole 0.4G applied to standing water at recommended doses are effective, since the granules release active ingredient that is taken up systemically by the plant.
+
+Advisory Note for Farmer Queries:
+If a farmer reports "dried central shoots that pull out easily" in young rice, or "white empty panicles" in flowering rice, this points strongly to stem borer damage and the corresponding growth-stage-specific symptom (dead heart vs whitehead) should guide the response.

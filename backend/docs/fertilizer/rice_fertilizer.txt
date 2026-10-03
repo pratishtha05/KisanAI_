@@ -1,0 +1,23 @@
+RICE FERTILIZER RECOMMENDATIONS
+
+General NPK Recommendation (transplanted, irrigated, high-yielding varieties):
+For transplanted irrigated rice, a general recommendation is 120:60:40 kg/hectare of Nitrogen (N), Phosphorus (P2O5) and Potassium (K2O) respectively for non-basmati high-yielding varieties. Basmati varieties are typically given a lower Nitrogen dose (100-110 kg/hectare) since excess Nitrogen encourages lodging and reduces grain quality/aroma in basmati rice.
+
+Application Timing (Split Application):
+- Full dose of Phosphorus and Potassium + 1/3 dose of Nitrogen applied basally at the time of transplanting (as puddling/last harrowing).
+- 1/3 dose of Nitrogen at active tillering stage (around 20-25 days after transplanting).
+- 1/3 dose of Nitrogen at panicle initiation stage (around 40-45 days after transplanting) - this split is particularly important since it directly influences panicle size and grain number.
+
+Using a Leaf Color Chart (LCC) to time Nitrogen top-dressing based on actual crop need (rather than a fixed calendar) can improve Nitrogen use efficiency by 15-20% and reduce environmental losses.
+
+Micronutrients:
+Zinc deficiency is very common in rice, especially in rice-wheat rotation systems and calcareous soils. A basal application of 25 kg/hectare zinc sulphate is recommended, particularly in fields with a history of zinc deficiency symptoms (khaira disease - stunted growth, bronzing of lower leaves, delayed maturity).
+
+Fertilizer Sources:
+Urea (46% N) is the dominant Nitrogen source; DAP or SSP for Phosphorus; MOP for Potassium. In puddled fields, Nitrogen should be applied and immediately incorporated into the soil (not left on standing water surface) to minimize volatilization losses, which can be substantial (20-30% of applied Nitrogen) if urea is broadcast onto standing water.
+
+Organic Supplementation:
+Green manuring with Dhaincha or Sesbania before rice transplanting, or FYM application, can supply a significant portion of Nitrogen requirement and improve soil health in long-term rice-wheat cropping systems.
+
+Stage-Specific Guidance for Farmer Queries:
+If a farmer asks about fertilizer at panicle initiation, recommend the final 1/3 Nitrogen top-dressing (approximately 90 kg/hectare Urea for the standard dose) applied with drained/thin standing water for best uptake efficiency, then re-flood the field within a day or two.

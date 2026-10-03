@@ -1,0 +1,71 @@
+# Pest & Disease Management — General Reference
+
+This document covers cross-crop IPM (Integrated Pest Management) principles. For
+crop-specific pest risks (e.g. pink bollworm in cotton, blast in rice), see the
+"Common Risks" section of each file in knowledge_base/crops/ — use this document for
+general identification, decision-making, and control-method background.
+
+## The IPM Principle: Monitor Before You Spray
+
+The core idea behind Integrated Pest Management is that not every pest sighting
+warrants chemical control — most fields have some background pest presence that
+natural predators keep in check. Spraying reflexively at the first sign of a pest:
+(a) wastes input cost, (b) kills beneficial predator insects along with the target
+pest, often making the *next* generation of pests worse, and (c) accelerates
+pesticide resistance in the pest population. The general workflow:
+
+1. **Monitor** — regular field scouting (weekly, more often during known high-risk
+   windows) and tools like pheromone traps for early detection, before damage is visible.
+2. **Identify** — confirm which pest/disease it actually is; treatments are specific,
+   and misidentification leads to ineffective (and wasted) spraying.
+3. **Assess threshold** — compare pest density/damage against an "economic threshold"
+   (the point at which expected crop loss exceeds the cost of control) rather than
+   spraying at first sighting.
+4. **Choose control method** — biological/cultural/mechanical options first where
+   effective, chemical control (with correct product and dose) when threshold is
+   crossed and other methods aren't sufficient.
+
+## Non-Chemical Control Methods
+
+- **Cultural**: crop rotation (breaks pest lifecycle tied to a specific crop),
+  resistant varieties, timely sowing (avoiding the pest's peak activity window),
+  proper field sanitation (removing crop residue that harbors overwintering pests).
+- **Mechanical/physical**: pheromone traps (attract and trap specific pest species,
+  also useful for monitoring even when not used for control), light traps, hand-picking
+  for low-level infestations in small plots.
+- **Biological**: encouraging natural predators (ladybirds for aphids, for example),
+  biopesticides like Bt (Bacillus thuringiensis, effective against caterpillar pests),
+  Trichoderma-based seed/soil treatments against fungal pathogens.
+
+## Common Pest & Disease Categories
+
+| Category | Recognizable Signs | Example |
+|---|---|---|
+| Sucking pests (aphids, jassids, whiteflies) | Curled/yellowing leaves, sticky honeydew residue, sooty mold | Aphids on wheat/mustard, whitefly on cotton |
+| Chewing/boring pests (bollworm, borers) | Visible holes in leaves/stems/bolls, frass (insect droppings) | Pink bollworm in cotton, stem borer in rice |
+| Fungal diseases | Spots, rust-colored pustules, wilting, powdery/downy coating | Yellow rust in wheat, late blight in potato |
+| Bacterial diseases | Water-soaked lesions, ooze, rapid wilting | Bacterial blight in rice/cotton |
+| Viral diseases (usually insect-transmitted) | Mosaic/mottled leaf patterns, stunting, leaf curling | Leaf curl virus in cotton/chili (whitefly-transmitted) |
+
+## Weather-Pest Connections Worth Flagging
+
+- High humidity + moderate temperatures (20-28°C) favor most fungal disease outbreaks
+  (rust, blast, blight) — a Weather Intelligence module predicting these conditions
+  should trigger a preventive scouting/fungicide alert before symptoms are visible,
+  not after.
+- Hot, dry spells favor sucking pest buildup (aphids, whitefly, jassids) — the opposite
+  weather pattern from fungal disease risk, so pest-risk alerts need to differentiate
+  which risk a given forecast actually raises rather than issuing generic "pest risk" warnings.
+- Continuous high humidity after rainfall is one of the single most reliable triggers
+  for fungal outbreak alerts across most crops in this knowledge base.
+
+## Safety Notes (for any pesticide-recommendation feature)
+
+- Always recommend following label dosage exactly — both under- and over-dosing cause
+  problems (under-dosing accelerates resistance; over-dosing wastes cost, harms
+  beneficial insects, and risks crop/soil residue issues).
+- Pre-harvest interval (the minimum time between last spray and harvest) must be
+  respected for food safety — this varies by product and should never be generically
+  assumed to be "safe to skip" for a faster turnaround.
+- Recommend protective equipment (gloves, mask) for any chemical application —
+  a genuinely useful, low-cost safety reminder to surface in any pest-advisory output.

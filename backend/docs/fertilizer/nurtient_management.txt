@@ -1,0 +1,61 @@
+This document covers cross-crop fertilizer principles. For crop-specific N:P:K doses and
+timing, see the individual files in knowledge_base/crops/ — use this document for the
+"why" and general decision-making behind those numbers.
+
+## Understanding N:P:K
+
+- **Nitrogen (N)**: Drives vegetative growth (leaves, stems, tillers). Most mobile in soil,
+  prone to leaching with heavy irrigation/rainfall, so it's typically split into 2-3 doses
+  across the crop cycle rather than applied all at once.
+- **Phosphorus (P)**: Drives root development and early establishment. Relatively immobile
+  in soil, so it's almost always applied fully as a basal (at-sowing) dose — top-dressing P
+  later gives little benefit since it doesn't move down to where new roots are growing.
+- **Potassium (K)**: Drives water regulation, disease resistance, and grain/fruit quality
+  (especially important for tuber and fruit crops like potato and cotton). Also generally
+  applied basally, though very K-hungry crops may benefit from a split application.
+
+## Common Fertilizer Sources
+
+| Product | Nutrient(s) | Typical Use |
+|---|---|---|
+| Urea | 46% N | Top dressing, most common N source in India |
+| DAP (Di-ammonium Phosphate) | 18% N, 46% P | Basal dose, common P source |
+| MOP (Muriate of Potash) | 60% K | Basal dose, common K source |
+| SSP (Single Super Phosphate) | 16% P, plus sulphur | Basal dose, preferred when sulphur is also needed |
+| Zinc Sulphate | Zinc (micronutrient) | Basal, for zinc-deficient soils (common in intensively cropped rice-wheat systems) |
+| Gypsum | Sulphur, calcium | For sulphur-deficient soils, especially oilseed/legume crops |
+
+## Soil Testing — Do This Before Guessing
+
+Blanket fertilizer recommendations (like the per-hectare doses in the crop guides) assume
+"average" soil. Actual soil nutrient status varies field to field. A soil test (available
+through most state agriculture department Krishi Vigyan Kendras, often free or low-cost)
+reports existing N/P/K/micronutrient levels and lets fertilizer doses be adjusted up or
+down from the generic recommendation — this is the single highest-leverage step most
+smallholder farmers skip. In an app context, a "Soil Health Card" upload or manual entry
+of soil test values should override generic crop-guide doses wherever available.
+
+## Organic vs. Inorganic
+
+- Farmyard manure (FYM) / compost improves soil structure, water retention, and microbial
+  activity over time, but releases nutrients slowly (over a season or more) and has a much
+  lower and less consistent nutrient concentration than chemical fertilizer.
+- A combined approach — organic manure for long-term soil health plus targeted chemical
+  fertilizer for the crop's immediate N:P:K needs — generally outperforms either alone,
+  and is the approach reflected in the crop guides' basal/top-dressing splits.
+- Over-reliance on chemical N without organic matter addition over multiple seasons tends
+  to degrade soil structure and micronutrient status even while N:P:K numbers "on paper"
+  look adequate — this is a known long-term risk in continuously cropped rice-wheat systems.
+
+## Common Mistakes to Flag to a Farmer
+
+- Applying all fertilizer as a single dose at sowing instead of splitting N across stages —
+  wastes nitrogen to leaching/volatilization and doesn't match the crop's actual uptake curve.
+- Skipping P/K because "the crop looks fine early on" — P and K deficiency symptoms often
+  only become visible late (poor grain fill, weak stems), by which point it's too late to
+  correct that season.
+- Ignoring micronutrients (zinc especially, in Indian soils) because the visible symptoms
+  (interveinal yellowing, stunted growth) are easy to mistake for a general N deficiency —
+  applying more urea in this case doesn't fix a zinc deficiency and wastes input cost.
+- Applying fertilizer right before heavy expected rainfall — high runoff/leaching risk,
+  wastes cost and can contribute to nutrient runoff into local water bodies.

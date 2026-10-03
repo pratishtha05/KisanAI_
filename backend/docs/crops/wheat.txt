@@ -1,0 +1,29 @@
+WHEAT (Triticum aestivum) - CROP OVERVIEW
+
+Growing Season and Climate:
+Wheat is a rabi (winter) crop in India, sown between late October and late November and harvested between March and April, depending on region and variety. It requires a cool growing season with temperatures between 10-25°C and a relatively warm, dry period during grain-filling and maturity. Excessive heat during grain filling (above 30°C) reduces yield significantly by shortening the grain-filling window.
+
+Soil Requirements:
+Wheat performs best on well-drained loamy or clay-loam soils with good water-holding capacity. Ideal soil pH ranges from 6.0 to 7.5. Waterlogged or poorly drained fields lead to root diseases and poor tillering. Soil should be ploughed 2-3 times before sowing to achieve a fine tilth.
+
+Seed Rate and Sowing:
+Recommended seed rate is approximately 100 kg/hectare for normal sowing and up to 125 kg/hectare for late sowing (to compensate for reduced tillering). Row spacing is typically 20-22.5 cm. Sowing depth should be 5-6 cm; deeper sowing delays emergence and weakens seedlings.
+
+Growth Stages:
+1. Germination (0-10 days after sowing)
+2. Crown Root Initiation - CRI (18-25 days) - critical stage for first irrigation
+3. Tillering (25-45 days)
+4. Jointing/Stem elongation (45-65 days)
+5. Booting and heading (65-85 days)
+6. Flowering/Anthesis (85-95 days)
+7. Milk stage and dough stage (95-115 days)
+8. Physiological maturity and harvest (115-140 days depending on variety)
+
+Common Varieties (North India / Punjab region):
+HD-2967, PBW-725, PBW-343, WH-1105, DBW-187, HD-3086. Variety selection should account for local disease pressure (especially rust) and sowing window (timely vs late sown).
+
+Yield Expectations:
+Under good management with irrigation, yields of 45-55 quintals/hectare are achievable for high-yielding varieties in Punjab/Haryana conditions. Late-sown or rainfed wheat yields considerably lower, often 25-35 quintals/hectare.
+
+Harvesting:
+Harvest when grains are hard and moisture content is around 20-25% for combine harvesting, or slightly higher for manual harvesting followed by sun-drying. Delayed harvest increases shattering losses and exposure to untimely rain.

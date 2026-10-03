@@ -1,0 +1,24 @@
+WHEAT FERTILIZER RECOMMENDATIONS
+
+General NPK Recommendation (irrigated, high-yielding varieties):
+For irrigated wheat under normal soil fertility, a general recommendation is 120:60:40 kg/hectare of Nitrogen (N), Phosphorus (P2O5) and Potassium (K2O) respectively. Actual doses should be adjusted based on soil test results, since Punjab/Haryana soils are often already high in available Potassium, in which case K application can be reduced or skipped.
+
+Application Timing (Split Application):
+Nitrogen should be applied in split doses to improve use efficiency and reduce losses:
+- 1/2 dose of Nitrogen + full dose of Phosphorus and Potassium at the time of sowing (basal application)
+- 1/4 dose of Nitrogen at first irrigation (Crown Root Initiation stage, ~21 days after sowing)
+- 1/4 dose of Nitrogen at second irrigation (tillering/jointing stage, ~45-50 days after sowing)
+
+Applying all Nitrogen at sowing leads to excessive early vegetative growth, increased lodging risk, and nitrogen loss through leaching/volatilization before the crop can use it during later critical growth stages.
+
+Micronutrients:
+Zinc deficiency is common in wheat grown in alkaline or heavily rice-wheat rotated soils; a basal application of 25 kg/hectare zinc sulphate is recommended once every 2-3 years if soil tests indicate deficiency. Symptoms of zinc deficiency include interveinal chlorosis and stunted growth in patches.
+
+Fertilizer Sources:
+Common sources used are Urea (46% N), Diammonium Phosphate/DAP (18% N, 46% P2O5), Muriate of Potash/MOP (60% K2O), and Single Super Phosphate/SSP (16% P2O5, also supplies sulphur which benefits oilseed rotations).
+
+Organic Supplementation:
+Where available, farmyard manure (FYM) at 10-15 tonnes/hectare applied before sowing improves soil structure and nutrient availability, allowing a modest reduction (10-15%) in recommended chemical Nitrogen dose without yield penalty.
+
+Stage-Specific Guidance for Farmer Queries:
+If a farmer asks about fertilizer at the CRI/tillering stage specifically, the recommendation is a top-dressing of Urea (approximately 65-70 kg/hectare, supplying the 1/4 N split dose) applied just before or with the irrigation water for better uptake.

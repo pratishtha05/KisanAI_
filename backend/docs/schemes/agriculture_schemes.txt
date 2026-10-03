@@ -1,0 +1,31 @@
+KEY GOVERNMENT AGRICULTURE SCHEMES - OVERVIEW
+
+Note: Scheme details, benefit amounts and eligibility criteria are periodically revised by the government. This file provides general structural information for demo/prototype purposes; farmers should be directed to verify current details on the respective official scheme portal or through their local agriculture department before making decisions.
+
+1. Pradhan Mantri Fasal Bima Yojana (PMFBY) - Crop Insurance Scheme
+Objective: Provides insurance coverage and financial support to farmers in the event of crop failure due to natural calamities, pests, or diseases.
+Key Features: Low premium rates for farmers (typically 2% of sum insured for kharif crops, 1.5% for rabi crops, and 5% for annual commercial/horticultural crops), with the government subsidizing the remaining actuarial premium. Coverage includes prevented sowing, standing crop losses, post-harvest losses (up to 14 days after harvest for crops kept in the field for drying), and localized calamities like hailstorm and landslide.
+Enrollment: Enrollment is often linked to crop loans (compulsory for loanee farmers unless they opt out) or can be done voluntarily by non-loanee farmers through banks, CSCs, or the PMFBY portal, within the notified enrollment window for each season/crop.
+
+2. Kisan Credit Card (KCC) Scheme
+Objective: Provides farmers with timely access to short-term formal credit for crop production, post-harvest expenses, and allied agricultural activities at concessional interest rates.
+Key Features: Interest subvention brings effective interest rates down significantly (often to around 4% per annum for prompt repayment) on loans up to a specified limit (commonly up to Rs. 3 lakh). KCC can also cover working capital for animal husbandry and fisheries in many states.
+Application: Farmers can apply through nationalized banks, cooperative banks, or regional rural banks using land records and identity proof; the credit limit is assessed based on crop pattern and landholding.
+
+3. Soil Health Card Scheme
+Objective: Provides farmers with crop-wise soil nutrient status and fertilizer/nutrient recommendations for their specific land parcels, issued once every 2-3 years (soil testing cycle).
+Key Features: Soil samples are collected by the state agriculture department (or through empanelled labs) and tested for macro and micronutrients, pH, and organic carbon; recommendations are provided for balanced fertilizer use to avoid over/under-application.
+Relevance to Farm Advisor: Where a farmer has a Soil Health Card, its NPK and micronutrient recommendations should take priority over generic fertilizer defaults, since they are field-specific.
+
+4. National Mission on Sustainable Agriculture / Per Drop More Crop (Micro-Irrigation)
+Objective: Promotes water-use efficiency through subsidized adoption of drip and sprinkler irrigation systems.
+Key Features: Subsidy typically covers 55% of the cost for small/marginal farmers and 45% for other farmers (subject to state-specific top-ups), aimed at encouraging the shift from flood irrigation to micro-irrigation, particularly relevant for water-intensive crops or water-scarce regions.
+Application: Through the state horticulture/agriculture department, often coordinated with empanelled micro-irrigation equipment vendors.
+
+5. e-NAM (National Agriculture Market)
+Objective: An online trading platform integrating existing APMC mandis to give farmers wider market access, price transparency and better price discovery for their produce.
+Key Features: Farmers can view prices across multiple mandis before deciding where to sell, and in participating mandis can access online bidding, reducing dependence on a single local mandi and intermediary layers.
+Relevance to Mandi Price Module: e-NAM price data (where accessible via API) is a valuable source for cross-mandi price comparison to complement local mandi price display.
+
+Advisory Note for Farmer Queries:
+Scheme eligibility and benefit questions should always be answered with the caveat that details change periodically, and the farmer should confirm current terms with the local agriculture office, bank branch (for KCC/PMFBY), or the relevant scheme's official portal before relying on the answer for a financial decision.

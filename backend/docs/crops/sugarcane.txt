@@ -1,0 +1,37 @@
+Sugarcane (Saccharum officinarum) — Package of Practices
+
+Crop Profile
+- Season: Planted year-round in different regions; main planting windows are Autumn (Sept-Oct) and Spring (Feb-Mar)
+- Suitable soil: Deep, well-drained loam to clay-loam, pH 6.5–7.5
+- Duration: 10–18 months depending on planting season and variety (a long-duration crop compared to cereals)
+
+Seed Selection
+- Propagated from stem cuttings ("setts"), not true seed
+- Recommended varieties (North India): Co-0238, CoJ-64, CoS-8436
+- Sett rate: 35,000–40,000 three-budded setts per hectare (roughly 6–8 tonnes of cane used as seed material per hectare)
+- Sett treatment: Soak setts in fungicide solution (e.g., Carbendazim 0.1%) for 15–20 minutes before planting to prevent sett rot and red rot disease.
+
+Sowing / Planting
+- Autumn planting window: mid-September to mid-October (gives highest yield potential, longer growing season)
+- Spring planting window: mid-February to mid-March
+- Row spacing: 90–120 cm between furrows
+- Planting depth: setts laid horizontally in furrows 5–8 cm deep, covered with soil
+- Method: Furrow planting; trench planting used in high-wind or lodging-prone areas for better anchorage.
+
+Fertilizer Schedule
+- Recommended dose (per hectare): N:P:K = 250:60:60 kg/ha (spread across the long growing season, not applied all at once)
+- Basal dose: Full P and K, plus 1/3rd N at planting
+- 1st top dressing: 1/3rd N at 6–8 weeks after planting (tillering stage)
+- 2nd top dressing: remaining 1/3rd N at 12–14 weeks after planting (grand growth phase)
+- Sugarcane responds strongly to organic manure — 10–15 tonnes/ha farmyard manure incorporated before planting improves soil structure over the long crop duration.
+
+Irrigation Schedule
+- Critical stages: germination (first 6–8 weeks), tillering, and the grand growth phase (peak water demand) are most sensitive to water stress.
+- Irrigation interval: every 7–10 days during summer months, 15–20 days in cooler months, adjusted for rainfall.
+- Total water requirement is high (1800–2500 mm over the crop cycle) — among the most water-intensive common crops, which matters for water-stressed regions.
+- Avoid waterlogging, especially in the first 2 months — poor drainage at planting causes sett rot and poor germination.
+
+Common Risks
+- Red rot disease risk increases in waterlogged or poorly drained fields — avoid replanting the same field with sugarcane consecutively (crop rotation reduces buildup).
+- Early shoot borer and top borer are the major pest concerns in the first 3–4 months — pheromone traps and timely detrashing (removing dry leaves) help control them.
+- Lodging (crop falling over) risk increases with excess N and inadequate earthing-up (mounding soil around the base) during the grand growth phase.

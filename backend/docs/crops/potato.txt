@@ -1,0 +1,35 @@
+# Potato (Solanum tuberosum) — Package of Practices
+
+## Crop Profile
+- Season: Rabi crop in the plains (North India); grown in Kharif/summer in hill regions
+- Suitable soil: Well-drained sandy loam, pH 5.5–6.5 (avoid heavy clay — restricts tuber development)
+- Duration: 90–120 days depending on variety
+
+## Seed Selection
+- Propagated from seed tubers, not true seed
+- Recommended varieties: Kufri Pukhraj (early), Kufri Jyoti (medium), Kufri Bahar (medium-late)
+- Seed rate: 2,000–2,500 kg/ha of seed tubers (25–40 g size tubers preferred)
+- Seed treatment: Treat seed tubers with Mancozeb (0.25%) dip for 10 minutes before planting to reduce seed-borne blight and rot.
+
+## Sowing / Planting
+- Optimal planting window (plains): mid-October to mid-November
+- Row spacing: 60 cm x 20 cm
+- Planting depth: 5–8 cm, in ridges/furrows
+- Method: Ridge planting preferred over flat planting — supports better tuber development and drainage.
+
+## Fertilizer Schedule
+- Recommended dose (per hectare): N:P:K = 180:80:100 kg/ha (potato has high K demand relative to cereals — supports tuber bulking)
+- Basal dose: Full P and K, plus 1/2 N at planting
+- Top dressing: remaining 1/2 N at earthing-up (25–30 days after planting, when ridges are mounded around growing plants)
+- Avoid excess N late in the season — delays tuber maturity and reduces storage quality.
+
+## Irrigation Schedule
+- Critical stages: stolon initiation (2–3 weeks after planting) and tuber bulking (6–9 weeks after planting) are the most water-sensitive stages.
+- Irrigation interval: light, frequent irrigations every 7–10 days — potato roots are shallow and don't tolerate prolonged dry spells.
+- Stop irrigation 10–15 days before harvest to allow skin-set (toughening of tuber skin) for better storage life.
+- Avoid waterlogging at any stage — standing water causes tuber rot within days.
+
+## Common Risks
+- Late blight (Phytophthora infestans) is the single biggest disease risk — spreads rapidly in cool, humid weather (15–20°C with high humidity); scout weekly and consider preventive fungicide spray before symptoms appear in high-risk weather.
+- Aphids are the main vector for viral diseases that degrade seed quality across generations — monitor from early growth stage.
+- Greening of exposed tubers (from inadequate earthing-up) makes them unfit for consumption — ensure proper ridging.

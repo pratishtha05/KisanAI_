@@ -1,0 +1,24 @@
+WHEAT IRRIGATION SCHEDULE AND GUIDANCE
+
+Number of Irrigations:
+Wheat generally requires 4-6 irrigations under normal conditions, depending on soil type, rainfall received, and variety duration. Sandy soils require more frequent, lighter irrigations; clay-loam soils can hold water longer between irrigations.
+
+Critical Irrigation Stages (in order of priority if water is limited):
+1. Crown Root Initiation (CRI) - 20-25 days after sowing. This is the single most critical irrigation; skipping it causes the most severe yield loss of any single missed irrigation, since root development at this stage determines the plant's capacity to take up nutrients and water for the rest of the season.
+2. Tillering stage - 40-45 days after sowing. Supports maximum productive tiller formation.
+3. Jointing/late tillering - 60-65 days after sowing.
+4. Flowering stage - 85-90 days after sowing. Water stress here directly reduces grain number.
+5. Milk stage - 100-105 days after sowing. Water stress here reduces grain weight (test weight).
+6. Dough stage - 115-120 days after sowing (optional, only if soil moisture is very low and weather is hot).
+
+Irrigation and Rainfall Interaction:
+If significant rainfall (15mm or more) has occurred within the past 5-7 days, a scheduled irrigation can typically be delayed or skipped, since wheat's root zone (top 30-45 cm) will usually retain adequate moisture during this window in loamy/clay-loam soils. However, in sandy soils, rainfall infiltrates and drains faster, so the safe delay window is shorter (around 3-4 days).
+
+Water Quantity:
+A single irrigation for wheat should apply approximately 5-6 cm of water at the field level. Over-irrigation leads to lodging (crop falling over), especially closer to maturity, and increases disease pressure such as foot rot.
+
+Signs of Water Stress in Wheat:
+Leaf rolling, a dull bluish-green leaf color (compared to healthy dark green), and delayed tillering are early signs of moisture stress and indicate irrigation should not be delayed further.
+
+Irrigation Method Considerations:
+Flood/furrow irrigation is most common; however, sprinkler irrigation improves water use efficiency by 20-30% and is increasingly recommended in water-scarce regions like southwest Punjab and parts of Haryana.

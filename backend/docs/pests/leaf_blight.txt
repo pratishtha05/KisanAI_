@@ -1,0 +1,29 @@
+LEAF BLIGHT - DISEASE ADVISORY
+
+Overview:
+Leaf blight refers to a group of fungal and bacterial diseases causing rapid browning, drying and death of leaf tissue, affecting multiple crops. Two of the most economically important forms in this region are Bacterial Leaf Blight in rice (Xanthomonas oryzae) and Helminthosporium/Alternaria leaf blight in wheat and maize.
+
+Bacterial Leaf Blight (Rice):
+Symptoms begin as water-soaked lesions near leaf tips or margins that expand into yellow-to-white streaks running along the leaf veins, eventually causing the whole leaf to dry out and turn straw-colored from the tip downward. In severe cases, entire fields can appear scorched. The disease spreads rapidly during periods of high humidity, warm temperatures (25-30°C), and after strong wind/rain events that create leaf wounds for bacterial entry.
+
+Favorable Conditions (Bacterial Leaf Blight):
+High Nitrogen application, dense planting, and continuous standing water conditions favor disease development. Monsoon periods with intermittent heavy rain and high humidity are peak risk windows, typically from tillering through flowering stage.
+
+Alternaria/Helminthosporium Leaf Blight (Wheat and Mustard):
+In wheat, this appears as small brown-to-dark oval or irregular lesions scattered across leaves, which coalesce under severe infection to blight large leaf areas, reducing the photosynthetic area available for grain filling. In mustard, Alternaria blight appears as concentric ring-spot lesions ("target spot" pattern) on leaves, pods and stems, and can significantly reduce pod-filling and seed quality if it strikes during flowering-to-pod-development.
+
+Favorable Conditions (Alternaria/Helminthosporium):
+High humidity combined with intermittent light rain or dew, and moderate temperatures (20-25°C), favor spore germination and spread. Late-sown crops and crops under moisture/nutrient stress are generally more susceptible.
+
+Management - Cultural:
+- Use disease-resistant/tolerant varieties where available, since resistance is the most cost-effective long-term control.
+- Avoid excessive Nitrogen application, which increases plant susceptibility to both bacterial and fungal blights.
+- Ensure proper field drainage to avoid prolonged leaf wetness, particularly for bacterial leaf blight in rice.
+- Remove and destroy infected crop residue after harvest to reduce carry-over inoculum.
+
+Management - Chemical:
+For bacterial leaf blight in rice, copper-based bactericides (e.g., Copper oxychloride) combined with Streptocycline (a bactericide/antibiotic) applied as a foliar spray at first symptom appearance can slow disease spread, though chemical control of bacterial diseases is generally less effective than for fungal diseases and cultural prevention is prioritized.
+For fungal leaf blights (wheat, mustard), fungicides such as Mancozeb 75% WP or Propiconazole 25% EC applied at first symptom appearance, and repeated at 10-15 day intervals if conditions remain favorable, are commonly recommended.
+
+Advisory Note for Farmer Queries:
+If a farmer describes "yellow streaks along leaf veins drying from the tip" in rice during humid weather, this strongly suggests bacterial leaf blight. If they describe "brown spots" or "ring-like spots" on wheat/mustard leaves during cool humid weather, this points to a fungal leaf blight, and cultural + fungicide management should be recommended accordingly.

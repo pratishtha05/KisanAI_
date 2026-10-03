@@ -8,5 +8,11 @@ python-jose[cryptography]
 passlib[bcrypt]
 python-multipart
 httpx
-torch
 torchvision
+torch
+safetensors
+numpy
+regex
+chromadb
+huggingface_hub 
+pillow

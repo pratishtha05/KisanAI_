@@ -1,0 +1,38 @@
+PM-KISAN (Pradhan Mantri Kisan Samman Nidhi) - SCHEME OVERVIEW
+
+Objective:
+PM-KISAN is a central government income support scheme that provides direct financial assistance to landholding farmer families across India, to help meet input costs and other farm-related expenses.
+
+Benefit Amount:
+Eligible farmer families receive Rs. 6,000 per year, disbursed in three equal installments of Rs. 2,000 each, credited directly to the beneficiary's bank account via Direct Benefit Transfer (DBT) every four months.
+
+Eligibility Criteria:
+- All landholding farmer families, subject to certain exclusion criteria, are eligible regardless of the size of landholding.
+- Land ownership records must be as per the land records of the relevant state/UT as of a specified cut-off date (states periodically update this).
+
+Exclusion Criteria (Farmers NOT eligible):
+- Institutional landholders.
+- Farmer families in which one or more members are current or former holders of constitutional posts, current or former Ministers/MPs/MLAs/MLCs, current or former Mayors of Municipal Corporations, or current or former Chairpersons of District Panchayats.
+- Farmer families with any member who is a serving or retired officer/employee of central/state government departments/PSUs (with some exceptions for Class-IV/Group-D employees).
+- Farmer families in which any member pays income tax in the preceding assessment year.
+- Farmer families with any member who is a doctor, engineer, lawyer, chartered accountant, or architect registered with a professional body and practicing.
+- Farmer families receiving a monthly pension of Rs. 10,000 or more (with exceptions for Class-IV/Group-D and multi-tasking staff).
+
+Registration Process:
+Farmers can register through:
+1. The official PM-KISAN portal (pmkisan.gov.in) using self-registration with Aadhaar, land records and bank account details.
+2. Common Service Centers (CSCs) at the village/block level.
+3. The local Patwari, Revenue Officer, or state government nodal officer designated for the scheme.
+
+Required Documents:
+Aadhaar card, land ownership documents (khatauni/land records), and bank account details (with Aadhaar linkage for DBT).
+
+Status Check:
+Farmers can check their registration status, beneficiary status, and payment history on the PM-KISAN portal using their Aadhaar number or registration number, or through the PM-KISAN mobile app.
+
+Common Issues Affecting Eligibility/Payment:
+- Aadhaar-bank account seeding errors are among the most common reasons for payment failure and should be verified first if a farmer reports not receiving payment despite being registered.
+- Land record mismatches (e.g., name spelling differences between Aadhaar and land records) can also cause registration rejection and require correction through the local revenue office.
+
+Advisory Note for Farmer Queries:
+If a farmer asks "am I eligible for PM-KISAN" and mentions government service, pension above the threshold, or income tax payment by any family member, flag the relevant exclusion criterion. If they ask why payment hasn't come despite registration, suggest checking Aadhaar-bank seeding status first, as this is the most frequent cause.

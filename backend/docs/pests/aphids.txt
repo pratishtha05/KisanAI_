@@ -1,0 +1,27 @@
+APHIDS - PEST ADVISORY
+
+Overview:
+Aphids are small, soft-bodied sap-sucking insects (2-4 mm) that occur in dense colonies on the underside of leaves, stems, and flowering parts. They are among the most economically damaging pests in mustard, wheat, and several vegetable crops in North India, particularly during the cooler months of the rabi season (December-February).
+
+Crops Most Affected:
+Mustard aphid (Lipaphis erysimi) is the most damaging aphid species in the region, primarily attacking mustard and other Brassica crops. Wheat aphids and cotton aphids also cause economically significant damage in their respective crops, though generally less severe than mustard aphid infestation.
+
+Damage Symptoms:
+Aphids feed by sucking plant sap, causing curling, yellowing and stunting of leaves and shoots. Heavy infestation on flowering/pod-bearing parts (especially in mustard) directly reduces pod formation and seed set. Aphids also excrete honeydew, which promotes sooty mold growth on leaves, further reducing photosynthesis.
+
+Favorable Conditions:
+Cool, dry weather with temperatures between 15-20°C and low rainfall favors rapid aphid population buildup. Population growth is exponential once conditions are favorable; a field can go from a minor infestation to an economically damaging one within 7-10 days if unchecked.
+
+Economic Threshold Level (ETL):
+For mustard, the commonly used economic threshold is around 10 aphids per 10 cm of the main shoot/inflorescence (measured on the central raceme). Below this threshold, natural predators (ladybird beetles, syrphid fly larvae) can often keep populations in check without chemical intervention.
+
+Management - Cultural/Biological:
+- Timely (not delayed) sowing helps crops pass through the vulnerable early flowering stage before peak aphid pressure builds up.
+- Conserving natural enemies (ladybird beetles/coccinellids) by avoiding unnecessary broad-spectrum insecticide sprays is an effective long-term control strategy.
+- Yellow sticky traps can be used for monitoring aphid buildup.
+
+Management - Chemical:
+If population exceeds ETL, recommended insecticides include Dimethoate 30% EC or Imidacloprid 17.8% SL at label-recommended doses, applied as a targeted spray focused on infested plant parts (shoot tips, inflorescences) rather than blanket spraying. Spraying should be avoided during flowering hours when pollinators are active; early morning or late evening application is preferred.
+
+Advisory Note for Farmer Queries:
+If a farmer reports "small green/black insects on the growing tips" of mustard during December-February, this is very likely an aphid infestation and should be checked against the economic threshold before recommending chemical spray.

@@ -9,4 +9,10 @@ __pycache__/
 *.db
 *.sqlite3
 .DS_Store
+.venv
+backend/model_weights/
+backend/chroma_db/
+backend/tests
+backend/model_weights_1.5b
+backend/scripts/*
 

@@ -1,0 +1,24 @@
+RICE IRRIGATION SCHEDULE AND GUIDANCE
+
+Traditional Continuous Flooding:
+Transplanted rice is traditionally grown under continuous standing water of about 5 cm depth from transplanting until about 10 days before harvest. This method is water-intensive, typically requiring 1200-1500 mm of water over the season depending on soil type and climate.
+
+Alternate Wetting and Drying (AWD):
+AWD is a water-saving irrigation technique where the field is allowed to dry until the water table drops to about 15 cm below the soil surface (measured using a perforated field water tube), at which point the field is re-flooded to 5 cm depth. This cycle is repeated through the vegetative stage. AWD can reduce total irrigation water use by 15-30% compared to continuous flooding, with minimal or no yield penalty when managed correctly, and also reduces methane emissions.
+
+Critical Water-Sensitive Stages (should NOT be allowed to dry out even under AWD):
+1. Active tillering (15-40 days after transplanting)
+2. Panicle initiation (around 55-60 days after transplanting)
+3. Flowering/anthesis (around 80-90 days after transplanting) - most sensitive stage; even brief water stress here can cause spikelet sterility and severe yield loss.
+
+Stages Where Field Can Be Safely Dried:
+Approximately 10 days before harvest, irrigation should be stopped entirely to allow the field to dry for easier harvesting and to improve grain quality and reduce lodging.
+
+Direct-Seeded Rice (DSR) Water Management:
+DSR fields are not puddled/flooded continuously; instead, irrigation is applied to maintain moist (not saturated) soil, with the first irrigation typically given 3-4 days after sowing and subsequent irrigations at 5-7 day intervals depending on rainfall, roughly halving total water use compared to transplanted flooded rice.
+
+Rainfall Interaction:
+Significant rainfall (20mm or more) can substitute for a scheduled irrigation in both flooded and DSR systems, though standing water fields should be checked for proper drainage to avoid prolonged submergence beyond 5-7 cm, which can damage young seedlings.
+
+Signs of Water Stress in Rice:
+Leaf rolling, drooping and a grayish tinge to leaves are visible signs of moisture stress that indicate irrigation is overdue, particularly critical to catch during flowering.

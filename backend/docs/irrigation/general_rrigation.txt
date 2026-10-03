@@ -1,0 +1,62 @@
+This document covers cross-crop irrigation principles. For crop-specific critical growth
+stages and intervals, see knowledge_base/crops/ — use this document for method selection,
+scheduling logic, and water-saving practices that apply across crops.
+
+## Irrigation Methods Compared
+
+| Method | Water Use Efficiency | Best Suited For | Notes |
+|---|---|---|---|
+| Flood / Basin | Low (40-50%) | Rice (which needs standing water anyway), flat fields with assured water | Highest water loss to seepage/runoff; simplest, lowest upfront cost |
+| Furrow | Medium (50-60%) | Row crops — cotton, sugarcane, maize | Water flows along furrows between raised beds; moderate efficiency |
+| Sprinkler | Medium-high (65-75%) | Wheat, groundnut, vegetables on undulating land | Good for light, frequent irrigation; upfront equipment cost |
+| Drip | High (85-95%) | Fruit orchards, cotton, sugarcane, vegetables | Highest efficiency, precise delivery to root zone, highest upfront cost but strong long-term water/labor savings |
+
+Method choice is a real trade-off between water efficiency and upfront cost — a
+cash-constrained smallholder on flood irrigation isn't necessarily making a "wrong"
+choice; drip/sprinkler subsidies (many state governments offer 50-90% subsidy on
+drip installation) are worth surfacing specifically because the efficiency gain matters
+most exactly where water is scarcest.
+
+## The General Principle Behind "Critical Growth Stages"
+
+Every crop guide in this knowledge base lists specific critical stages (e.g., wheat's
+Crown Root Initiation, rice's panicle initiation, maize's silking). The general pattern
+behind all of them: a crop is most water-sensitive during (a) establishment/germination,
+and (b) reproductive stages (flowering, grain/fruit filling) — vegetative-stage water
+stress reduces yield somewhat, but reproductive-stage water stress can cause outright
+crop failure for that season (flower/fruit abortion). When water is limited, prioritizing
+irrigation at reproductive stages over vegetative stages is the general triage principle.
+
+## Signs of Under- and Over-Irrigation
+
+**Under-irrigation signs**: leaf rolling/curling (especially visible in cereals at midday),
+wilting that doesn't recover by evening, stunted growth, premature flowering (a stress
+response), delayed/patchy germination.
+
+**Over-irrigation / waterlogging signs**: yellowing from the base of the plant upward
+(root oxygen deprivation, not a nutrient issue — easy to misdiagnose as N deficiency),
+stunted root growth, increased disease incidence (most fungal root rots thrive in
+waterlogged soil), standing water visible more than a day after irrigation on
+non-paddy crops.
+
+## Alternate Wetting and Drying (AWD) — Rice-Specific Water Saving
+
+Covered in more detail in crops/rice.md, but worth flagging as the single most
+impactful water-saving technique available for rice specifically: allowing the field
+to dry until water level drops ~15cm below the surface before re-irrigating, rather
+than maintaining continuous standing water, cuts water use 15-30% with minimal yield
+impact, and also reduces methane emissions and brown planthopper pressure. Not
+applicable to non-paddy crops, which shouldn't have standing water in the first place.
+
+## Rainfall Integration
+
+An irrigation recommendation should always account for recent and forecast rainfall,
+not just "days since last irrigation":
+- Skip a scheduled irrigation if >20mm rain fell in the preceding 3-5 days and the
+  field isn't showing under-irrigation signs.
+- A forecast of significant rain in the next 24-48 hours is a reason to delay a
+  non-urgent irrigation, both to save water/cost and to avoid over-saturating the
+  field right before rainfall adds more.
+- This is the kind of check a Weather Intelligence module should feed directly into
+  irrigation timing recommendations — irrigation advice generated without checking
+  the forecast risks recommending unnecessary watering right before rain.
