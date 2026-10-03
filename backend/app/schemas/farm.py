@@ -9,6 +9,8 @@ class FarmCreate(BaseModel):
     land_size: float
     soil_type: str
     sowing_date: Optional[date] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
 
 class FarmResponse(FarmCreate):
     id: int

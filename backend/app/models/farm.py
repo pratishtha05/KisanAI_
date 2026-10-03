@@ -12,5 +12,7 @@ class Farm(Base):
     land_size = Column(Float)
     soil_type = Column(String)
     sowing_date = Column(Date, nullable=True)
+    latitude = Column(Float, nullable=True)
+    longitude = Column(Float, nullable=True)
     
     user = relationship("User", back_populates="farms")

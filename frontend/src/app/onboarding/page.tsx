@@ -35,7 +35,9 @@ export default function Onboarding() {
     village: "", 
     land_size: 5,
     land_unit: "", 
-    soil_type: "" 
+    soil_type: "" ,
+    latitude: null as number | null,
+    longitude: null as number | null,
   });
   
   const [locationMode, setLocationMode] = useState<"choice" | "manual" | "gps">("choice");
@@ -119,7 +121,9 @@ export default function Onboarding() {
           stage: crop.stage,
           cycle_time: crop.cycle,
           land_size: parseFloat(standardizedLandSize.toFixed(2)), 
-          soil_type: data.soil_type || "Unknown"
+          soil_type: data.soil_type || "Unknown",
+          latitude: data.latitude,
+          longitude: data.longitude
         });
       }
       
@@ -173,7 +177,14 @@ export default function Onboarding() {
             const village = addr.village || addr.town || addr.city || addr.suburb || "";
             const district = addr.state_district || addr.county || "";
             const state = addr.state || "";
-            setData(prev => ({ ...prev, state, district, village }));
+            setData(prev => ({
+              ...prev,
+              latitude,
+              longitude,
+              state,
+              district,
+              village
+            }));
             setGpsStatus("success");
           } else {
             setGpsStatus("error");
