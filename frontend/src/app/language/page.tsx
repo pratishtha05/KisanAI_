@@ -6,7 +6,6 @@ import { Card } from "@/components/ui/Card";
 import { motion, AnimatePresence } from "framer-motion";
 
 const languages = [
-  // Main languages (shown by default)
   { code: "en", name: "English", nativeName: "English", isMain: true },
   { code: "hi", name: "Hindi", nativeName: "हिन्दी", isMain: true },
   { code: "pa", name: "Punjabi", nativeName: "ਪੰਜਾਬੀ", isMain: true },
@@ -16,28 +15,7 @@ const languages = [
   { code: "te", name: "Telugu", nativeName: "తెలుగు", isMain: true },
   { code: "ta", name: "Tamil", nativeName: "தமிழ்", isMain: true },
   { code: "kn", name: "Kannada", nativeName: "ಕನ್ನಡ", isMain: true },
-  { code: "ml", name: "Malayalam", nativeName: "മലയാളം", isMain: true },
-
-  // Additional languages (searchable only)
-  { code: "as", name: "Assamese", nativeName: "অসমীয়া", isMain: false },
-  { code: "or", name: "Odia", nativeName: "ଓଡ଼ିଆ", isMain: false },
-  { code: "ur", name: "Urdu", nativeName: "اردو", isMain: false },
-  { code: "ks", name: "Kashmiri", nativeName: "कॉशुर / کأشُر", isMain: false },
-  { code: "sd", name: "Sindhi", nativeName: "سنڌي", isMain: false },
-  { code: "kok", name: "Konkani", nativeName: "कोंकणी", isMain: false },
-  { code: "mai", name: "Maithili", nativeName: "मैथिली", isMain: false },
-  { code: "sa", name: "Sanskrit", nativeName: "संस्कृतम्", isMain: false },
-  { code: "ne", name: "Nepali", nativeName: "नेपाली", isMain: false },
-  { code: "brx", name: "Bodo", nativeName: "बर'", isMain: false },
-  { code: "sat", name: "Santali", nativeName: "ᱥᱟᱱᱛᱟᱲᱤ", isMain: false },
-  { code: "doi", name: "Dogri", nativeName: "डोगरी", isMain: false },
-  { code: "mni", name: "Manipuri", nativeName: "মৈতৈলোন্", isMain: false },
-  { code: "bho", name: "Bhojpuri", nativeName: "भोजपुरी", isMain: false },
-  { code: "awa", name: "Awadhi", nativeName: "अवधी", isMain: false },
-  { code: "mag", name: "Magahi", nativeName: "मगही", isMain: false },
-  { code: "hne", name: "Chhattisgarhi", nativeName: "छत्तीसगढ़ी", isMain: false },
-  { code: "bgc", name: "Haryanvi", nativeName: "हरियाणवी", isMain: false },
-  { code: "mwr", name: "Marwari", nativeName: "मारवाड़ी", isMain: false },
+  { code: "ml", name: "Malayalam", nativeName: "മലയാളം", isMain: true }
 ];
 
 const languageWords = [
@@ -52,8 +30,11 @@ const languageWords = [
   "ഭാഷ"
 ];
 
+import { useLanguage } from "@/lib/LanguageContext";
+
 export default function LanguageSelection() {
   const router = useRouter();
+  const { setLanguage } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
   const [wordIndex, setWordIndex] = useState(0);
 
@@ -65,7 +46,7 @@ export default function LanguageSelection() {
   }, []);
 
   const selectLanguage = (lang: string) => {
-    localStorage.setItem("language", lang);
+    setLanguage(lang);
     router.push("/auth/mobile");
   };
 

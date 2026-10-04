@@ -141,7 +141,12 @@ export default function Onboarding() {
         longitude = coordinates.longitude;
       }
       // 1. Save User Profile
-      await api.post("/users/profile", { name: data.name, state: data.state, district: data.district });
+      await api.post("/users/profile", { 
+        name: data.name, 
+        state: data.state, 
+        district: data.district,
+        village: data.village 
+      });
       
       let standardizedLandSize = Number(data.land_size) || 0;
       const unit = (data.land_unit || "").toLowerCase();

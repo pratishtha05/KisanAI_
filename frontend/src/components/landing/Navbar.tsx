@@ -11,6 +11,9 @@ const serif = Noto_Serif({ subsets: ["latin"], weight: ["400", "700"] });
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,7 +56,9 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* CTA */}
+        
+{/* CTA */}
+
         <div className="hidden lg:flex items-center">
           <Link 
             href="/welcome"

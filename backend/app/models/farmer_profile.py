@@ -10,5 +10,6 @@ class FarmerProfile(Base):
     language = Column(String, default="English")
     state = Column(String, nullable=True)
     district = Column(String, nullable=True)
+    village = Column(String, nullable=True)
     
     user = relationship("User", back_populates="profile")

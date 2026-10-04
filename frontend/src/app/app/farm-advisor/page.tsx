@@ -1,5 +1,6 @@
 "use client";
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, Suspense } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { Bot, Send, Square, AlertTriangle, BookOpen, Trash2 } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
@@ -27,8 +28,9 @@ const SUGGESTIONS = [
   "How to deal with pests?",
 ];
 
-export default function FarmAdvisor() {
+function FarmAdvisorChat() {
   const { language } = useLanguage();
+
 
   // ── saved thread ──────────────────────────────────────────────────────────
   const [items, setItems] = useState<ChatItem[]>([]);
@@ -518,5 +520,12 @@ function AdvisorBubble({ item, time, onDelete }: { item: ChatItem; time: string;
         <DeleteButton item={item} onDelete={onDelete} />
       </div>
     </div>
+  );
+}
+export default function FarmAdvisor() {
+  return (
+    <Suspense fallback={<div className="p-8 text-center text-gray-500">Loading Advisor...</div>}>
+      <FarmAdvisorChat />
+    </Suspense>
   );
 }

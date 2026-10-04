@@ -6,6 +6,7 @@ class FarmerProfileCreate(BaseModel):
     language: Optional[str] = "English"
     state: Optional[str] = None
     district: Optional[str] = None
+    village: Optional[str] = None
 
 class FarmerProfileResponse(FarmerProfileCreate):
     id: int

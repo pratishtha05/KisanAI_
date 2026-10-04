@@ -5,18 +5,20 @@ import { cn } from "@/lib/utils";
 import { Home, Sprout, Bot, Leaf, LogOut, CloudSun } from "lucide-react";
 
 import { Noto_Serif } from "next/font/google";
+import { useLanguage } from "@/lib/LanguageContext";
 
 const serif = Noto_Serif({ subsets: ["latin"], weight: ["400", "700"] });
 
 export function DesktopNav() {
   const pathname = usePathname();
   const router = useRouter();
+  const { t } = useLanguage();
   
   const navItems = [
-    { href: "/app", icon: Home, label: "Home" },
-    { href: "/app/weather", icon: CloudSun, label: "Weather" },
-    { href: "/app/farm-advisor", icon: Bot, label: "Ask KisanAI" },
-    { href: "/app/disease-detection", icon: Leaf, label: "Crop Health" },
+    { href: "/app", icon: Home, label: t("nav.home", "Home") },
+    { href: "/app/weather", icon: CloudSun, label: t("nav.weather", "Weather") },
+    { href: "/app/farm-advisor", icon: Bot, label: t("nav.advisor", "Ask KisanAI") },
+    { href: "/app/disease-detection", icon: Leaf, label: t("nav.health", "Crop Health") },
   ];
 
   const handleLogout = () => {
@@ -56,7 +58,7 @@ export function DesktopNav() {
           className="flex items-center gap-3 px-4 py-3 rounded-xl transition-colors font-medium text-red-600 hover:bg-red-50 w-full text-left"
         >
           <LogOut size={20} />
-          Logout
+          {t("nav.logout", "Logout")}
         </button>
       </div>
     </aside>

@@ -3,14 +3,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Home, Sprout, Bot, Leaf } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export function BottomNav() {
   const pathname = usePathname();
+  const { t } = useLanguage();
   
   const navItems = [
-    { href: "/app", icon: Home, label: "Home" },
-    { href: "/app/farm-advisor", icon: Bot, label: "Ask KisanAI" },
-    { href: "/app/disease-detection", icon: Leaf, label: "Crop Health" },
+    { href: "/app", icon: Home, label: t("nav.home", "Home") },
+    { href: "/app/farm-advisor", icon: Bot, label: t("nav.advisor", "Ask KisanAI") },
+    { href: "/app/disease-detection", icon: Leaf, label: t("nav.health", "Crop Health") },
   ];
 
   return (

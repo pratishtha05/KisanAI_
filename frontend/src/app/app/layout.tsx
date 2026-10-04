@@ -1,6 +1,5 @@
 import { BottomNav } from "@/components/layout/BottomNav";
 import { DesktopNav } from "@/components/layout/DesktopNav";
-
 import { TopBar } from "@/components/layout/TopBar";
 
 export default function AppLayout({
@@ -13,7 +12,7 @@ export default function AppLayout({
       <DesktopNav />
       <main className="flex-1 pb-20 md:pb-0 overflow-y-auto w-full relative">
         <TopBar />
-        <div className="max-w-6xl mx-auto w-full">
+        <div className="mx-auto w-full">
           {children}
         </div>
       </main>

@@ -24,11 +24,18 @@ export function TopBar() {
   const languages = [
     { code: "en", label: "English" },
     { code: "hi", label: "हिन्दी" },
-    { code: "pa", label: "ਪੰਜਾਬੀ" }
+    { code: "pa", label: "ਪੰਜਾਬੀ" },
+    { code: "mr", label: "मराठी" },
+    { code: "gu", label: "ગુજરાતી" },
+    { code: "bn", label: "বাংলা" },
+    { code: "te", label: "తెలుగు" },
+    { code: "ta", label: "தமிழ்" },
+    { code: "kn", label: "ಕನ್ನಡ" },
+    { code: "ml", label: "മലയാളം" }
   ];
 
   return (
-    <div className="sticky top-0 z-40 bg-gray-50/80 backdrop-blur-md px-6 py-4 flex justify-end items-center gap-4">
+    <div className="sticky top-0 z-40 bg-gray-50/80 backdrop-blur-md px-6 py-2 flex justify-end items-center gap-4">
       {/* Language Switcher */}
       <div className="relative" ref={dropdownRef}>
         <button 
