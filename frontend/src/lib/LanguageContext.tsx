@@ -151,6 +151,54 @@ const translations: Record<string, Record<string, string>> = {
     "disease.crop.tea": "Tea",
     "disease.crop.tomato": "Tomato",
     "disease.crop.wheat": "Wheat",
+    "weather.guidance": "Weather-based farm guidance",
+    "weather.title": "Weather Intelligence",
+    "weather.subtitle": "Understand the forecast and what it means for your crop.",
+
+    "weather.today": "Today",
+    "weather.temperature": "Maximum / minimum temperature",
+    "weather.rainProbability": "Rain probability",
+    "weather.rainfall": "Rainfall",
+    "weather.wind": "Wind",
+    "weather.windGusts": "Wind gusts",
+    "weather.evapotranspiration": "Evapotranspiration",
+
+    "weather.rainLikelihood": "Rain likelihood",
+    "weather.rainfallIntensity": "Rainfall intensity",
+    "weather.etReference": "ET₀ = reference evapotranspiration",
+
+    "weather.cropNotSpecified": "Crop not specified",
+    "weather.stage": "stage",
+
+    "weather.thisWeek": "This week",
+    "weather.noWeatherAlerts": "No weather alerts for your crop this week.",
+
+    "weather.whatToDo": "What to do",
+    "weather.recommendedAction": "Recommended action",
+    "weather.forecast": "Forecast",
+    "weather.source": "Source",
+
+    "weather.bestTimeToSpray": "Best time to spray",
+    "weather.sprayDescription": "Periods with low rain and manageable wind.",
+    "weather.good": "Good",
+    "weather.okay": "Okay",
+    "weather.noGoodSprayingTime": "No good spraying time found after",
+    "weather.noSuitableSprayWindows": "No suitable spray windows found in the forecast period.",
+
+    "weather.sevenDayForecast": "7-Day Forecast",
+    "weather.tapDay": "Tap a day for more detail.",
+    "weather.strongWind": "Strong wind",
+    "weather.rain": "Rain",
+    "weather.windGust": "Wind gusts",
+    "weather.etDescription": "Evapotranspiration (ET₀): water lost from soil and crop",
+
+    "weather.loading": "Loading weather intelligence...",
+    "weather.noFarm": "No farm information found",
+    "weather.addFarm": "Please add your crop and farm details before viewing weather intelligence.",
+    "weather.unableToLoad": "Unable to load weather intelligence",
+    "weather.tryAgain": "Please try again after checking your connection.",
+    "weather.alert":"alert",
+    "weather.warning":"warning",
   },
 
   hi: {
@@ -299,6 +347,52 @@ const translations: Record<string, Record<string, string>> = {
     "disease.crop.tea": "चाय",
     "disease.crop.tomato": "टमाटर",
     "disease.crop.wheat": "गेहूँ",
+    "weather.guidance": "मौसम आधारित कृषि मार्गदर्शन",
+    "weather.title": "मौसम संबंधी जानकारी",
+    "weather.subtitle": "मौसम के पूर्वानुमान को समझें और जानें कि इसका आपकी फसल पर क्या प्रभाव पड़ सकता है।",
+
+    "weather.today": "आज",
+    "weather.temperature": "अधिकतम / न्यूनतम तापमान",
+    "weather.rainProbability": "वर्षा की संभावना",
+    "weather.rainfall": "वर्षा",
+    "weather.wind": "हवा",
+    "weather.windGusts": "हवा के झोंके",
+    "weather.evapotranspiration": "वाष्पोत्सर्जन",
+
+    "weather.rainLikelihood": "वर्षा की संभावना",
+    "weather.rainfallIntensity": "वर्षा की तीव्रता",
+    "weather.etReference": "ET₀ = संदर्भ वाष्पोत्सर्जन",
+
+    "weather.cropNotSpecified": "फसल निर्दिष्ट नहीं है",
+    "weather.stage": "अवस्था",
+
+    "weather.thisWeek": "इस सप्ताह",
+    "weather.noWeatherAlerts": "इस सप्ताह आपकी फसल के लिए कोई मौसम चेतावनी नहीं है।",
+
+    "weather.whatToDo": "क्या करें",
+    "weather.recommendedAction": "अनुशंसित कार्य",
+    "weather.forecast": "मौसम पूर्वानुमान",
+    "weather.source": "स्रोत",
+
+    "weather.bestTimeToSpray": "स्प्रे करने का सही समय",
+    "weather.sprayDescription": "कम वर्षा और अनुकूल हवा वाले समय।",
+    "weather.good": "अच्छा",
+    "weather.okay": "उपयुक्त",
+    "weather.noGoodSprayingTime": "इसके बाद कोई अच्छा स्प्रे समय नहीं मिला",
+    "weather.noSuitableSprayWindows": "पूर्वानुमान अवधि में कोई उपयुक्त स्प्रे समय नहीं मिला।",
+
+    "weather.sevenDayForecast": "7-दिन का मौसम पूर्वानुमान",
+    "weather.tapDay": "अधिक जानकारी के लिए किसी दिन पर क्लिक करें।",
+    "weather.strongWind": "तेज़ हवा",
+    "weather.rain": "वर्षा",
+    "weather.windGust": "हवा के झोंके",
+    "weather.etDescription": "वाष्पोत्सर्जन (ET₀): मिट्टी और फसल से खोया हुआ पानी",
+
+    "weather.loading": "मौसम की जानकारी लोड हो रही है...",
+    "weather.noFarm": "खेत की जानकारी नहीं मिली",
+    "weather.addFarm": "मौसम की जानकारी देखने से पहले अपनी फसल और खेत की जानकारी जोड़ें।",
+    "weather.unableToLoad": "मौसम की जानकारी लोड नहीं हो सकी",
+    "weather.tryAgain": "कृपया अपना इंटरनेट कनेक्शन जांचकर दोबारा प्रयास करें।",
   },
   pa: {
     "auth.mobile.title": "📱 ਆਪਣਾ ਮੋਬਾਈਲ ਨੰਬਰ ਦਰਜ ਕਰੋ",
@@ -446,6 +540,52 @@ const translations: Record<string, Record<string, string>> = {
     "disease.crop.tea": "ਚਾਹ",
     "disease.crop.tomato": "ਟਮਾਟਰ",
     "disease.crop.wheat": "ਕਣਕ",
+    "weather.guidance": "ਮੌਸਮ ਅਧਾਰਿਤ ਖੇਤੀਬਾੜੀ ਮਾਰਗਦਰਸ਼ਨ",
+    "weather.title": "ਮੌਸਮ ਸੰਬੰਧੀ ਜਾਣਕਾਰੀ",
+    "weather.subtitle": "ਮੌਸਮ ਦੀ ਭਵਿੱਖਬਾਣੀ ਨੂੰ ਸਮਝੋ ਅਤੇ ਜਾਣੋ ਕਿ ਇਸ ਦਾ ਤੁਹਾਡੀ ਫਸਲ 'ਤੇ ਕੀ ਪ੍ਰਭਾਵ ਪੈ ਸਕਦਾ ਹੈ।",
+
+    "weather.today": "ਅੱਜ",
+    "weather.temperature": "ਵੱਧ ਤੋਂ ਵੱਧ / ਘੱਟ ਤੋਂ ਘੱਟ ਤਾਪਮਾਨ",
+    "weather.rainProbability": "ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ",
+    "weather.rainfall": "ਮੀਂਹ",
+    "weather.wind": "ਹਵਾ",
+    "weather.windGusts": "ਹਵਾ ਦੇ ਝੋਕੇ",
+    "weather.evapotranspiration": "ਵਾਸ਼ਪੋਤਸਰਜਨ",
+
+    "weather.rainLikelihood": "ਮੀਂਹ ਦੀ ਸੰਭਾਵਨਾ",
+    "weather.rainfallIntensity": "ਮੀਂਹ ਦੀ ਤੀਬਰਤਾ",
+    "weather.etReference": "ET₀ = ਸੰਦਰਭ ਵਾਸ਼ਪੋਤਸਰਜਨ",
+
+    "weather.cropNotSpecified": "ਫਸਲ ਦਰਜ ਨਹੀਂ ਕੀਤੀ ਗਈ",
+    "weather.stage": "ਅਵਸਥਾ",
+
+    "weather.thisWeek": "ਇਸ ਹਫ਼ਤੇ",
+    "weather.noWeatherAlerts": "ਇਸ ਹਫ਼ਤੇ ਤੁਹਾਡੀ ਫਸਲ ਲਈ ਕੋਈ ਮੌਸਮੀ ਚੇਤਾਵਨੀ ਨਹੀਂ ਹੈ।",
+
+    "weather.whatToDo": "ਕੀ ਕਰਨਾ ਹੈ",
+    "weather.recommendedAction": "ਸੁਝਾਅ",
+    "weather.forecast": "ਮੌਸਮ ਦੀ ਭਵਿੱਖਬਾਣੀ",
+    "weather.source": "ਸਰੋਤ",
+
+    "weather.bestTimeToSpray": "ਸਪਰੇਅ ਕਰਨ ਦਾ ਸਹੀ ਸਮਾਂ",
+    "weather.sprayDescription": "ਘੱਟ ਮੀਂਹ ਅਤੇ ਅਨੁਕੂਲ ਹਵਾ ਵਾਲੇ ਸਮੇਂ।",
+    "weather.good": "ਵਧੀਆ",
+    "weather.okay": "ਠੀਕ",
+    "weather.noGoodSprayingTime": "ਇਸ ਤੋਂ ਬਾਅਦ ਕੋਈ ਵਧੀਆ ਸਪਰੇਅ ਸਮਾਂ ਨਹੀਂ ਮਿਲਿਆ",
+    "weather.noSuitableSprayWindows": "ਭਵਿੱਖਬਾਣੀ ਦੀ ਮਿਆਦ ਵਿੱਚ ਕੋਈ ਢੁਕਵਾਂ ਸਪਰੇਅ ਸਮਾਂ ਨਹੀਂ ਮਿਲਿਆ।",
+
+    "weather.sevenDayForecast": "7 ਦਿਨਾਂ ਦੀ ਮੌਸਮ ਭਵਿੱਖਬਾਣੀ",
+    "weather.tapDay": "ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਕਿਸੇ ਦਿਨ 'ਤੇ ਕਲਿੱਕ ਕਰੋ।",
+    "weather.strongWind": "ਤੇਜ਼ ਹਵਾ",
+    "weather.rain": "ਮੀਂਹ",
+    "weather.windGust": "ਹਵਾ ਦੇ ਝੋਕੇ",
+    "weather.etDescription": "ਵਾਸ਼ਪੋਤਸਰਜਨ (ET₀): ਮਿੱਟੀ ਤੇ ਫਸਲ ਤੋਂ ਗੁੰਮ ਹੋਇਆ ਪਾਣੀ",
+
+    "weather.loading": "ਮੌਸਮ ਦੀ ਜਾਣਕਾਰੀ ਲੋਡ ਹੋ ਰਹੀ ਹੈ...",
+    "weather.noFarm": "ਖੇਤ ਦੀ ਜਾਣਕਾਰੀ ਨਹੀਂ ਮਿਲੀ",
+    "weather.addFarm": "ਮੌਸਮ ਦੀ ਜਾਣਕਾਰੀ ਦੇਖਣ ਤੋਂ ਪਹਿਲਾਂ ਆਪਣੀ ਫਸਲ ਅਤੇ ਖੇਤ ਦੀ ਜਾਣਕਾਰੀ ਸ਼ਾਮਲ ਕਰੋ।",
+    "weather.unableToLoad": "ਮੌਸਮ ਦੀ ਜਾਣਕਾਰੀ ਲੋਡ ਨਹੀਂ ਹੋ ਸਕੀ",
+    "weather.tryAgain": "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਇੰਟਰਨੈੱਟ ਕਨੈਕਸ਼ਨ ਜਾਂਚ ਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
   }
 };
 
