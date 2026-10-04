@@ -1,7 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
+
 import api from "@/lib/api";
+import { useLanguage } from "@/lib/LanguageContext";
 
 type Result = {
   status: "detected" | "healthy" | "uncertain" | "crop_mismatch";
@@ -30,20 +32,22 @@ type Result = {
 };
 
 const CROPS = [
-  "Apple",
-  "Cassava",
-  "Corn",
-  "Potato",
-  "Rice",
-  "Sugarcane",
-  "Tea",
-  "Tomato",
-  "Wheat",
+  { name: "Apple", key: "apple", image: "/crops/apple.jpg" },
+  { name: "Cassava", key: "cassava", image: "/crops/cassava.jpg" },
+  { name: "Corn", key: "corn", image: "/crops/corn.jpg" },
+  { name: "Potato", key: "potato", image: "/crops/potato.jpg" },
+  { name: "Rice", key: "rice", image: "/crops/rice.jpg" },
+  { name: "Sugarcane", key: "sugarcane", image: "/crops/sugarcane.jpg" },
+  { name: "Tea", key: "tea", image: "/crops/tea.jpg" },
+  { name: "Tomato", key: "tomato", image: "/crops/tomato.jpg" },
+  { name: "Wheat", key: "wheat", image: "/crops/wheat.jpg" },
 ];
 
 const normalizeCrop = (crop: string) => crop.trim();
 
 export default function DiseaseDetectionPage() {
+  const { t } = useLanguage();
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const cameraInputRef = useRef<HTMLInputElement>(null);
 
@@ -65,14 +69,20 @@ export default function DiseaseDetectionPage() {
     setPreview(objectUrl);
   };
 
+  const selectCrop = (crop: string) => {
+    setSelectedCrop(crop);
+    setResult(null);
+    setError("");
+  };
+
   const analyzeImage = async () => {
     if (!selectedCrop) {
-      setError("Please select the crop first.");
+      setError(t("disease.error_crop"));
       return;
     }
 
     if (!file) {
-      setError("Please upload a clear photo of the affected leaf.");
+      setError(t("disease.error_photo"));
       return;
     }
 
@@ -96,7 +106,7 @@ export default function DiseaseDetectionPage() {
       const message =
         err?.response?.data?.detail ||
         err?.response?.data?.message ||
-        "We could not analyze this image. Please try again.";
+        t("disease.error_generic");
 
       setError(message);
     } finally {
@@ -130,16 +140,15 @@ export default function DiseaseDetectionPage() {
         {/* Header */}
         <div className="mb-7">
           <p className="mb-1 text-sm font-medium text-[#5d7a52]">
-            Crop Health
+            {t("disease.crop_health")}
           </p>
 
           <h1 className="text-2xl font-semibold tracking-tight text-[#263528] sm:text-3xl">
-            Check your crop for disease
+            {t("disease.title")}
           </h1>
 
           <p className="mt-2 max-w-2xl text-sm leading-6 text-[#687467]">
-            Upload a clear photo of a crop leaf and KisanAI will check it
-            against the diseases supported by the system.
+            {t("disease.subtitle")}
           </p>
         </div>
 
@@ -148,41 +157,66 @@ export default function DiseaseDetectionPage() {
           {/* LEFT: Upload */}
           <div className="rounded-2xl border border-[#dfe6dc] bg-white p-5 shadow-sm sm:p-6">
 
+            {/* Crop selection */}
             <div className="mb-6">
-              <label
-                htmlFor="crop"
-                className="mb-2 block text-sm font-medium text-[#344333]"
-              >
-                1. Select your crop
+              <label className="mb-3 block text-sm font-medium text-[#344333]">
+                1. {t("disease.select_crop")}
               </label>
 
-              <select
-                id="crop"
-                value={selectedCrop}
-                onChange={(e) => {
-                  setSelectedCrop(e.target.value);
-                  setResult(null);
-                  setError("");
-                }}
-                className="w-full rounded-xl border border-[#d7dfd3] bg-white px-4 py-3 text-sm text-[#344333] outline-none transition focus:border-[#78966e] focus:ring-2 focus:ring-[#78966e]/10"
-              >
-                <option value="">Choose a crop</option>
+              <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-3">
+                {CROPS.map((crop) => {
+                  const selected = selectedCrop === crop.name;
 
-                {CROPS.map((crop) => (
-                  <option key={crop} value={crop}>
-                    {crop}
-                  </option>
-                ))}
-              </select>
+                  return (
+                    <button
+                      key={crop.key}
+                      type="button"
+                      onClick={() => selectCrop(crop.name)}
+                      className={`group overflow-hidden rounded-xl border text-left transition ${
+                        selected
+                          ? "border-[#66885d] bg-[#edf5e9] ring-2 ring-[#66885d]/20"
+                          : "border-[#dfe6dc] bg-white hover:border-[#b9cbb3] hover:bg-[#f8faf7]"
+                      }`}
+                    >
+                      <div className="h-20 w-full overflow-hidden bg-[#eef2eb]">
+                        <img
+                          src={crop.image}
+                          alt={t(
+                            `disease.crop.${crop.key}`,
+                            crop.name
+                          )}
+                          className="h-full w-full object-cover transition group-hover:scale-105"
+                        />
+                      </div>
+
+                      <div className="px-2 py-2 text-center">
+                        <p
+                          className={`text-xs font-medium ${
+                            selected
+                              ? "text-[#405f39]"
+                              : "text-[#4d594b]"
+                          }`}
+                        >
+                          {t(
+                            `disease.crop.${crop.key}`,
+                            crop.name
+                          )}
+                        </p>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
 
+            {/* Leaf photo */}
             <div className="mb-3">
               <p className="text-sm font-medium text-[#344333]">
-                2. Add a leaf photo
+                2. {t("disease.add_leaf_photo")}
               </p>
 
               <p className="mt-1 text-xs text-[#7a8478]">
-                Take a close photo of one affected leaf whenever possible.
+                {t("disease.close_photo")}
               </p>
             </div>
 
@@ -193,8 +227,8 @@ export default function DiseaseDetectionPage() {
                 <div className="relative">
                   <img
                     src={preview}
-                    alt="Selected crop leaf"
-                    className="h-72 w-full object-contain bg-[#eef2eb] sm:h-80"
+                    alt={t("disease.upload_leaf")}
+                    className="h-72 w-full bg-[#eef2eb] object-contain sm:h-80"
                   />
 
                   <button
@@ -202,7 +236,7 @@ export default function DiseaseDetectionPage() {
                     onClick={resetAnalysis}
                     className="absolute right-3 top-3 rounded-lg border border-[#dfe6dc] bg-white px-3 py-1.5 text-xs font-medium text-[#4c594b] shadow-sm hover:bg-[#f7f9f6]"
                   >
-                    Change photo
+                    {t("disease.change_photo")}
                   </button>
                 </div>
               ) : (
@@ -224,12 +258,11 @@ export default function DiseaseDetectionPage() {
                   </div>
 
                   <p className="text-sm font-medium text-[#344333]">
-                    Upload a leaf photo
+                    {t("disease.upload_leaf")}
                   </p>
 
                   <p className="mt-1 max-w-sm text-xs leading-5 text-[#7a8478]">
-                    Use a clear, well-lit image where the leaf and affected
-                    area can be seen.
+                    {t("disease.clear_image")}
                   </p>
 
                   <div className="mt-5 flex flex-wrap justify-center gap-2">
@@ -238,7 +271,7 @@ export default function DiseaseDetectionPage() {
                       onClick={() => fileInputRef.current?.click()}
                       className="rounded-xl bg-[#16A34A] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#527149]"
                     >
-                      Upload photo
+                      {t("disease.upload_photo")}
                     </button>
 
                     <button
@@ -246,7 +279,7 @@ export default function DiseaseDetectionPage() {
                       onClick={() => cameraInputRef.current?.click()}
                       className="rounded-xl border border-[#cfd9ca] bg-white px-4 py-2.5 text-sm font-medium text-[#4d6348] transition hover:bg-[#f5f8f3]"
                     >
-                      Take photo
+                      {t("disease.take_photo")}
                     </button>
                   </div>
                 </div>
@@ -270,33 +303,50 @@ export default function DiseaseDetectionPage() {
               />
             </div>
 
-            {/* Instructions */}
-            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            {/* Photo guidance */}
+            <div className="mt-5 rounded-xl border border-[#e1e8de] bg-[#f8faf7] p-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#58764f]">
+                {t("disease.better_result")}
+              </p>
 
-              <div>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[#58764f]">
-                  For a better result
-                </p>
+              <div className="mt-3 grid gap-4 sm:grid-cols-2">
+                <div className="flex flex-col gap-2">
+                  <GuidanceItem
+                    positive
+                    text={t("disease.good.close")}
+                  />
+                  <GuidanceItem
+                    positive
+                    text={t("disease.good.light")}
+                  />
+                  <GuidanceItem
+                    positive
+                    text={t("disease.good.visible")}
+                  />
+                  <GuidanceItem
+                    positive
+                    text={t("disease.good.focus")}
+                  />
+                </div>
 
-                <ul className="space-y-1.5 text-xs leading-5 text-[#657061]">
-                  <li>✓ Photograph one leaf clearly</li>
-                  <li>✓ Use natural or good lighting</li>
-                  <li>✓ Keep the affected area visible</li>
-                  <li>✓ Keep the image sharp and focused</li>
-                </ul>
-              </div>
-
-              <div>
-                <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[#8a6d43]">
-                  Avoid
-                </p>
-
-                <ul className="space-y-1.5 text-xs leading-5 text-[#657061]">
-                  <li>× Screenshots or documents</li>
-                  <li>× Whole-field photographs</li>
-                  <li>× Very dark or blurry images</li>
-                  <li>× Photos without a visible leaf</li>
-                </ul>
+                <div className="flex flex-col gap-2">
+                  <GuidanceItem
+                    negative
+                    text={t("disease.avoid.screenshots")}
+                  />
+                  <GuidanceItem
+                    negative
+                    text={t("disease.avoid.field")}
+                  />
+                  <GuidanceItem
+                    negative
+                    text={t("disease.avoid.dark")}
+                  />
+                  <GuidanceItem
+                    negative
+                    text={t("disease.avoid.no_leaf")}
+                  />
+                </div>
               </div>
             </div>
 
@@ -314,50 +364,47 @@ export default function DiseaseDetectionPage() {
               disabled={loading || !file || !selectedCrop}
               className="mt-6 w-full rounded-xl bg-[#16A34A] px-4 py-3 text-sm font-medium text-white transition hover:bg-[#3f603a] disabled:cursor-not-allowed disabled:bg-[#b8c3b4]"
             >
-              {loading ? "Checking image..." : "Check leaf"}
+              {loading
+                ? t("disease.checking")
+                : t("disease.check_leaf")}
             </button>
           </div>
 
-          {/* RIGHT: Result / Help */}
+          {/* RIGHT: Help / Result */}
           <div>
             {!result ? (
               <div className="rounded-2xl border border-[#dfe6dc] bg-white p-5 shadow-sm sm:p-6">
 
                 <h2 className="text-base font-semibold text-[#344333]">
-                  Before you upload
+                  {t("disease.how_it_works")}
                 </h2>
 
                 <p className="mt-2 text-sm leading-6 text-[#697468]">
-                  A close-up leaf photograph gives the system the best chance
-                  of identifying a supported disease pattern.
+                  {t("disease.how_it_works_desc")}
                 </p>
 
                 <div className="mt-5 space-y-3">
 
                   <InfoRow
-                    title="One leaf is enough"
-                    text="Try to keep one affected leaf clearly visible instead of photographing the entire field."
+                    title={t("disease.choose_crop")}
+                    text={t("disease.choose_crop_desc")}
                   />
 
                   <InfoRow
-                    title="Show the affected area"
-                    text="Spots, lesions, discoloration and other visible symptoms should be in focus."
+                    title={t("disease.upload_clear")}
+                    text={t("disease.upload_clear_desc")}
                   />
 
                   <InfoRow
-                    title="Use the correct crop"
-                    text="Select the crop before checking the image. This helps prevent unrelated predictions."
+                    title={t("disease.simple_guidance")}
+                    text={t("disease.simple_guidance_desc")}
                   />
-
-                  
 
                 </div>
 
                 <div className="mt-6 border-t border-[#edf0eb] pt-5">
                   <p className="text-xs leading-5 text-[#7a8478]">
-                    KisanAI currently checks the crop conditions included in
-                    its trained disease model. Images outside those conditions
-                    may be rejected or marked as uncertain.
+                    {t("disease.model_note")}
                   </p>
                 </div>
               </div>
@@ -375,6 +422,36 @@ export default function DiseaseDetectionPage() {
   );
 }
 
+function GuidanceItem({
+  text,
+  positive,
+  negative,
+}: {
+  text: string;
+  positive?: boolean;
+  negative?: boolean;
+}) {
+  return (
+    <div className="flex items-start gap-2">
+      <span
+        className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full text-[10px] font-bold ${
+          positive
+            ? "bg-[#dcf4df] text-[#16803b]"
+            : negative
+              ? "bg-[#fde3e3] text-[#c24141]"
+              : "bg-[#eef2eb] text-[#687467]"
+        }`}
+      >
+        {positive ? "✓" : negative ? "×" : ""}
+      </span>
+
+      <span className="text-xs leading-5 text-[#657061]">
+        {text}
+      </span>
+    </div>
+  );
+}
+
 function InfoRow({
   title,
   text,
@@ -384,8 +461,13 @@ function InfoRow({
 }) {
   return (
     <div className="rounded-xl bg-[#f7f9f5] px-4 py-3">
-      <p className="text-sm font-medium text-[#40513e]">{title}</p>
-      <p className="mt-1 text-xs leading-5 text-[#707a6e]">{text}</p>
+      <p className="text-sm font-medium text-[#40513e]">
+        {title}
+      </p>
+
+      <p className="mt-1 text-xs leading-5 text-[#707a6e]">
+        {text}
+      </p>
     </div>
   );
 }
@@ -399,6 +481,8 @@ function ResultCard({
   confidencePercent: number;
   onRetry: () => void;
 }) {
+  const { t } = useLanguage();
+
   if (result.status === "uncertain") {
     return (
       <div className="rounded-2xl border border-[#eadfc9] bg-white p-5 shadow-sm sm:p-6">
@@ -406,11 +490,11 @@ function ResultCard({
         <StatusIcon type="warning" />
 
         <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-[#8a6d43]">
-          Unable to identify reliably
+          {t("disease.unclear_label")}
         </p>
 
         <h2 className="mt-1 text-xl font-semibold text-[#344333]">
-          We need a clearer leaf photo
+          {t("disease.clearer_photo")}
         </h2>
 
         <p className="mt-3 text-sm leading-6 text-[#697468]">
@@ -424,7 +508,7 @@ function ResultCard({
           onClick={onRetry}
           className="mt-6 w-full rounded-xl bg-[#5f7f55] px-4 py-3 text-sm font-medium text-white hover:bg-[#527149]"
         >
-          Upload another photo
+          {t("disease.upload_another")}
         </button>
       </div>
     );
@@ -437,11 +521,11 @@ function ResultCard({
         <StatusIcon type="warning" />
 
         <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-[#8a6d43]">
-          Please check the crop
+          {t("disease.check_crop")}
         </p>
 
         <h2 className="mt-1 text-xl font-semibold text-[#344333]">
-          The image may belong to another crop
+          {t("disease.other_crop")}
         </h2>
 
         <p className="mt-3 text-sm leading-6 text-[#697468]">
@@ -450,7 +534,10 @@ function ResultCard({
 
         <div className="mt-5 rounded-xl bg-[#f8f9f6] px-4 py-3">
           <div className="flex items-center justify-between text-sm">
-            <span className="text-[#707a6e]">Selected crop</span>
+            <span className="text-[#707a6e]">
+              {t("disease.selected_crop")}
+            </span>
+
             <span className="font-medium text-[#344333]">
               {result.crop}
             </span>
@@ -458,7 +545,10 @@ function ResultCard({
 
           {result.predicted_crop && (
             <div className="mt-2 flex items-center justify-between text-sm">
-              <span className="text-[#707a6e]">Image appears closer to</span>
+              <span className="text-[#707a6e]">
+                {t("disease.looks_like")}
+              </span>
+
               <span className="font-medium text-[#344333]">
                 {result.predicted_crop}
               </span>
@@ -467,8 +557,7 @@ function ResultCard({
         </div>
 
         <p className="mt-4 text-xs leading-5 text-[#7a8478]">
-          No disease is being reported from this result. Please verify the
-          crop selection or upload a clearer image.
+          {t("disease.no_disease_reported")}
         </p>
 
         <button
@@ -476,7 +565,7 @@ function ResultCard({
           onClick={onRetry}
           className="mt-6 w-full rounded-xl bg-[#5f7f55] px-4 py-3 text-sm font-medium text-white hover:bg-[#527149]"
         >
-          Try another photo
+          {t("disease.try_another")}
         </button>
       </div>
     );
@@ -494,18 +583,20 @@ function ResultCard({
           healthy ? "text-[#58764f]" : "text-[#7a6342]"
         }`}
       >
-        {healthy ? "No disease pattern detected" : "Possible disease detected"}
+        {healthy
+          ? t("disease.no_disease")
+          : t("disease.possible_disease")}
       </p>
 
       <h2 className="mt-1 text-xl font-semibold text-[#344333]">
         {healthy
-          ? `${result.crop} appears healthy`
+          ? `${result.crop} ${t("disease.looks_healthy")}`
           : result.predicted_disease}
       </h2>
 
       <p className="mt-3 text-sm leading-6 text-[#697468]">
         {healthy
-          ? "The uploaded image did not show a supported disease pattern."
+          ? t("disease.healthy_message")
           : result.message}
       </p>
 
@@ -514,7 +605,7 @@ function ResultCard({
 
         <div className="flex items-center justify-between">
           <span className="text-xs font-medium text-[#697468]">
-            Detection confidence
+            {t("disease.confidence")}
           </span>
 
           <span className="text-sm font-semibold text-[#344333]">
@@ -531,15 +622,17 @@ function ResultCard({
           />
         </div>
 
-        <p className="mt-2 text-[11px] leading-4 text-[#7a8478]">
-          This indicates how strongly the image model matched the selected
-          class. It is not a guarantee that the disease is present.
+        <p className="mt-1 text-xs text-[#707a6e]">
+          {t("disease.confidence_desc")}
         </p>
       </div>
 
+      {/* About the disease */}
       {!healthy && result.description && (
         <section className="mt-6">
-          <SectionTitle>What we found</SectionTitle>
+          <SectionTitle>
+            {t("disease.about")}
+          </SectionTitle>
 
           <p className="mt-2 text-sm leading-6 text-[#5f695d]">
             {result.description}
@@ -547,39 +640,46 @@ function ResultCard({
         </section>
       )}
 
+      {/* Symptoms */}
       {!healthy &&
         result.symptoms &&
         result.symptoms.length > 0 && (
           <section className="mt-6">
-            <SectionTitle>What you may notice</SectionTitle>
+            <SectionTitle>
+              {t("disease.signs")}
+            </SectionTitle>
 
             <BulletList items={result.symptoms} />
           </section>
         )}
 
+      {/* Reasons */}
       {!healthy &&
-        result.causes &&
-        result.causes.length > 0 && (
+        ((result.causes && result.causes.length > 0) ||
+          (result.favourable_conditions &&
+            result.favourable_conditions.length > 0)) && (
           <section className="mt-6">
-            <SectionTitle>Conditions associated with it</SectionTitle>
+            <SectionTitle>
+              {t("disease.why")}
+            </SectionTitle>
 
-            <BulletList items={result.causes} />
+            <BulletList
+              items={[
+                ...(result.causes || []),
+                ...(result.favourable_conditions || []),
+              ]}
+            />
           </section>
         )}
-      {!healthy &&
-        result.favourable_conditions &&
-        result.favourable_conditions.length > 0 && (
-          <section className="mt-6">
-            <SectionTitle>Favourable conditions</SectionTitle>
-        
-            <BulletList items={result.favourable_conditions} />
-          </section>
-        )}
+
+      {/* Recommended actions */}
       {!healthy &&
         result.recommended_actions &&
         result.recommended_actions.length > 0 && (
           <section className="mt-6">
-            <SectionTitle>What you can do</SectionTitle>
+            <SectionTitle>
+              {t("disease.actions")}
+            </SectionTitle>
 
             <ol className="mt-2 space-y-2">
               {result.recommended_actions.map((action, index) => (
@@ -598,39 +698,41 @@ function ResultCard({
           </section>
         )}
 
-        {!healthy &&
-          result.prevention &&
-          result.prevention.length > 0 && (
-            <section className="mt-6">
-              <SectionTitle>How to prevent it</SectionTitle>
-          
-              <BulletList items={result.prevention} />
-            </section>
-          )}
+      {/* Prevention */}
+      {!healthy &&
+        result.prevention &&
+        result.prevention.length > 0 && (
+          <section className="mt-6">
+            <SectionTitle>
+              {t("disease.prevention")}
+            </SectionTitle>
 
-      {/* Source */}
+            <BulletList items={result.prevention} />
+          </section>
+        )}
+
+      {/* Source / farming guidance */}
       <div className="mt-6 border-t border-[#edf0eb] pt-5">
+
         <p className="text-xs font-semibold uppercase tracking-wide text-[#697468]">
-          Farming guidance
+          {t("disease.farming_guidance")}
         </p>
-              
+
         <p className="mt-2 text-xs leading-5 text-[#7a8478]">
-          The disease is identified by KisanAI's image model, while the
-          symptoms and management information are based on the agricultural
-          reference below. Confirm the diagnosis with a local agricultural
-          expert before applying pesticides or other crop-protection products.
+          {t("disease.guidance_reference")}
         </p>
-              
+
         {result.source && (
           <div className="mt-4 rounded-xl bg-[#f7f9f5] px-4 py-3">
+
             <p className="text-sm font-medium text-[#40513e]">
               {result.source.title}
             </p>
-        
+
             <p className="mt-1 text-xs text-[#707a6e]">
               {result.source.organization}
             </p>
-        
+
             {result.source.url && (
               <a
                 href={result.source.url}
@@ -638,11 +740,15 @@ function ResultCard({
                 rel="noopener noreferrer"
                 className="mt-2 inline-block text-xs font-medium text-[#58764f] hover:underline"
               >
-                View source →
+                {t("disease.view_source")}
               </a>
             )}
           </div>
         )}
+
+        <p className="mt-4 text-[11px] leading-5 text-[#8a9387]">
+          {t("disease.pesticide_tip")}
+        </p>
       </div>
 
       <button
@@ -650,24 +756,26 @@ function ResultCard({
         onClick={onRetry}
         className="mt-6 w-full rounded-xl border border-[#cfd9ca] bg-white px-4 py-3 text-sm font-medium text-[#4d6348] hover:bg-[#f6f8f4]"
       >
-        Check another leaf
+        {t("disease.check_another")}
       </button>
     </div>
   );
 }
 
 function RetryInstructions() {
+  const { t } = useLanguage();
+
   return (
     <div className="mt-5 rounded-xl bg-[#f8f9f6] px-4 py-4">
+
       <p className="text-sm font-medium text-[#40513e]">
-        Try another photo
+        {t("disease.retry_title")}
       </p>
 
       <ul className="mt-2 space-y-1.5 text-xs leading-5 text-[#707a6e]">
-        <li>• Photograph one leaf rather than the whole plant.</li>
-        <li>• Keep the affected area close and in focus.</li>
-        <li>• Use natural daylight where possible.</li>
-        <li>• Avoid screenshots, documents and unrelated objects.</li>
+        <li>• {t("disease.retry.close")}</li>
+        <li>• {t("disease.retry.focus")}</li>
+        <li>• {t("disease.retry.light")}</li>
       </ul>
     </div>
   );
@@ -689,7 +797,11 @@ function BulletList({ items }: { items: string[] }) {
   );
 }
 
-function SectionTitle({ children }: { children: React.ReactNode }) {
+function SectionTitle({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <h3 className="text-sm font-semibold text-[#40513e]">
       {children}
