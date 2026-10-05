@@ -170,7 +170,8 @@ export default function Onboarding() {
       setCustomBackAction(null); 
       setShowSuccess(true);
       setTimeout(() => {
-        router.push("/app");
+        localStorage.setItem("profile_complete", "true");
+      router.push("/app");
       }, 2000);
     } catch (e: any) {
       console.error("Save error:", e);

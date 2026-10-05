@@ -9,17 +9,27 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const isAuthRoute = pathname.startsWith("/auth") || pathname === "/welcome";
-    const isAppRoute = pathname.startsWith("/app") || pathname === "/onboarding";
+    const profileComplete = localStorage.getItem("profile_complete") === "true";
+    
+    // Allowed when logged out
+    const isPublicRoute = 
+        pathname === "/" || 
+        pathname === "/welcome" || 
+        pathname === "/language" || 
+        pathname.startsWith("/auth");
 
     if (token) {
-      if (isAuthRoute) {
+      if (isPublicRoute) {
+        router.replace(profileComplete ? "/app" : "/onboarding");
+      } else if (pathname === "/onboarding" && profileComplete) {
         router.replace("/app");
+      } else if (pathname.startsWith("/app") && !profileComplete) {
+        router.replace("/onboarding");
       } else {
         setIsReady(true);
       }
     } else {
-      if (isAppRoute) {
+      if (!isPublicRoute) {
         router.replace("/welcome");
       } else {
         setIsReady(true);
@@ -27,7 +37,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
     }
   }, [pathname, router]);
 
-  if (!isReady) return null; // or a loading spinner
+  if (!isReady) return null; // Wait for logic
 
   return <>{children}</>;
 }

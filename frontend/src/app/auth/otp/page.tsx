@@ -57,8 +57,10 @@ export default function OTPAuth() {
       
       try {
         await api.get("/users/profile");
+        localStorage.setItem("profile_complete", "true");
         router.push("/app");
       } catch (profileErr) {
+        localStorage.removeItem("profile_complete");
         router.push("/onboarding");
       }
     } catch (err: any) {
