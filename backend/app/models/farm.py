@@ -14,5 +14,6 @@ class Farm(Base):
     sowing_date = Column(Date, nullable=True)
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
+    last_irrigation_date = Column(Date, nullable=True)
     
     user = relationship("User", back_populates="farms")

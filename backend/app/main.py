@@ -2,7 +2,15 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.routes import auth, users, farms, weather, farm_advisor, disease_detection
+from app.api.routes import (
+    auth,
+    users,
+    farms,
+    weather,
+    farm_advisor,
+    disease_detection,
+    irrigation,
+)
 from app.core.config import settings
 from app.db.database import Base
 from app.db.session import engine
@@ -34,6 +42,7 @@ app.include_router(auth.router, prefix=f"{settings.API_V1_STR}/auth", tags=["aut
 app.include_router(users.router, prefix=f"{settings.API_V1_STR}/users", tags=["users"])
 app.include_router(farms.router, prefix=f"{settings.API_V1_STR}/farms", tags=["farms"])
 app.include_router(weather.router, prefix=f"{settings.API_V1_STR}/weather", tags=["weather"])
+app.include_router(irrigation.router,prefix=f"{settings.API_V1_STR}/irrigation",tags=["irrigation"],)
 app.include_router(farm_advisor.router, prefix=f"{settings.API_V1_STR}/farm-advisor", tags=["farm-advisor"])
 app.include_router(disease_detection.router, prefix=f"{settings.API_V1_STR}/disease-detection", tags=["disease-detection"])
 

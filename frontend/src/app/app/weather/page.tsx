@@ -287,7 +287,7 @@ export default function WeatherPage() {
       : null;
 
   return (
-    <div className="min-h-full bg-gradient-to-b from-green-50/60 via-white to-white">
+    <div className="min-h-full bg-gradient-to-bg from-green-50/60 via-white to-white">
       <div className="max-w-7xl mx-auto px-4 py-6 md:px-8 md:py-8">
 
         {/* Header */}
@@ -366,7 +366,7 @@ export default function WeatherPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5.5 gap-x-4 gap-y-5">
+                <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-5.5 gap-x-4 gap-y-5">
                   <WeatherMetric
                     icon={<CloudRain size={19} />}
                     label={t("weather.rainProbability")}
@@ -391,11 +391,11 @@ export default function WeatherPage() {
                     value={`${today.wind_gust_max_kmh} km/h`}
                   />
 
-                  <WeatherMetric
+                  {/* <WeatherMetric
                     icon={<Gauge size={19} />}
                     label={t("weather.evapotranspiration")}
                     value={`${today.et0_mm} mm`}
-                  />
+                  /> */}
                 </div>
               </div>
 
@@ -418,11 +418,11 @@ export default function WeatherPage() {
                   </strong>
                 </span>
 
-                <span className="hidden sm:inline text-gray-300">
+                {/* <span className="hidden sm:inline text-gray-300">
                   •
-                </span>
+                </span> */}
 
-                <span>{t("weather.etReference")}</span>
+                {/* <span>{t("weather.etReference")}</span> */}
               </div>
             </div>
           </Card>

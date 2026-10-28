@@ -15,5 +15,7 @@ class FarmCreate(BaseModel):
 class FarmResponse(FarmCreate):
     id: int
     user_id: int
+    last_irrigation_date: Optional[date] = None
+
     class Config:
         from_attributes = True

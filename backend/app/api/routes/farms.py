@@ -27,7 +27,7 @@ def update_farm(farm_id: int, farm_update: FarmCreate, db: Session = Depends(get
     if not db_farm:
         raise HTTPException(status_code=404, detail="Farm not found")
     
-    for key, value in farm_update.dict().items():
+    for key, value in farm_update.dict(exclude_unset=True).items():
         setattr(db_farm, key, value)
     
     db.commit()
