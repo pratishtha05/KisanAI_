@@ -1,0 +1,68 @@
+{
+  "id": "midh",
+  "name": "Mission for Integrated Development of Horticulture (MIDH)",
+  "short_name": "MIDH (Horticulture)",
+  "aliases": ["midh", "nhm", "national horticulture mission", "horticulture mission", "orchard subsidy", "polyhouse subsidy", "greenhouse subsidy", "cold storage subsidy", "बागवानी मिशन", "बागवानी सब्सिडी"],
+  "level": "central",
+  "states": ["ALL"],
+  "category": "horticulture",
+  "status": "active",
+  "keywords": ["fruit", "vegetable", "orchard", "apple", "tomato", "potato", "polyhouse", "greenhouse", "shade net", "nursery", "cold storage", "pack house", "horticulture", "planting material"],
+  "summary": "Subsidies for growing fruits and vegetables: new orchards, hybrid vegetable cultivation, polyhouses, nurseries, and post-harvest facilities like cold storage and pack houses.",
+  "benefits": {
+    "headline": "Roughly 35% to 50% subsidy on horticulture projects (varies by component)",
+    "details": [
+      "Area expansion (new orchards, hybrid vegetables): typically around 40% of the approved cost, with ceilings per hectare.",
+      "Protected cultivation such as polyhouses and shade-net houses: up to 50% for vegetables and flowers.",
+      "Post-harvest infrastructure such as cold storage, cold rooms and pack houses: roughly 35% to 50% of the project cost.",
+      "Assistance for rejuvenating old orchards, plastic mulching, nurseries and organic farming."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "Farmers growing horticulture crops (fruits, vegetables, flowers, spices, plantation crops). SHGs, FPOs and cooperatives can also apply.",
+      "Each component has its own ceilings and conditions, set by your State Horticulture Mission."
+    ],
+    "rules": [
+      {"id": "has_farm", "label": "You are a farmer with land", "kind": "eligibility",
+       "check": {"field": "has_farm", "op": "is_true"},
+       "pass_text": "You have farmland registered in KisanAI.", "fail_text": "You need land to claim assistance.",
+       "unknown_text": "Add your farm details so we can check this.", "ask": "farm"},
+      {"id": "horticulture_crop", "label": "You grow a fruit or vegetable crop", "kind": "eligibility",
+       "check": {"field": "crop_types", "op": "contains_any", "value": ["horticulture"]},
+       "pass_text": "Your crop (fruit or vegetable) is covered.", "fail_text": "MIDH supports horticulture crops such as fruits and vegetables. Your current crop is not one of them, but it may become relevant if you add such a crop.",
+       "unknown_text": "Add your crop details so we can check this.", "ask": "farm"}
+    ],
+    "verify": [
+      "Components, subsidy rates and ceilings differ by state and by year. Ask your District Horticulture Officer which components are open for your crop."
+    ]
+  },
+  "relevance": {"crops": ["apple", "potato", "tomato"], "base_priority": 58,
+    "adjust": [{"when": {"field": "crops", "op": "contains_any", "value": ["apple", "tomato", "potato"]}, "score": 14, "reason": "Fruit and vegetable growers get the most from this mission"}]},
+  "documents": [
+    {"name": "Aadhaar card", "required": true, "note": ""},
+    {"name": "Land record / lease deed", "required": true, "note": ""},
+    {"name": "Bank account details", "required": true, "note": "Subsidy is credited to your bank account."},
+    {"name": "Project report and quotations", "required": false, "note": "For polyhouses, cold storage and other project-based components."},
+    {"name": "Caste certificate", "required": false, "note": "Only if your state offers a category-based benefit."}
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Meet your District Horticulture Officer (or State Horticulture Mission office) and ask which components are open for your crop.",
+      "Apply on the state horticulture portal or submit the form at the district office, with documents and (for projects) a project report.",
+      "Wait for sanction before you start work or purchase. Begin only after approval.",
+      "After inspection of the completed work, the subsidy is credited to your bank account (project loans may be bank-linked)."
+    ],
+    "online": [{"label": "National Horticulture Board", "url": "https://nhb.gov.in"}],
+    "offline": ["District Horticulture Officer / State Horticulture Mission office", "Block Agriculture / Horticulture office"]
+  },
+  "deadline": {"type": "info", "text": "No national last date. Components open according to state annual action plans, so ask your Horticulture office when applications open."},
+  "helpline": [],
+  "official_url": "https://nhb.gov.in",
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://www.freepressjournal.in/amp/uttar-pradesh/uttar-pradesh-yogi-govts-horticulture-scheme-is-increasing-farmers-income-and-promoting-modern-farming",
+    "https://shm.tg.nic.in/Download/MIDH%20-%20Implementation%20Guidelines%20-%202025-26.pdf"
+  ],
+  "caveats": ["Percentages are indicative national patterns. Always confirm the exact rate for your component with your district Horticulture office."]
+}

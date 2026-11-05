@@ -1,0 +1,59 @@
+{
+  "id": "soil-health-card",
+  "name": "Soil Health Card (Free Soil Testing)",
+  "short_name": "Soil Health Card",
+  "aliases": ["soil health card", "shc", "soil testing", "soil test", "free soil test", "mitti jaanch", "soil health", "मृदा स्वास्थ्य कार्ड", "मिट्टी जांच"],
+  "level": "central",
+  "states": ["ALL"],
+  "category": "soil",
+  "status": "active",
+  "keywords": ["soil", "fertilizer", "nutrient", "npk", "testing", "lab", "ph", "organic carbon", "balanced fertilizer"],
+  "summary": "A free soil test for your field and a card that tells you exactly which nutrients your soil needs, so you buy only the fertilizer you need.",
+  "benefits": {
+    "headline": "Free soil test and crop-wise fertilizer recommendation",
+    "details": [
+      "Your soil is tested free of cost at a government laboratory for 12 parameters (nitrogen, phosphorus, potassium, sulphur, micronutrients, pH, organic carbon and more).",
+      "The card gives crop-wise fertilizer and soil-amendment advice, which helps cut input cost and avoid overuse.",
+      "Cards are issued again after about two years so you can see how your soil is changing."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "Every farmer is eligible, whether a small, marginal or large landholder.",
+      "You need legal access to cultivable land (owned or leased).",
+      "A soil sample from your field is collected and tested; there is no fee."
+    ],
+    "rules": [
+      {"id": "has_land", "label": "You cultivate land", "kind": "eligibility",
+       "check": {"field": "has_farm", "op": "is_true"},
+       "pass_text": "You have farmland registered in KisanAI.", "fail_text": "You need cultivable land to get a soil sample tested.",
+       "unknown_text": "Add your farm details so we can check this.", "ask": "farm"}
+    ],
+    "verify": []
+  },
+  "relevance": {"crops": ["all"], "base_priority": 72},
+  "documents": [
+    {"name": "Aadhaar card", "required": false, "note": "Helpful for tracking your card on the portal."},
+    {"name": "Land details (khasra / survey number)", "required": true, "note": "To record which plot the sample comes from."},
+    {"name": "Mobile number", "required": true, "note": "To receive updates."}
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Contact your block/district Agriculture office, Krishi Vigyan Kendra (KVK) or nearest soil testing lab and ask for soil sampling in your field.",
+      "A sample is collected from your field (usually after the Rabi or Kharif harvest, before the next crop is sown). Give the correct plot details.",
+      "The sample is tested at a soil testing laboratory.",
+      "Collect your printed Soil Health Card, or view and download it on the portal using your details. Follow the fertilizer advice for your crop."
+    ],
+    "online": [{"label": "Soil Health Card portal", "url": "https://soilhealth.dac.gov.in"}],
+    "offline": ["Block / district Agriculture office", "Nearest Krishi Vigyan Kendra (KVK)", "Government soil testing laboratory"]
+  },
+  "deadline": {"type": "rolling", "text": "No deadline. The best time to get your soil sampled is right after harvest, before you sow the next crop."},
+  "helpline": [],
+  "official_url": "https://soilhealth.dac.gov.in",
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/aug/doc2025816613501.pdf",
+    "https://wb.gov.in/government-schemes-details-soil-health-card.aspx"
+  ],
+  "caveats": ["The scheme is now run under RKVY 'Soil Health & Fertility', so the way sampling is organised differs from state to state."]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "pm-kusum",
+  "name": "PM-KUSUM: Solar Pumps for Farmers",
+  "short_name": "PM-KUSUM",
+  "aliases": ["kusum", "pm kusum", "pmkusum", "solar pump", "solar pump yojana", "kusum yojana", "सोलर पंप", "कुसुम योजना"],
+  "level": "central",
+  "states": ["ALL"],
+  "category": "irrigation",
+  "status": "limited",
+  "status_note": "Phase 1 now continues only for already-sanctioned projects (completion deadline 31 March 2027), and the follow-up PM-KUSUM 2.0 had not been launched as of late October 2026. New farmer applications are accepted only where your state still has sanctioned solar-pump quota. Ask your state nodal agency before spending time on this.",
+  "keywords": ["solar", "pump", "diesel", "electricity", "irrigation", "borewell", "tubewell", "power", "subsidy"],
+  "summary": "Subsidy for installing a stand-alone solar irrigation pump, or for solarising an existing grid-connected pump, to cut diesel and electricity costs.",
+  "benefits": {
+    "headline": "Up to about 60% subsidy on a solar pump (farmer pays about 40%, or only 10% upfront with a bank loan)",
+    "details": [
+      "Central subsidy of 30% of the benchmark/tender cost plus a state subsidy of at least 30%; the farmer pays the remaining 40%, and bank finance can cover part of it.",
+      "In North-eastern states, Himachal Pradesh, Uttarakhand, Jammu & Kashmir/Ladakh and island territories the central subsidy is 50% and the state share at least 30%.",
+      "Central subsidy is limited to pumps of up to 7.5 HP. Small and marginal farmers get priority."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "You are a farmer (individual, group, cooperative or water-user association) with agricultural land.",
+      "You have a water source you can pump from (borewell/tubewell, open well, pond or river).",
+      "Stand-alone solar pump: best suited if you irrigate with a diesel pump or have no grid connection. Solarisation of an existing pump: you already have a grid-connected agricultural pump."
+    ],
+    "rules": [
+      {"id": "has_land", "label": "You have farmland", "kind": "eligibility",
+       "check": {"field": "land_acres_total", "op": "gt", "value": 0},
+       "pass_text": "You have farmland registered in KisanAI.", "fail_text": "You need agricultural land to install a solar pump.",
+       "unknown_text": "Add your farm details so we can check this.", "ask": "farm"},
+      {"id": "water_source", "label": "A water source you can pump from", "kind": "eligibility",
+       "check": {"field": "irrigation_source", "op": "in", "value": ["borewell_tubewell", "open_well", "river_pond"]},
+       "pass_text": "You have a pumpable water source.", "fail_text": "A solar pump needs a borewell, well, pond or river to draw from.",
+       "unknown_text": "Tell us what water source you irrigate from.", "ask": "irrigation_source"},
+      {"id": "no_solar_yet", "label": "You do not already have a solar pump", "kind": "eligibility",
+       "check": {"field": "pump_type", "op": "ne", "value": "solar"},
+       "pass_text": "You do not yet have a solar pump.", "fail_text": "You already have a solar pump.",
+       "unknown_text": "Tell us what kind of pump you use.", "ask": "pump_type"}
+    ],
+    "verify": [
+      "Check with your state nodal/implementing agency whether solar-pump quota is still open in your district."
+    ]
+  },
+  "benefit_tiers": [
+    {"when": {"field": "pump_type", "op": "eq", "value": "diesel"},
+     "text": "You use a diesel pump, so a stand-alone solar pump would cut your fuel cost the most."},
+    {"when": {"field": "pump_type", "op": "eq", "value": "grid_electric"},
+     "text": "You have a grid-connected pump, so ask about solarising it (and selling surplus power to the DISCOM)."},
+    {"when": {"field": "land_class", "op": "in", "value": ["marginal", "small"]},
+     "text": "Small and marginal farmers are given priority by the state implementing agencies."}
+  ],
+  "relevance": {"crops": ["all"], "base_priority": 55,
+    "adjust": [{"when": {"field": "pump_type", "op": "eq", "value": "diesel"}, "score": 12, "reason": "You irrigate with a diesel pump"}]},
+  "documents": [
+    {"name": "Aadhaar card", "required": true, "note": ""},
+    {"name": "Land ownership record", "required": true, "note": ""},
+    {"name": "Bank account details", "required": true, "note": "Subsidy and bank loan are routed through it."},
+    {"name": "Passport-size photograph", "required": true, "note": ""},
+    {"name": "Proof of water source (e.g. borewell/well details)", "required": false, "note": "Requirements vary by state."},
+    {"name": "Existing electricity connection details", "required": false, "note": "Only for solarising a grid-connected pump."}
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Ask your state's implementing agency (usually the state renewable energy development agency, Agriculture department or DISCOM) if applications are open in your district.",
+      "Apply on the state's PM-KUSUM portal or at the district office with your documents.",
+      "Pay your share (or arrange it with a bank loan) once the application is approved.",
+      "An empanelled vendor installs the pump; get an inspection certificate and keep your bills."
+    ],
+    "online": [{"label": "PM-KUSUM portal (MNRE)", "url": "https://pmkusum.mnre.gov.in"}],
+    "offline": ["District Agriculture office", "State renewable energy agency / DISCOM office"]
+  },
+  "deadline": {
+    "type": "info",
+    "text": "No open national application window. Phase 1 projects must be completed by 31 March 2027, and new rounds depend on your state or the upcoming PM-KUSUM 2.0."
+  },
+  "helpline": [],
+  "official_url": "https://pmkusum.mnre.gov.in",
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://pmkusum.mnre.gov.in/landing-faq.html",
+    "https://mnre.gov.in/en/pradhan-mantri-kisan-urja-suraksha-evam-utthaan-mahabhiyaan-pm-kusum/",
+    "https://www.energetica-india.net/news/mnre-extends-pm-kusum-financial-closure-deadline-to-nov-30"
+  ],
+  "caveats": ["Subsidy shares differ by state; the percentages above are the national scheme pattern."]
+}

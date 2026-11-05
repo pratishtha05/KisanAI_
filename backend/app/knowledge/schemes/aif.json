@@ -1,0 +1,67 @@
+{
+  "id": "aif",
+  "name": "Agriculture Infrastructure Fund (AIF)",
+  "short_name": "Agri Infra Fund",
+  "aliases": ["aif", "agri infra fund", "agriculture infrastructure fund", "agriinfra", "cold storage loan", "warehouse loan", "post harvest loan", "कृषि अवसंरचना कोष"],
+  "level": "central",
+  "states": ["ALL"],
+  "category": "credit",
+  "status": "active",
+  "keywords": ["cold storage", "warehouse", "godown", "pack house", "silo", "grading", "sorting", "processing", "polyhouse", "greenhouse", "post harvest", "infrastructure loan"],
+  "summary": "Low-interest loans for building post-harvest facilities (cold storage, warehouse, pack house, sorting/grading) and community farming assets.",
+  "benefits": {
+    "headline": "3% interest subsidy on loans up to ₹2 crore, for up to 7 years",
+    "details": [
+      "Banks lend for viable projects and the Government pays a 3% a year interest subvention on up to ₹2 crore, for a maximum of 7 years.",
+      "Loans up to ₹2 crore get a credit guarantee (CGTMSE), so collateral is generally not required.",
+      "Can be combined with other government subsidies. The facility runs until FY 2032-33."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "Individual farmers, FPOs, SHGs, JLGs, PACS, cooperatives, agri-entrepreneurs and start-ups can apply.",
+      "You need a viable project for post-harvest infrastructure or a community farming asset, for example a warehouse, cold store, pack house, sorting/grading unit, silo, or polyhouse.",
+      "The project must be approved by your bank."
+    ],
+    "rules": [
+      {"id": "has_farm", "label": "You are a farmer", "kind": "eligibility",
+       "check": {"field": "has_farm", "op": "is_true"},
+       "pass_text": "You are registered as a farmer in KisanAI.", "fail_text": "Individual farmers, groups and farm enterprises can apply.",
+       "unknown_text": "Add your farm details so we can check this.", "ask": "farm"}
+    ],
+    "verify": [
+      "You must have a bankable project plan with land available for the facility. Banks assess viability before sanctioning."
+    ]
+  },
+  "relevance": {"crops": ["all"], "base_priority": 40,
+    "adjust": [
+      {"when": {"field": "crops", "op": "contains_any", "value": ["tomato", "potato", "apple"]}, "score": 14, "reason": "Perishable crops like yours benefit from cold storage and pack houses"},
+      {"when": {"field": "member_group", "op": "in", "value": ["fpo", "shg", "cooperative"]}, "score": 6, "reason": "Groups can pool resources for shared facilities"}
+    ]},
+  "documents": [
+    {"name": "Detailed project report or project plan", "required": true, "note": "Cost, capacity and expected income."},
+    {"name": "KYC: Aadhaar, PAN", "required": true, "note": ""},
+    {"name": "Land ownership or lease documents for the project site", "required": true, "note": ""},
+    {"name": "Bank statements and income tax returns (if available)", "required": false, "note": ""},
+    {"name": "Registration certificate", "required": false, "note": "For FPOs, cooperatives, firms."}
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Prepare a simple project report with cost estimates and expected income.",
+      "Register and apply on the AIF online portal, or approach a participating bank branch.",
+      "Select a bank; the bank appraises your project and sanctions the loan.",
+      "Interest subvention is applied by the bank. Keep your repayment schedule on time."
+    ],
+    "online": [{"label": "AIF portal", "url": "https://agriinfra.dac.gov.in"}],
+    "offline": ["Nearest bank branch (commercial, cooperative or regional rural bank)", "District Agriculture / Horticulture office for help with the project report"]
+  },
+  "deadline": {"type": "rolling", "text": "Open throughout the year until FY 2032-33."},
+  "helpline": [],
+  "official_url": "https://agriinfra.dac.gov.in",
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://www.drishtiias.com/daily-updates/daily-news-analysis/agriculture-infrastructure-fund-2",
+    "https://federalbank.co.in/agriculture-infrastructure-fund"
+  ],
+  "caveats": ["This is a loan scheme for infrastructure projects, not a grant for everyday farming expenses."]
+}

@@ -1,0 +1,91 @@
+{
+  "id": "my-scheme-id",
+  "name": "Full official scheme name",
+  "short_name": "Short name",
+  "aliases": [
+    "alternative spellings",
+    "hindi name"
+  ],
+  "level": "central",
+  "states": [
+    "ALL"
+  ],
+  "category": "income_support",
+  "status": "active",
+  "status_note": "",
+  "keywords": [
+    "words farmers search for"
+  ],
+  "summary": "One plain-language sentence.",
+  "benefits": {
+    "headline": "The one-line benefit",
+    "details": [
+      "Detail 1",
+      "Detail 2"
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "Condition in plain words"
+    ],
+    "rules": [
+      {
+        "id": "has_land",
+        "label": "You have farmland",
+        "kind": "eligibility",
+        "check": {
+          "field": "land_acres_total",
+          "op": "gt",
+          "value": 0
+        },
+        "pass_text": "You have farmland.",
+        "fail_text": "Why this blocks the farmer.",
+        "unknown_text": "What we need to know.",
+        "ask": "farm"
+      }
+    ],
+    "verify": [
+      "Things only the office can confirm"
+    ]
+  },
+  "benefit_tiers": [],
+  "relevance": {
+    "crops": [
+      "all"
+    ],
+    "base_priority": 50,
+    "adjust": []
+  },
+  "documents": [
+    {
+      "name": "Aadhaar card",
+      "required": true,
+      "note": ""
+    }
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Step 1"
+    ],
+    "online": [
+      {
+        "label": "Portal",
+        "url": "https://example.gov.in"
+      }
+    ],
+    "offline": [
+      "Where to go in person"
+    ]
+  },
+  "deadline": {
+    "type": "rolling",
+    "text": "Open all year."
+  },
+  "helpline": [],
+  "official_url": "https://example.gov.in",
+  "last_verified": "2026-01-01",
+  "sources": [
+    "https://official-source.example"
+  ],
+  "caveats": []
+}

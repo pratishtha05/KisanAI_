@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Home, Sprout, Bot, Leaf } from "lucide-react";
+import { Home, Sprout, Bot, Leaf, Landmark } from "lucide-react";
 import { useLanguage } from "@/lib/LanguageContext";
 
 export function BottomNav() {
@@ -13,6 +13,7 @@ export function BottomNav() {
     { href: "/app", icon: Home, label: t("nav.home", "Home") },
     { href: "/app/farm-advisor", icon: Bot, label: t("nav.advisor", "Ask KisanAI") },
     { href: "/app/disease-detection", icon: Leaf, label: t("nav.health", "Crop Health") },
+    { href: "/app/schemes", icon: Landmark, label: t("nav.schemes", "Schemes") },
   ];
 
   return (

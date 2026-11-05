@@ -1,0 +1,100 @@
+{
+  "id": "pm-kmy",
+  "name": "Pradhan Mantri Kisan Maan-Dhan Yojana (PM-KMY): Farmer Pension",
+  "short_name": "PM Kisan Maan-Dhan",
+  "aliases": ["maandhan", "maan dhan", "kisan maandhan", "kisan pension", "pm kmy", "pmkmy", "farmer pension", "pension scheme", "किसान मानधन", "किसान पेंशन"],
+  "level": "central",
+  "states": ["ALL"],
+  "category": "pension",
+  "status": "active",
+  "keywords": ["pension", "old age", "retirement", "60 years", "monthly pension", "lic", "3000"],
+  "summary": "A contributory old-age pension for small and marginal farmers: you pay a small monthly amount, the government pays the same amount, and you get ₹3,000 a month from age 60.",
+  "benefits": {
+    "headline": "₹3,000 per month pension after age 60",
+    "details": [
+      "You contribute ₹55 to ₹200 a month depending on your age when you join (18 to 40), and the Central Government adds an equal amount.",
+      "Your spouse can join separately and also get ₹3,000 a month.",
+      "If you die after receiving pension, your spouse gets a family pension of 50% (₹1,500 a month).",
+      "Pension is managed by LIC; enrolment is free of charge."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "Small or marginal farmer with up to 2 hectares (about 4.94 acres) of cultivable land.",
+      "Aged between 18 and 40 years when you enrol.",
+      "Not already covered by the National Pension System (NPS), ESIC or EPFO, and not enrolled in PM-SYM or PM-LVM pension schemes.",
+      "Not an income tax payer."
+    ],
+    "rules": [
+      {"id": "has_land", "label": "You have farmland", "kind": "eligibility",
+       "check": {"field": "land_acres_total", "op": "gt", "value": 0},
+       "pass_text": "You have farmland registered in KisanAI.", "fail_text": "The scheme is for landholding farmers.",
+       "unknown_text": "Add your farm details so we can check this.", "ask": "farm"},
+      {"id": "land_size", "label": "Up to 2 hectares (≈ 4.94 acres) of land", "kind": "eligibility",
+       "check": {"field": "land_hectares_total", "op": "lte", "value": 2},
+       "pass_text": "Your total land is within the 2-hectare limit.",
+       "fail_text": "The scheme is only for small and marginal farmers with up to 2 hectares in total.",
+       "unknown_text": "Add your farm details so we can check this.", "ask": "farm"},
+      {"id": "age", "label": "Age 18 to 40 years", "kind": "eligibility",
+       "check": {"field": "age", "op": "between", "value": [18, 40]},
+       "pass_text": "Your age is within the 18 to 40 entry range.",
+       "fail_text": "You can only join between 18 and 40 years of age.",
+       "unknown_text": "Tell us your year of birth.", "ask": "birth_year"},
+      {"id": "owns_land", "label": "Land is in your name / family's name", "kind": "eligibility",
+       "check": {"field": "land_ownership", "op": "eq", "value": "owner"},
+       "pass_text": "You cultivate land owned by your family.",
+       "fail_text": "Your name must appear in the land records, so tenants and sharecroppers are not covered.",
+       "unknown_text": "Tell us whether the land is owned or leased.", "ask": "land_ownership"},
+      {"id": "no_other_pension", "label": "Not covered by NPS / ESIC / EPFO", "kind": "eligibility",
+       "check": {"field": "covered_by_nps_epfo_esic", "op": "is_false"},
+       "pass_text": "You are not covered by NPS, ESIC or EPFO.",
+       "fail_text": "Members of NPS, ESIC or EPFO cannot join this scheme.",
+       "unknown_text": "Tell us whether you are covered by NPS, ESIC or EPFO.", "ask": "covered_by_nps_epfo_esic"},
+      {"id": "not_tax_payer", "label": "Not an income tax payer", "kind": "eligibility",
+       "check": {"field": "income_tax_payer", "op": "is_false"},
+       "pass_text": "No income tax payer in your family.", "fail_text": "Income tax payers are excluded.",
+       "unknown_text": "Tell us whether anyone in your family pays income tax.", "ask": "income_tax_payer"},
+      {"id": "bank", "label": "Savings bank account (Aadhaar-linked)", "kind": "prerequisite",
+       "check": {"field": "has_bank_account", "op": "is_true"},
+       "pass_text": "You have a bank account.", "fail_text": "Open a savings or Jan Dhan account; contributions are auto-debited from it.",
+       "unknown_text": "Tell us whether you have a bank account.", "ask": "has_bank_account"},
+      {"id": "aadhaar", "label": "Aadhaar card", "kind": "prerequisite",
+       "check": {"field": "has_aadhaar", "op": "is_true"},
+       "pass_text": "You have Aadhaar.", "fail_text": "Get an Aadhaar card first; it is needed to enrol.",
+       "unknown_text": "Tell us whether you have Aadhaar.", "ask": "has_aadhaar"}
+    ],
+    "verify": [
+      "Other 'higher economic status' exclusions used in PM-KISAN (for example constitutional post holders and serving government employees) may also apply. Confirm at the enrolment centre.",
+      "Your name must appear in the land records on the date you enrol."
+    ]
+  },
+  "relevance": {"crops": ["all"], "base_priority": 58,
+    "adjust": [{"when": {"field": "age", "op": "between", "value": [18, 29]}, "score": 6, "reason": "Joining younger means a lower monthly contribution"}]},
+  "documents": [
+    {"name": "Aadhaar card", "required": true, "note": ""},
+    {"name": "Savings bank account passbook or Jan Dhan account details", "required": true, "note": "Used to auto-debit your monthly contribution."},
+    {"name": "Land records (khasra / khatauni)", "required": true, "note": "Must show cultivable land in your name."},
+    {"name": "Mobile number", "required": true, "note": ""},
+    {"name": "Nominee / spouse details", "required": false, "note": "For family pension and nomination."},
+    {"name": "First monthly contribution (in cash at the centre)", "required": true, "note": ""}
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Visit your nearest Common Service Centre (CSC) with Aadhaar, bank details and land records. Enrolment is free of charge.",
+      "The operator verifies your details and registers you; you sign an auto-debit mandate for the monthly contribution.",
+      "Pay the first contribution in cash. You receive a Kisan Pension Account Number and a pension card.",
+      "Keep enough balance in your bank account on the monthly due date so your contribution is not missed."
+    ],
+    "online": [{"label": "PM-KISAN portal (scheme documents and FAQs)", "url": "https://pmkisan.gov.in"}],
+    "offline": ["Nearest Common Service Centre (CSC)", "State nodal officer for PM-KISAN at your district Agriculture office"]
+  },
+  "deadline": {"type": "rolling", "text": "Enrolment stays open, but only up to age 40, so the sooner you join the lower your monthly contribution."},
+  "helpline": [],
+  "official_url": "https://pmkisan.gov.in",
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://PMkisan.gov.in/Documents/PM-KMY - FAQs.pdf",
+    "https://www.drishtiias.com/daily-updates/daily-news-analysis/pradhan-mantri-kisan-maandhan-yojana-pm-kmy"
+  ],
+  "caveats": []
+}

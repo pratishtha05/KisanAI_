@@ -4,6 +4,7 @@ from app.db.session import get_db
 from app.models.farmer_profile import FarmerProfile
 from app.schemas.farmer import FarmerProfileCreate, FarmerProfileResponse
 from app.models.user import User
+from app.models.scheme_profile import SchemeProfile
 from app.api.deps import get_current_user
 
 router = APIRouter()
@@ -31,6 +32,7 @@ def get_profile(db: Session = Depends(get_db), current_user: User = Depends(get_
 
 @router.delete("/me")
 def delete_user_me(db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
+    db.query(SchemeProfile).filter(SchemeProfile.user_id == current_user.id).delete(synchronize_session=False)
     db.delete(current_user)
     db.commit()
     return {"message": "User deleted successfully"}

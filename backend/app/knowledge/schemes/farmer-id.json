@@ -1,0 +1,146 @@
+{
+  "id": "farmer-id",
+  "name": "Farmer ID (Farmer Registry / AgriStack)",
+  "short_name": "Farmer ID",
+  "aliases": [
+    "farmer id",
+    "farmer registry",
+    "agristack",
+    "agri stack",
+    "kisan pehchaan",
+    "farmer registration",
+    "किसान आईडी",
+    "फार्मर आईडी"
+  ],
+  "level": "central",
+  "states": [
+    "ALL"
+  ],
+  "category": "registration",
+  "status": "active",
+  "keywords": [
+    "id",
+    "registry",
+    "digital",
+    "land records",
+    "aadhaar",
+    "registration",
+    "agristack",
+    "unique id"
+  ],
+  "summary": "A unique digital ID for each farmer that links you to your land records, so benefits under many schemes reach you faster. Do this first.",
+  "benefits": {
+    "headline": "One digital ID that unlocks smoother access to many schemes",
+    "details": [
+      "Links your identity and your land parcels to digital land records.",
+      "Used to deliver PM-KISAN, crop insurance, agricultural credit, MSP-based procurement, and fertilizer and seed distribution more effectively.",
+      "Government statements say that registered farmers will not be deprived of any scheme benefit, while farmers who do not register may face difficulties accessing schemes."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "Farmers whose land is in the state's digital land records register (OTP-based Aadhaar authentication is used in many states)."
+    ],
+    "rules": [
+      {
+        "id": "has_land",
+        "label": "You have farmland",
+        "kind": "eligibility",
+        "check": {
+          "field": "land_acres_total",
+          "op": "gt",
+          "value": 0
+        },
+        "pass_text": "You have farmland registered in KisanAI.",
+        "fail_text": "The registry is for farmers with agricultural land records.",
+        "unknown_text": "Add your farm details so we can check this.",
+        "ask": "farm"
+      },
+      {
+        "id": "aadhaar",
+        "label": "Aadhaar card with your mobile linked",
+        "kind": "prerequisite",
+        "check": {
+          "field": "has_aadhaar",
+          "op": "is_true"
+        },
+        "pass_text": "You have Aadhaar.",
+        "fail_text": "Get an Aadhaar card; the registry uses OTP-based Aadhaar authentication.",
+        "unknown_text": "Tell us whether you have Aadhaar.",
+        "ask": "has_aadhaar"
+      }
+    ],
+    "verify": [
+      "Registration is run by your state's Revenue and Agriculture departments, so the exact process and portal differ by state."
+    ]
+  },
+  "benefit_tiers": [
+    {
+      "when": {
+        "field": "has_farmer_id",
+        "op": "is_true"
+      },
+      "text": "You already have a Farmer ID. Keep it handy when applying for other schemes."
+    }
+  ],
+  "relevance": {
+    "crops": [
+      "all"
+    ],
+    "base_priority": 85,
+    "adjust": [
+      {
+        "when": {
+          "field": "has_farmer_id",
+          "op": "is_true"
+        },
+        "score": -80,
+        "reason": "You already have a Farmer ID"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "name": "Aadhaar card",
+      "required": true,
+      "note": "Your mobile number should be linked for OTP verification."
+    },
+    {
+      "name": "Land details (survey / khasra number)",
+      "required": true,
+      "note": "To link your parcels."
+    },
+    {
+      "name": "Mobile number",
+      "required": true,
+      "note": ""
+    }
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Look out for special registration camps run jointly by Revenue and Agriculture officials in your village or tehsil, or visit your nearest Common Service Centre (CSC).",
+      "Verify with Aadhaar OTP and confirm your land parcels.",
+      "Receive your Farmer ID and keep a copy; quote it in other scheme applications."
+    ],
+    "online": [],
+    "offline": [
+      "Common Service Centre (CSC)",
+      "Tehsil / revenue office and block Agriculture office",
+      "Village registration camps announced by your district administration"
+    ]
+  },
+  "deadline": {
+    "type": "info",
+    "text": "Many states are running time-bound registration drives. Do not wait: ask your Agriculture/Revenue office for the current camp dates."
+  },
+  "helpline": [],
+  "official_url": null,
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://www.outlookbusiness.com/amp/story/news/haryana-saini-issues-directions-for-registration-of-farmers-on-agristack-platform",
+    "https://www.outlookmoney.com/news/pm-kisan-23rd-instalment-farmers-will-receive-23rd-instalment-after-fulfilling-these-requirements"
+  ],
+  "caveats": [
+    "Rules and deadlines are set state by state. This entry gives the general picture."
+  ]
+}

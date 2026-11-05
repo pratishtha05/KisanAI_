@@ -1,0 +1,167 @@
+{
+  "id": "kcc-miss",
+  "name": "Kisan Credit Card (KCC) with Interest Subvention (MISS)",
+  "short_name": "Kisan Credit Card",
+  "aliases": [
+    "kcc",
+    "kisan credit card",
+    "kisan card",
+    "crop loan",
+    "kisan loan",
+    "किसान क्रेडिट कार्ड",
+    "केसीसी"
+  ],
+  "level": "central",
+  "states": [
+    "ALL"
+  ],
+  "category": "credit",
+  "keywords": [
+    "loan",
+    "credit",
+    "interest",
+    "bank",
+    "money for seeds",
+    "fertilizer loan",
+    "working capital",
+    "moneylender"
+  ],
+  "summary": "A revolving credit card for farm expenses at a subsidised interest rate, so you can avoid moneylenders.",
+  "benefits": {
+    "headline": "Crop loans at 7% interest, effectively 4% if repaid on time",
+    "details": [
+      "Short-term crop loans at 7% a year under the Modified Interest Subvention Scheme, with an extra 3% prompt-repayment incentive that brings the effective rate to 4%.",
+      "The loan limit under the scheme was raised from ₹3 lakh to ₹5 lakh in Budget 2025-26. Confirm the exact limit and subsidised portion with your bank.",
+      "Loans up to ₹2 lakh are available without collateral.",
+      "Can also be used for allied activities such as dairy and fisheries."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "Farmers who cultivate land: owner-cultivators, tenant farmers, oral lessees and sharecroppers.",
+      "Self Help Groups and Joint Liability Groups of farmers can also apply.",
+      "Credit limit depends on your land, crops grown and cost of cultivation."
+    ],
+    "rules": [
+      {
+        "id": "has_farm",
+        "label": "You cultivate land",
+        "kind": "eligibility",
+        "check": {
+          "field": "has_farm",
+          "op": "is_true"
+        },
+        "pass_text": "You have a farm registered in KisanAI.",
+        "fail_text": "KCC is meant for people who cultivate land or are engaged in allied farm activities.",
+        "unknown_text": "Add your farm details so we can check this.",
+        "ask": "farm"
+      },
+      {
+        "id": "aadhaar",
+        "label": "Aadhaar card",
+        "kind": "prerequisite",
+        "check": {
+          "field": "has_aadhaar",
+          "op": "is_true"
+        },
+        "pass_text": "You have Aadhaar.",
+        "fail_text": "Get an Aadhaar card; banks need it for identity (KYC).",
+        "unknown_text": "Tell us whether you have Aadhaar.",
+        "ask": "has_aadhaar"
+      }
+    ],
+    "verify": [
+      "The bank decides your credit limit and checks your credit record.",
+      "If you already have a KCC, ask your bank about renewal or limit enhancement instead of a new card."
+    ]
+  },
+  "benefit_tiers": [
+    {
+      "when": {
+        "field": "has_kcc",
+        "op": "is_true"
+      },
+      "text": "You already have a KCC. Ask your bank about renewing or raising its limit, and repay on time to get the 3% incentive."
+    }
+  ],
+  "relevance": {
+    "crops": [
+      "all"
+    ],
+    "base_priority": 75,
+    "adjust": [
+      {
+        "when": {
+          "field": "has_kcc",
+          "op": "is_true"
+        },
+        "score": -40,
+        "reason": "You already have a Kisan Credit Card"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "name": "KCC application form (from the bank)",
+      "required": true,
+      "note": ""
+    },
+    {
+      "name": "Aadhaar card and other identity/address proof",
+      "required": true,
+      "note": "For KYC."
+    },
+    {
+      "name": "Land records (or tenancy/lease documents for tenant farmers)",
+      "required": true,
+      "note": ""
+    },
+    {
+      "name": "Passport-size photographs",
+      "required": true,
+      "note": ""
+    },
+    {
+      "name": "Details of the crops you grow and their area",
+      "required": true,
+      "note": "Used to fix your credit limit."
+    },
+    {
+      "name": "Security / collateral documents",
+      "required": false,
+      "note": "Only for limits above ₹2 lakh."
+    }
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Visit your bank branch (cooperative, regional rural or commercial bank) or apply on the bank's website under Agri Loans.",
+      "Submit the application with identity, land and crop details.",
+      "The bank checks your records and sanctions a credit limit.",
+      "Collect your card and use it for seeds, fertilizer and other farm expenses; repay by the due date to keep the lower rate."
+    ],
+    "online": [
+      {
+        "label": "PM-KISAN portal (KCC can be applied for using your PM-KISAN data)",
+        "url": "https://pmkisan.gov.in"
+      }
+    ],
+    "offline": [
+      "Your nearest bank branch or PACS (cooperative society)",
+      "Common Service Centre (CSC) for help with the form"
+    ]
+  },
+  "deadline": {
+    "type": "rolling",
+    "text": "Open all year; apply whenever you need credit. Plan before the sowing season so you have funds for inputs."
+  },
+  "helpline": [],
+  "official_url": "https://pmkisan.gov.in",
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://www.drishtiias.com/daily-updates/daily-news-analysis/kisan-credit-card-scheme/print_manually"
+  ],
+  "caveats": [
+    "RBI has issued revised KCC Directions that are due to come into effect from 1 January 2027, so bank processes may change."
+  ],
+  "status": "active"
+}

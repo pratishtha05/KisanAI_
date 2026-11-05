@@ -1,0 +1,70 @@
+{
+  "id": "haryana-mpmv",
+  "name": "Haryana: Mera Pani Meri Virasat (Paddy Diversification Incentive)",
+  "short_name": "Mera Pani Meri Virasat",
+  "aliases": ["mpmv", "mera pani meri virasat", "paddy diversification", "paddy to maize", "crop diversification haryana", "मेरा पानी मेरी विरासत", "धान विविधीकरण"],
+  "level": "state",
+  "states": ["Haryana"],
+  "category": "income_support",
+  "status": "active",
+  "keywords": ["paddy", "rice", "diversification", "water", "groundwater", "maize", "cotton", "bajra", "pulses", "incentive", "per acre", "kharif"],
+  "summary": "Haryana pays an incentive per acre to farmers who replace water-guzzling paddy with crops like maize, cotton, bajra, pulses or vegetables, to protect groundwater.",
+  "benefits": {
+    "headline": "₹7,000 per acre incentive for shifting from paddy to alternative crops (confirm the current rate)",
+    "details": [
+      "Incentive is paid per acre by DBT for growing maize, cotton, bajra, pulses, vegetables and other approved alternatives instead of paddy. The state has announced an increase to ₹8,000 per acre, so confirm the current rate.",
+      "Related support in the scheme: free seeds, procurement of the alternate crop and a higher subsidy on drip irrigation, as announced by the state.",
+      "Agroforestry is also included, with a separate per-acre incentive."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "You farm in Haryana and shift (or have shifted) paddy area to an approved alternative crop in the kharif season.",
+      "Priority and targets are set for paddy-intensive blocks with falling water tables.",
+      "You register your crop details on the state's Meri Fasal Mera Byora / Mera Pani Meri Virasat portal."
+    ],
+    "rules": [
+      {"id": "state", "label": "Your farm is in Haryana", "kind": "eligibility",
+       "check": {"field": "state", "op": "eq", "value": "Haryana"},
+       "pass_text": "You are registered in Haryana.", "fail_text": "This is a Haryana government scheme.",
+       "unknown_text": "Add your state in your profile.", "ask": "profile"},
+      {"id": "paddy_or_alt", "label": "You grow paddy or an alternative like maize", "kind": "eligibility",
+       "check": {"field": "crops", "op": "contains_any", "value": ["rice", "maize"]},
+       "pass_text": "Your crop (rice or maize) fits the diversification scheme.",
+       "fail_text": "The scheme is for paddy growers moving to crops like maize, cotton, bajra, pulses or vegetables during kharif.",
+       "unknown_text": "Add your crop details so we can check this.", "ask": "farm"}
+    ],
+    "verify": [
+      "The scheme runs in targeted blocks and districts with annual targets. Ask your Block Agriculture Officer whether your block is covered this kharif.",
+      "You must register before the portal closes; incentives are paid after field verification (physical/ satellite)."
+    ]
+  },
+  "relevance": {"crops": ["rice", "maize"], "base_priority": 68,
+    "adjust": [{"when": {"field": "crops", "op": "contains_any", "value": ["rice"]}, "score": 8, "reason": "You grow paddy, so this is directly relevant"}]},
+  "documents": [
+    {"name": "Aadhaar card", "required": true, "note": ""},
+    {"name": "Land records / Jamabandi details", "required": true, "note": ""},
+    {"name": "Bank account details", "required": true, "note": "Incentive is paid by DBT."},
+    {"name": "Registration on the Meri Fasal Mera Byora portal", "required": true, "note": "Crop and area details per field."}
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Register your land and crop details on the Haryana 'Meri Fasal Mera Byora' (and Mera Pani Meri Virasat) portal in the kharif registration window.",
+      "Sow the approved alternative crop instead of paddy on the registered area.",
+      "Officials verify your fields. After verification the incentive is credited to your bank account."
+    ],
+    "online": [],
+    "offline": ["Block / district Agriculture office (Haryana Agriculture & Farmers Welfare Department)", "Common Service Centre (CSC)"]
+  },
+  "deadline": {"type": "seasonal", "approximate": true,
+    "windows": [{"season": "kharif", "label": "Kharif", "opens": "05-01", "closes": "08-31"}],
+    "text": "Registration is held every kharif season, and the exact dates are announced by the department. Dates shown here are only approximate."},
+  "helpline": [],
+  "official_url": null,
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://www.impriindia.com/?p=76362",
+    "https://www.tribuneindia.com/news/haryana/dist-specific-targets-to-promote-crop-diversification-delayed/amp"
+  ],
+  "caveats": ["The incentive amount and the list of targeted blocks change from year to year. Confirm them with your Block Agriculture Officer."]
+}

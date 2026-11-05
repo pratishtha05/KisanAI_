@@ -1,0 +1,190 @@
+{
+  "id": "pmfby",
+  "name": "Pradhan Mantri Fasal Bima Yojana (PMFBY) – Crop Insurance",
+  "short_name": "PMFBY",
+  "aliases": [
+    "fasal bima",
+    "pm fasal bima",
+    "pmfby",
+    "crop insurance",
+    "fasal bima yojana",
+    "फसल बीमा",
+    "प्रधानमंत्री फसल बीमा"
+  ],
+  "level": "central",
+  "states": [
+    "ALL"
+  ],
+  "category": "insurance",
+  "keywords": [
+    "insurance",
+    "crop loss",
+    "flood",
+    "drought",
+    "hailstorm",
+    "pest",
+    "disease",
+    "claim",
+    "premium",
+    "risk"
+  ],
+  "summary": "Low-premium insurance that pays you if a notified crop is lost to natural calamities, pests or disease.",
+  "benefits": {
+    "headline": "Crop-loss insurance for a premium of only 1.5% to 5%",
+    "details": [
+      "You pay at most 2% of the sum insured for Kharif and 1.5% for Rabi food-grain and oilseed crops, and at most 5% for annual commercial and horticultural crops. Government pays the rest of the premium.",
+      "Covers loss from natural calamities, pests and diseases for notified crops in notified areas.",
+      "Open to loanee and non-loanee farmers, including tenant farmers and sharecroppers."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "You grow a crop that is notified for insurance in your area (list is set by your state, season by season).",
+      "You have an insurable interest in the crop: owner-cultivator, tenant or sharecropper, with valid land/cultivation documents.",
+      "Enrolment is voluntary and must be done before the season's cut-off date."
+    ],
+    "rules": [
+      {
+        "id": "has_land",
+        "label": "You cultivate a crop",
+        "kind": "eligibility",
+        "check": {
+          "field": "has_farm",
+          "op": "is_true"
+        },
+        "pass_text": "You have a crop registered in KisanAI.",
+        "fail_text": "You need to be cultivating a crop to insure it.",
+        "unknown_text": "Add your crop details so we can check this.",
+        "ask": "farm"
+      },
+      {
+        "id": "bank",
+        "label": "Bank account",
+        "kind": "prerequisite",
+        "check": {
+          "field": "has_bank_account",
+          "op": "is_true"
+        },
+        "pass_text": "You have a bank account.",
+        "fail_text": "Open a bank account; premium and claim payments go through it.",
+        "unknown_text": "Tell us whether you have a bank account.",
+        "ask": "has_bank_account"
+      }
+    ],
+    "verify": [
+      "Your specific crop must be notified for your district this season. Ask your bank, CSC or the Agriculture office, or check the state notification on pmfby.gov.in.",
+      "Perennial and plantation crops (for example apple, tea) are covered only where your state has notified them."
+    ]
+  },
+  "benefit_tiers": [
+    {
+      "when": {
+        "field": "crop_types",
+        "op": "contains_any",
+        "value": [
+          "foodgrain"
+        ]
+      },
+      "text": "For your food-grain crop you would pay about 2% (Kharif) or 1.5% (Rabi) of the sum insured."
+    },
+    {
+      "when": {
+        "field": "crop_types",
+        "op": "contains_any",
+        "value": [
+          "horticulture",
+          "commercial",
+          "plantation"
+        ]
+      },
+      "text": "Your commercial/horticultural crop falls in the category where you pay up to 5% of the sum insured."
+    }
+  ],
+  "relevance": {
+    "crops": [
+      "all"
+    ],
+    "base_priority": 80
+  },
+  "documents": [
+    {
+      "name": "Aadhaar card",
+      "required": true,
+      "note": ""
+    },
+    {
+      "name": "Bank passbook / account details",
+      "required": true,
+      "note": "For premium deduction and claim payment."
+    },
+    {
+      "name": "Land record or land possession certificate",
+      "required": true,
+      "note": "Owner-cultivators."
+    },
+    {
+      "name": "Tenancy / lease agreement or other approved document",
+      "required": false,
+      "note": "Tenant farmers and sharecroppers."
+    },
+    {
+      "name": "Sowing certificate or self-declaration of the sown crop and area",
+      "required": true,
+      "note": "Format depends on your state."
+    }
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Check the enrolment last date for your state, season and crop on pmfby.gov.in (state notification).",
+      "Visit your bank branch, PACS or Common Service Centre with your documents. Loanee farmers are usually enrolled through the bank that gave the crop loan.",
+      "Fill in the crop, area and bank details, and pay your share of the premium.",
+      "Keep your policy receipt. If crop is damaged, report it within 72 hours through the Crop Insurance app, helpline 14447, your insurer, bank or Agriculture officer."
+    ],
+    "online": [
+      {
+        "label": "PMFBY portal",
+        "url": "https://pmfby.gov.in"
+      }
+    ],
+    "offline": [
+      "Your bank branch / PACS (cooperative society)",
+      "Nearest Common Service Centre (CSC). They are not allowed to charge you for PMFBY enrolment",
+      "Block/district Agriculture office"
+    ]
+  },
+  "deadline": {
+    "type": "seasonal",
+    "approximate": true,
+    "windows": [
+      {
+        "season": "kharif",
+        "label": "Kharif",
+        "opens": "06-01",
+        "closes": "07-31"
+      },
+      {
+        "season": "rabi",
+        "label": "Rabi",
+        "opens": "10-01",
+        "closes": "12-31"
+      }
+    ],
+    "text": "Cut-off dates differ by state, season and crop. Most states close Kharif enrolment around 31 July and Rabi around 31 December, and some states use earlier dates such as 15 December. Missing the date means no cover for that whole season."
+  },
+  "helpline": [
+    {
+      "label": "Krishi Rakshak Portal & Helpline",
+      "number": "14447"
+    }
+  ],
+  "official_url": "https://pmfby.gov.in",
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://pmfby.gov.in",
+    "https://www.drishtiias.com/daily-updates/daily-news-analysis/pradhan-mantri-fasal-bima-yojana-11/print_manually"
+  ],
+  "caveats": [
+    "Dates and notified crops are decided state by state. Always confirm with your bank or Agriculture office."
+  ],
+  "status": "active"
+}

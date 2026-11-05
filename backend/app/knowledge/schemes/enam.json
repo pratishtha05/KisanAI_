@@ -1,0 +1,183 @@
+{
+  "id": "enam",
+  "name": "e-NAM: National Agriculture Market (Sell Online)",
+  "short_name": "e-NAM",
+  "aliases": [
+    "enam",
+    "e-nam",
+    "e nam",
+    "national agriculture market",
+    "sell online",
+    "online mandi",
+    "mandi online",
+    "ई-नाम"
+  ],
+  "level": "central",
+  "states": [
+    "ALL"
+  ],
+  "category": "market",
+  "status": "active",
+  "keywords": [
+    "mandi",
+    "market",
+    "sell",
+    "price",
+    "bid",
+    "apmc",
+    "buyer",
+    "trading",
+    "selling crop"
+  ],
+  "summary": "A government online market that links mandis across the country, so your produce is bid for by many buyers and payment comes straight to your bank account.",
+  "benefits": {
+    "headline": "Competitive online bidding and direct bank payment",
+    "details": [
+      "Registered buyers from your state and beyond bid for your lot online, which improves price discovery.",
+      "Payment is made electronically into your bank account, typically within a couple of working days.",
+      "Registration is free."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "Any farmer can register, and you sell at an e-NAM-integrated mandi (APMC).",
+      "Your registration is approved by your local mandi (APMC) after document verification."
+    ],
+    "rules": [
+      {
+        "id": "has_farm",
+        "label": "You grow a crop to sell",
+        "kind": "eligibility",
+        "check": {
+          "field": "has_farm",
+          "op": "is_true"
+        },
+        "pass_text": "You have a crop registered in KisanAI.",
+        "fail_text": "You need produce to sell.",
+        "unknown_text": "Add your crop details so we can check this.",
+        "ask": "farm"
+      },
+      {
+        "id": "bank",
+        "label": "Bank account",
+        "kind": "prerequisite",
+        "check": {
+          "field": "has_bank_account",
+          "op": "is_true"
+        },
+        "pass_text": "You have a bank account.",
+        "fail_text": "Open a bank account; sale payments are credited to it.",
+        "unknown_text": "Tell us whether you have a bank account.",
+        "ask": "has_bank_account"
+      },
+      {
+        "id": "aadhaar",
+        "label": "Aadhaar card",
+        "kind": "prerequisite",
+        "check": {
+          "field": "has_aadhaar",
+          "op": "is_true"
+        },
+        "pass_text": "You have Aadhaar.",
+        "fail_text": "Get an Aadhaar card for identity verification.",
+        "unknown_text": "Tell us whether you have Aadhaar.",
+        "ask": "has_aadhaar"
+      }
+    ],
+    "verify": [
+      "Check that a mandi near you is integrated with e-NAM and trades your crop. Coverage differs by state and commodity."
+    ]
+  },
+  "relevance": {
+    "crops": [
+      "all"
+    ],
+    "base_priority": 50,
+    "adjust": [
+      {
+        "when": {
+          "field": "crop_stages",
+          "op": "contains_any",
+          "value": [
+            "harvest"
+          ]
+        },
+        "score": 14,
+        "reason": "You are at harvest time and about to sell"
+      },
+      {
+        "when": {
+          "field": "crops",
+          "op": "contains_any",
+          "value": [
+            "wheat",
+            "rice",
+            "maize",
+            "potato",
+            "tomato"
+          ]
+        },
+        "score": 6,
+        "reason": "Your crop is commonly traded in mandis"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "name": "Aadhaar card",
+      "required": true,
+      "note": "Identity verification."
+    },
+    {
+      "name": "Bank passbook copy or cancelled cheque (account number and IFSC)",
+      "required": true,
+      "note": "For payment of sale proceeds."
+    },
+    {
+      "name": "Passport-size photograph",
+      "required": true,
+      "note": ""
+    },
+    {
+      "name": "Land and crop details",
+      "required": false,
+      "note": "Some mandis ask for them at registration."
+    },
+    {
+      "name": "Mobile number and email ID",
+      "required": true,
+      "note": "Your permanent login ID is sent here."
+    }
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Go to enam.gov.in (or the e-NAM mobile app), choose Registration, select 'Farmer' and pick your nearest mandi (APMC).",
+      "Enter your personal, land and bank details and upload your documents.",
+      "Your mandi (APMC) verifies the application. You then receive a permanent Farmer Login ID and password.",
+      "Take your produce to the e-NAM mandi. It is graded and listed, buyers bid online, and the payment is credited to your account when you accept."
+    ],
+    "online": [
+      {
+        "label": "e-NAM portal",
+        "url": "https://enam.gov.in"
+      }
+    ],
+    "offline": [
+      "Your nearest e-NAM-integrated mandi (APMC) office"
+    ]
+  },
+  "deadline": {
+    "type": "rolling",
+    "text": "Register any time. Do it before harvest so your login is ready when you want to sell."
+  },
+  "helpline": [],
+  "official_url": "https://enam.gov.in",
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://train.enam.gov.in/web/resources/registration-guideline",
+    "https://www.tractorforeveryone.com/knowledge-center/e-nam-portal-2026-step-by-step-guide-to-sell-your-crops-online-registration-benefits"
+  ],
+  "caveats": [
+    "Prices are discovered through bidding and are not guaranteed. e-NAM is not a Minimum Support Price scheme."
+  ]
+}

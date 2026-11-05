@@ -1,0 +1,262 @@
+{
+  "id": "pm-kisan",
+  "name": "Pradhan Mantri Kisan Samman Nidhi (PM-KISAN)",
+  "short_name": "PM-KISAN",
+  "aliases": [
+    "pm kisan",
+    "pmkisan",
+    "kisan samman nidhi",
+    "pm kisan samman nidhi",
+    "kisan samman",
+    "6000 yojana",
+    "किसान सम्मान निधि",
+    "पीएम किसान"
+  ],
+  "level": "central",
+  "states": [
+    "ALL"
+  ],
+  "category": "income_support",
+  "keywords": [
+    "income support",
+    "cash",
+    "money",
+    "dbt",
+    "direct benefit",
+    "installment",
+    "instalment",
+    "6000",
+    "financial help"
+  ],
+  "summary": "Direct income support to landholding farmer families, paid straight into the bank account.",
+  "benefits": {
+    "headline": "₹6,000 per year per family",
+    "details": [
+      "Paid in 3 equal installments of ₹2,000, roughly every four months, directly to your bank account (DBT).",
+      "One benefit per farmer family (husband, wife and minor children count as one family)."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "Your family owns cultivable land (land record in your family's name).",
+      "The land was owned (or inherited) on or before 1 February 2019, the scheme's cut-off date.",
+      "None of the exclusion categories apply to you or your family: income tax payer in the last assessment year, serving or retired government officer/employee (not Multi-Tasking Staff/Class IV/Group D), pensioner drawing ₹10,000 or more per month, holder of a constitutional post, or a registered professional such as a doctor, engineer, lawyer, CA or architect.",
+      "Aadhaar-linked bank account, completed eKYC and (as now being required) a Farmer ID."
+    ],
+    "rules": [
+      {
+        "id": "has_land",
+        "label": "You have farmland",
+        "kind": "eligibility",
+        "check": {
+          "field": "land_acres_total",
+          "op": "gt",
+          "value": 0
+        },
+        "pass_text": "You have farmland registered in KisanAI.",
+        "fail_text": "PM-KISAN is only for landholding farmer families.",
+        "unknown_text": "Add your farm details so we can check this.",
+        "ask": "farm"
+      },
+      {
+        "id": "owns_land",
+        "label": "Land is owned by your family (not leased)",
+        "kind": "eligibility",
+        "check": {
+          "field": "land_ownership",
+          "op": "eq",
+          "value": "owner"
+        },
+        "pass_text": "You cultivate land owned by your family.",
+        "fail_text": "Tenant farmers and sharecroppers are not covered, because land ownership is the basic condition.",
+        "unknown_text": "Tell us whether the land is owned or leased.",
+        "ask": "land_ownership"
+      },
+      {
+        "id": "land_before_2019",
+        "label": "Land owned (or inherited) on or before 1 Feb 2019",
+        "kind": "eligibility",
+        "check": {
+          "field": "land_owned_before_feb_2019",
+          "op": "is_true"
+        },
+        "pass_text": "Your family held this land by the 1 Feb 2019 cut-off.",
+        "fail_text": "Land bought after 1 Feb 2019 is generally outside the cut-off. Inherited land may still qualify; ask your Agriculture/revenue office.",
+        "unknown_text": "Tell us whether your family owned this land on 1 Feb 2019.",
+        "ask": "land_owned_before_feb_2019"
+      },
+      {
+        "id": "not_tax_payer",
+        "label": "No income tax paid by the family in the last assessment year",
+        "kind": "eligibility",
+        "check": {
+          "field": "income_tax_payer",
+          "op": "is_false"
+        },
+        "pass_text": "No income tax payer in your family.",
+        "fail_text": "Families that paid income tax in the last assessment year are excluded.",
+        "unknown_text": "Tell us whether anyone in your family pays income tax.",
+        "ask": "income_tax_payer"
+      },
+      {
+        "id": "not_govt",
+        "label": "No serving/retired government employee or pensioner (≥ ₹10,000/month) in the family",
+        "kind": "eligibility",
+        "check": {
+          "field": "govt_employee_or_pensioner",
+          "op": "is_false"
+        },
+        "pass_text": "No excluded government employee or pensioner in your family.",
+        "fail_text": "Families with serving or retired government officers/employees, or pensioners drawing ₹10,000+ a month, are excluded. Multi-Tasking Staff, Class IV and Group D staff are exempt from this exclusion.",
+        "unknown_text": "Tell us about government employment or pension in your family.",
+        "ask": "govt_employee_or_pensioner"
+      },
+      {
+        "id": "not_constitutional",
+        "label": "No current/former constitutional post holder in the family",
+        "kind": "eligibility",
+        "check": {
+          "field": "constitutional_post_holder",
+          "op": "is_false"
+        },
+        "pass_text": "No constitutional post holder in your family.",
+        "fail_text": "Families with a current or former holder of a constitutional post (for example Minister, MP, MLA, Mayor) are excluded.",
+        "unknown_text": "Tell us whether anyone in your family holds or held such a post.",
+        "ask": "constitutional_post_holder"
+      },
+      {
+        "id": "not_professional",
+        "label": "No registered professional practising in the family",
+        "kind": "eligibility",
+        "check": {
+          "field": "registered_professional",
+          "op": "is_false"
+        },
+        "pass_text": "No registered professional in your family.",
+        "fail_text": "Registered professionals practising as doctors, engineers, lawyers, chartered accountants or architects are excluded.",
+        "unknown_text": "Tell us whether anyone in your family practises one of these professions.",
+        "ask": "registered_professional"
+      },
+      {
+        "id": "aadhaar",
+        "label": "Aadhaar card",
+        "kind": "prerequisite",
+        "check": {
+          "field": "has_aadhaar",
+          "op": "is_true"
+        },
+        "pass_text": "You have Aadhaar.",
+        "fail_text": "Get an Aadhaar card first. eKYC through Aadhaar is mandatory.",
+        "unknown_text": "Tell us whether you have Aadhaar.",
+        "ask": "has_aadhaar"
+      },
+      {
+        "id": "bank",
+        "label": "Bank account linked to Aadhaar",
+        "kind": "prerequisite",
+        "check": {
+          "field": "aadhaar_linked_bank",
+          "op": "is_true"
+        },
+        "pass_text": "Your bank account is linked to Aadhaar.",
+        "fail_text": "Link your bank account to Aadhaar (ask your bank branch) so payments can reach you.",
+        "unknown_text": "Tell us whether your bank account is linked to Aadhaar.",
+        "ask": "aadhaar_linked_bank"
+      },
+      {
+        "id": "farmer_id",
+        "label": "Farmer ID (Farmer Registry / AgriStack)",
+        "kind": "prerequisite",
+        "check": {
+          "field": "has_farmer_id",
+          "op": "is_true"
+        },
+        "pass_text": "You have a Farmer ID.",
+        "fail_text": "Get your Farmer ID under the Farmer Registry (AgriStack). It has been reported as required to keep receiving PM-KISAN installments; confirm at your nearest CSC or Agriculture office.",
+        "unknown_text": "Tell us whether you have registered for a Farmer ID.",
+        "ask": "has_farmer_id"
+      }
+    ],
+    "verify": [
+      "Your State/UT government verifies your land records before payments start.",
+      "If another family member already receives PM-KISAN, your family cannot claim a second benefit."
+    ]
+  },
+  "relevance": {
+    "crops": [
+      "all"
+    ],
+    "base_priority": 90
+  },
+  "documents": [
+    {
+      "name": "Aadhaar card",
+      "required": true,
+      "note": "eKYC is mandatory for all registered farmers."
+    },
+    {
+      "name": "Land ownership record (khasra / khatauni / jamabandi / record of rights, as named in your state)",
+      "required": true,
+      "note": "Must show the land in your family's name."
+    },
+    {
+      "name": "Bank account number and IFSC code",
+      "required": true,
+      "note": "The account should be linked to Aadhaar so payments can be credited."
+    },
+    {
+      "name": "Mobile number linked with Aadhaar",
+      "required": true,
+      "note": "Needed for OTP-based eKYC."
+    },
+    {
+      "name": "Self-declaration on exclusion categories",
+      "required": true,
+      "note": "Filled during registration."
+    },
+    {
+      "name": "Farmer ID (Farmer Registry / AgriStack)",
+      "required": false,
+      "note": "Increasingly required for installments; it links your land records to schemes."
+    }
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Open pmkisan.gov.in, go to Farmers Corner and choose New Farmer Registration (or visit a Common Service Centre).",
+      "Enter Aadhaar, mobile number and state, then fill in land and bank details.",
+      "Complete eKYC: OTP-based on the portal/app, or biometric at a CSC.",
+      "Your state government verifies the land records and approves the application.",
+      "Check Beneficiary Status / Know Your Status on the portal to track installments."
+    ],
+    "online": [
+      {
+        "label": "PM-KISAN portal (Farmers Corner)",
+        "url": "https://pmkisan.gov.in"
+      }
+    ],
+    "offline": [
+      "Nearest Common Service Centre (CSC)",
+      "Local Agriculture department / block office or the village revenue official (patwari/lekhpal) who handles land records"
+    ]
+  },
+  "deadline": {
+    "type": "periodic",
+    "text": "No last date to register; registration is open throughout the year. Installments are released every four months, so finish eKYC before the next one. Installments are paid only to farmers whose eKYC is complete."
+  },
+  "helpline": [
+    {
+      "label": "PM-KISAN helpline (toll free)",
+      "number": "155261"
+    }
+  ],
+  "official_url": "https://pmkisan.gov.in",
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://pmkisan.gov.in",
+    "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2021/nov/doc2021112361.pdf"
+  ],
+  "caveats": [
+    "Exclusion rules apply to the whole family. Please answer the family questions for your household, not just yourself."
+  ],
+  "status": "active"
+}

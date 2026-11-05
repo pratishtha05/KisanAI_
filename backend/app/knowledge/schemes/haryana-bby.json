@@ -1,0 +1,159 @@
+{
+  "id": "haryana-bby",
+  "name": "Haryana: Bhavantar Bharpayee Yojana (Price-Fall Compensation)",
+  "short_name": "Bhavantar Bharpayee",
+  "aliases": [
+    "bby",
+    "bhavantar bharpai",
+    "bhavantar bharpayee",
+    "bhavantar bharpai yojana",
+    "price deficit",
+    "price fall compensation",
+    "भावांतर भरपाई योजना"
+  ],
+  "level": "state",
+  "states": [
+    "Haryana"
+  ],
+  "category": "income_support",
+  "status": "active",
+  "keywords": [
+    "price",
+    "market price",
+    "loss",
+    "compensation",
+    "potato",
+    "tomato",
+    "onion",
+    "cauliflower",
+    "vegetables",
+    "price fall",
+    "mandi price"
+  ],
+  "summary": "Haryana compensates registered vegetable growers when the market price of their crop falls below a government-fixed safe price.",
+  "benefits": {
+    "headline": "Compensation when vegetable prices fall below the notified safe price",
+    "details": [
+      "Covers vegetable crops including tomato, potato, onion and cauliflower; the crop list is set by the state.",
+      "The state pays the shortfall between the notified price and the market price, with the per-quintal rates and limits set each season. Confirm the current figures with your Horticulture office."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "You are a vegetable grower in Haryana with a crop on the state's notified list.",
+      "You have registered your crop and area on the Meri Fasal Mera Byora portal before the crop is sown or harvested, as notified.",
+      "You sell your produce in a notified mandi and can show the sale record."
+    ],
+    "rules": [
+      {
+        "id": "state",
+        "label": "Your farm is in Haryana",
+        "kind": "eligibility",
+        "check": {
+          "field": "state",
+          "op": "eq",
+          "value": "Haryana"
+        },
+        "pass_text": "You are registered in Haryana.",
+        "fail_text": "This is a Haryana government scheme.",
+        "unknown_text": "Add your state in your profile.",
+        "ask": "profile"
+      },
+      {
+        "id": "veg_crop",
+        "label": "You grow a notified vegetable (potato / tomato)",
+        "kind": "eligibility",
+        "check": {
+          "field": "crops",
+          "op": "contains_any",
+          "value": [
+            "potato",
+            "tomato"
+          ]
+        },
+        "pass_text": "Your crop (potato or tomato) is a notified vegetable.",
+        "fail_text": "The scheme covers a set list of vegetables such as potato, tomato, onion and cauliflower.",
+        "unknown_text": "Add your crop details so we can check this.",
+        "ask": "farm"
+      }
+    ],
+    "verify": [
+      "The list of crops, the safe price and the cut-off dates are notified each season by the Haryana Horticulture Department. Check them before you sow."
+    ]
+  },
+  "relevance": {
+    "crops": [
+      "potato",
+      "tomato"
+    ],
+    "base_priority": 66,
+    "adjust": [
+      {
+        "when": {
+          "field": "crop_stages",
+          "op": "contains_any",
+          "value": [
+            "harvest",
+            "flower"
+          ]
+        },
+        "score": 6,
+        "reason": "Your crop is close to harvest and sale"
+      }
+    ]
+  },
+  "documents": [
+    {
+      "name": "Aadhaar card",
+      "required": true,
+      "note": ""
+    },
+    {
+      "name": "Registration on Meri Fasal Mera Byora portal",
+      "required": true,
+      "note": "Crop, area and expected production."
+    },
+    {
+      "name": "Land records or lease document",
+      "required": true,
+      "note": ""
+    },
+    {
+      "name": "Bank account details",
+      "required": true,
+      "note": "Compensation is paid by DBT."
+    },
+    {
+      "name": "Mandi sale receipt (gate pass / bill)",
+      "required": true,
+      "note": "Proof of the price at which you sold."
+    }
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Register your crop and area on the Haryana 'Meri Fasal Mera Byora' portal within the notified period.",
+      "Sell your produce at a notified mandi and keep the sale receipt.",
+      "The department checks the registered area and the recorded sale prices.",
+      "If prices were below the notified safe price, compensation is credited to your bank account."
+    ],
+    "online": [],
+    "offline": [
+      "District Horticulture Officer (Haryana Horticulture Department)",
+      "Common Service Centre (CSC)"
+    ]
+  },
+  "deadline": {
+    "type": "info",
+    "text": "Registration and sale windows are notified each season. Register before you sow."
+  },
+  "helpline": [],
+  "official_url": null,
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://arccjournals.com/journal/agricultural-reviews/R-2646",
+    "https://egov.eletsonline.com/2020/08/haryana-agriculture-striding-headway/"
+  ],
+  "caveats": [
+    "The per-quintal compensation rates were revised over time. Rates quoted elsewhere may be out of date, so confirm with the department."
+  ]
+}

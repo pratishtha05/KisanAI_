@@ -11,6 +11,7 @@ import {
   LogOut,
   CloudSun,
   Droplets,
+  Landmark
 } from "lucide-react";
 
 import { Noto_Serif } from "next/font/google";
@@ -51,6 +52,11 @@ export function DesktopNav() {
       href: "/app/disease-detection",
       icon: Leaf,
       label: t("nav.health", "Crop Health"),
+    },
+    { 
+      href: "/app/schemes", 
+      icon: Landmark, 
+      label: t("nav.schemes", "Schemes") 
     },
   ];
 

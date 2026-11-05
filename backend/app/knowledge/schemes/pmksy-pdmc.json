@@ -1,0 +1,78 @@
+{
+  "id": "pmksy-pdmc",
+  "name": "PMKSY – Per Drop More Crop (Drip & Sprinkler Subsidy)",
+  "short_name": "Per Drop More Crop",
+  "aliases": ["pmksy", "per drop more crop", "pdmc", "drip irrigation subsidy", "sprinkler subsidy", "micro irrigation", "pradhan mantri krishi sinchai yojana", "ड्रिप सिंचाई", "प्रधानमंत्री कृषि सिंचाई योजना"],
+  "level": "central",
+  "states": ["ALL"],
+  "category": "irrigation",
+  "status": "active",
+  "keywords": ["drip", "sprinkler", "water saving", "irrigation", "micro irrigation", "rain gun", "water", "subsidy"],
+  "summary": "Subsidy for installing drip or sprinkler irrigation, which saves water and improves yield.",
+  "benefits": {
+    "headline": "45% to 55% subsidy on drip and sprinkler systems",
+    "details": [
+      "Small and marginal farmers get 55% financial assistance; other farmers get 45%.",
+      "Assistance is available for up to 5 hectares per beneficiary.",
+      "Subsidy is released electronically (DBT) after the system is installed and verified."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "You are a farmer with agricultural land (individual or group), in a state that has opened the scheme.",
+      "You have a water source for the system, such as a borewell, well, canal or pond.",
+      "You buy the system from a supplier approved by your state's Agriculture/Horticulture department."
+    ],
+    "rules": [
+      {"id": "has_land", "label": "You have farmland", "kind": "eligibility",
+       "check": {"field": "land_acres_total", "op": "gt", "value": 0},
+       "pass_text": "You have farmland registered in KisanAI.", "fail_text": "You need agricultural land to claim this subsidy.",
+       "unknown_text": "Add your farm details so we can check this.", "ask": "farm"},
+      {"id": "water_source", "label": "A water source for the system", "kind": "prerequisite",
+       "check": {"field": "irrigation_source", "op": "in", "value": ["borewell_tubewell", "open_well", "canal", "river_pond"]},
+       "pass_text": "You have a water source.", "fail_text": "You will need a water source such as a well, borewell, canal or pond. The scheme also supports farm ponds and water-storage structures.",
+       "unknown_text": "Tell us what water source you irrigate from.", "ask": "irrigation_source"}
+    ],
+    "verify": [
+      "Applications are handled by your State Agriculture/Horticulture department, so confirm that the scheme is open in your district and which crops/components are covered."
+    ]
+  },
+  "benefit_tiers": [
+    {"when": {"field": "land_class", "op": "in", "value": ["marginal", "small"]},
+     "text": "Because your holding is small or marginal, you qualify for the higher 55% subsidy."},
+    {"when": {"field": "land_class", "op": "in", "value": ["semi_medium", "medium", "large"]},
+     "text": "For your holding size the subsidy is 45%."}
+  ],
+  "relevance": {"crops": ["all"], "base_priority": 62,
+    "adjust": [
+      {"when": {"field": "crops", "op": "contains_any", "value": ["tomato", "potato", "sugarcane", "apple", "tea"]}, "score": 10, "reason": "Drip/sprinkler irrigation suits your crop"},
+      {"when": {"field": "irrigation_source", "op": "eq", "value": "rainfed"}, "score": -15, "reason": "You need a water source first"}
+    ]},
+  "documents": [
+    {"name": "Aadhaar card", "required": true, "note": ""},
+    {"name": "Land ownership record (or lease document)", "required": true, "note": "Rules on leased land differ by state."},
+    {"name": "Bank account details", "required": true, "note": "Subsidy is credited by DBT."},
+    {"name": "Caste certificate", "required": false, "note": "Only if your state gives an extra benefit to SC/ST farmers."},
+    {"name": "Quotation or estimate from an approved supplier", "required": true, "note": ""},
+    {"name": "Passport-size photograph", "required": true, "note": ""}
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Check with your district Horticulture/Agriculture office whether micro-irrigation applications are open.",
+      "Register on your state's micro-irrigation portal (or submit the form offline) with your documents.",
+      "Select an approved supplier and get a quotation; install only after approval.",
+      "After installation and field verification, the subsidy is paid to your bank account."
+    ],
+    "online": [{"label": "PMKSY portal", "url": "https://pmksy.gov.in"}],
+    "offline": ["District Horticulture / Agriculture office", "Block agriculture officer", "Common Service Centre (CSC) for online registration help"]
+  },
+  "deadline": {"type": "rolling", "text": "Applications are taken by state departments while funds last; there is no single national last date. Apply before you buy the system."},
+  "helpline": [],
+  "official_url": "https://pmksy.gov.in",
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://Pmksy.gov.in/pdfLinks/FAQ.pdf",
+    "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/jun/doc2026630906701.pdf"
+  ],
+  "caveats": ["Subsidy is a share of the notified unit cost, not of the market price. The state portal shows exact figures."]
+}

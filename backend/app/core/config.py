@@ -26,7 +26,7 @@ class Settings(BaseSettings):
     LLM_MODEL: str = "small"                   # "small" = 0.5B | "medium" = 1.5B
     LLM_WEIGHTS_DIR_SMALL: str = "./model_weights"
     LLM_WEIGHTS_DIR_MEDIUM: str = "./model_weights_1.5b"
-    LLM_USE_PT: bool = False
+    LLM_USE_PT: bool = True
     LLM_CHECKPOINT_DIR: str = "./checkpoints"
     LLM_WEIGHTS_DIR: str = ""                  # optional override
     LLM_PRELOAD: bool = True

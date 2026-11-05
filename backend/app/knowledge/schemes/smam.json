@@ -1,0 +1,85 @@
+{
+  "id": "smam",
+  "name": "Sub-Mission on Agricultural Mechanization (SMAM): Farm Machinery Subsidy",
+  "short_name": "SMAM (Farm Machinery)",
+  "aliases": ["smam", "farm mechanization", "farm machinery subsidy", "tractor subsidy", "agricultural mechanization", "power tiller subsidy", "drone subsidy", "कृषि यंत्रीकरण", "ट्रैक्टर सब्सिडी"],
+  "level": "central",
+  "states": ["ALL"],
+  "category": "machinery",
+  "status": "active",
+  "keywords": ["tractor", "machine", "machinery", "rotavator", "power tiller", "thresher", "seed drill", "transplanter", "drone", "implement", "equipment", "custom hiring"],
+  "summary": "Subsidy for buying tractors, power tillers, seed drills, drones and other farm machinery, paid directly into your bank account.",
+  "benefits": {
+    "headline": "40% to 50% subsidy on farm machinery",
+    "details": [
+      "50% of the machine cost for SC/ST farmers, small and marginal farmers and women; 40% for other farmers (subject to a ceiling for each machine type, set by the scheme).",
+      "Paid through Direct Benefit Transfer (DBT) after you buy the machine from an approved dealer.",
+      "Custom Hiring Centres run by FPOs, cooperatives and rural entrepreneurs also get support, so you can hire machines cheaply."
+    ]
+  },
+  "eligibility": {
+    "summary": [
+      "Any farmer with agricultural land can apply, and small/marginal farmers, women and SC/ST farmers get priority and a higher subsidy.",
+      "The machine and dealer must be on your state's approved list.",
+      "Most states allow subsidy on the same type of machine only once in several years."
+    ],
+    "rules": [
+      {"id": "has_farm", "label": "You are a farmer with land", "kind": "eligibility",
+       "check": {"field": "has_farm", "op": "is_true"},
+       "pass_text": "You have farmland registered in KisanAI.", "fail_text": "You need to be an agricultural land-holder or farmer.",
+       "unknown_text": "Add your farm details so we can check this.", "ask": "farm"},
+      {"id": "bank", "label": "Bank account for DBT", "kind": "prerequisite",
+       "check": {"field": "has_bank_account", "op": "is_true"},
+       "pass_text": "You have a bank account.", "fail_text": "Open a bank account; subsidy is paid to it by DBT.",
+       "unknown_text": "Tell us whether you have a bank account.", "ask": "has_bank_account"}
+    ],
+    "verify": [
+      "Your state decides the machine list, ceilings and when its portal opens. Many states run application windows, so check your state agriculture engineering/mechanization department.",
+      "Your category (SC/ST/General), farmer type (small/marginal/other) and gender must be entered correctly. A mismatch can cancel your application at physical verification."
+    ]
+  },
+  "benefit_tiers": [
+    {"when": {"any": [
+        {"field": "social_category", "op": "in", "value": ["sc", "st"]},
+        {"field": "gender", "op": "eq", "value": "female"},
+        {"field": "land_class", "op": "in", "value": ["marginal", "small"]}]},
+     "text": "You qualify for the higher 50% subsidy rate (SC/ST, women or small/marginal farmers)."},
+    {"when": {"all": [
+        {"field": "social_category", "op": "in", "value": ["general", "obc"]},
+        {"field": "gender", "op": "ne", "value": "female"},
+        {"field": "land_class", "op": "in", "value": ["semi_medium", "medium", "large"]}]},
+     "text": "The standard subsidy rate of 40% applies to your category."}
+  ],
+  "relevance": {"crops": ["all"], "base_priority": 60,
+    "adjust": [
+      {"when": {"field": "land_acres_total", "op": "gte", "value": 5}, "score": 6, "reason": "Larger holdings gain more from owning machinery"},
+      {"when": {"field": "crops", "op": "contains_any", "value": ["wheat", "rice", "maize", "sugarcane"]}, "score": 6, "reason": "Your crop uses tractors, threshers or seed drills"}
+    ]},
+  "documents": [
+    {"name": "Aadhaar card", "required": true, "note": ""},
+    {"name": "Land record (khasra / khatauni)", "required": true, "note": ""},
+    {"name": "Bank passbook / cancelled cheque", "required": true, "note": "For DBT payment."},
+    {"name": "Caste certificate (SC/ST/OBC)", "required": false, "note": "Only if claiming the category benefit."},
+    {"name": "Quotation or invoice from an approved dealer", "required": true, "note": ""},
+    {"name": "Passport-size photograph", "required": true, "note": ""}
+  ],
+  "how_to_apply": {
+    "steps": [
+      "Register on your state's agricultural machinery DBT portal (selecting the correct district, block and village).",
+      "Choose the machine from the approved list and apply when your state's window is open.",
+      "Wait for sanction before buying. Then buy from an approved dealer and upload the invoice.",
+      "After physical verification, the subsidy is credited to your bank account."
+    ],
+    "online": [{"label": "Agricultural Mechanization DBT portal (your state's version)", "url": "https://agrimachinery.nic.in/"}],
+    "offline": ["District / block Agriculture Engineering or Agriculture office", "Common Service Centre (CSC) for help with registration"]
+  },
+  "deadline": {"type": "info", "text": "Dates are set by each state; many open a registration window once or twice a year while funds last. Check your state portal."},
+  "helpline": [],
+  "official_url": "https://agrimachinery.nic.in/",
+  "last_verified": "2026-10-29",
+  "sources": [
+    "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2026/jul/doc202679916301.pdf",
+    "https://www.myscheme.gov.in/hi/schemes/smam"
+  ],
+  "caveats": ["Subsidy is capped per machine type, so the actual rupee amount depends on the machine you choose."]
+}
