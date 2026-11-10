@@ -282,7 +282,7 @@ export default function IrrigationPage() {
                 </span>
               </div>
 
-              <h1>Irrigation Planner</h1>
+              <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">Irrigation Planner</h1>
 
               <p className="text-sm md:text-base text-gray-500 mt-1.5">
                 Simple, crop-specific irrigation guidance based on your farm,

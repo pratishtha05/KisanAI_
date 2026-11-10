@@ -10,7 +10,8 @@ from app.api.routes import (
     farm_advisor,
     disease_detection,
     irrigation,
-    schemes
+    schemes,
+    fertilizer,
 )
 from app.core.config import settings
 from app.db.database import Base
@@ -47,7 +48,7 @@ app.include_router(irrigation.router,prefix=f"{settings.API_V1_STR}/irrigation",
 app.include_router(farm_advisor.router, prefix=f"{settings.API_V1_STR}/farm-advisor", tags=["farm-advisor"])
 app.include_router(disease_detection.router, prefix=f"{settings.API_V1_STR}/disease-detection", tags=["disease-detection"])
 app.include_router(schemes.router, prefix=f"{settings.API_V1_STR}/schemes", tags=["schemes"])
-
+app.include_router(fertilizer.router, prefix=f"{settings.API_V1_STR}/fertilizer",tags=["fertilizer"])
 @app.get("/")
 def root():
     return {"message": "Welcome to KisanAI API"}

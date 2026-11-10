@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -5,13 +6,13 @@ import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
   Home,
-  Sprout,
   Bot,
   Leaf,
   LogOut,
   CloudSun,
   Droplets,
-  Landmark
+  Landmark,
+  FlaskConical,
 } from "lucide-react";
 
 import { Noto_Serif } from "next/font/google";
@@ -44,6 +45,11 @@ export function DesktopNav() {
       label: t("nav.irrigation", "Irrigation Planner"),
     },
     {
+      href: "/app/fertilizer",
+      icon: FlaskConical,
+      label: t("nav.fertilizer", "Fertilizer Planner"),
+    },
+    {
       href: "/app/farm-advisor",
       icon: Bot,
       label: t("nav.advisor", "Ask KisanAI"),
@@ -53,10 +59,10 @@ export function DesktopNav() {
       icon: Leaf,
       label: t("nav.health", "Crop Health"),
     },
-    { 
-      href: "/app/schemes", 
-      icon: Landmark, 
-      label: t("nav.schemes", "Schemes") 
+    {
+      href: "/app/schemes",
+      icon: Landmark,
+      label: t("nav.schemes", "Schemes"),
     },
   ];
 
@@ -79,7 +85,9 @@ export function DesktopNav() {
 
       <nav className="flex-1 space-y-1">
         {navItems.map((item) => {
-          const isActive = pathname === item.href;
+          const isActive =
+            pathname === item.href ||
+            (item.href !== "/app" && pathname.startsWith(`${item.href}/`));
 
           return (
             <Link
@@ -94,11 +102,7 @@ export function DesktopNav() {
             >
               <item.icon
                 size={20}
-                className={
-                  isActive
-                    ? "text-green-600"
-                    : "text-gray-400"
-                }
+                className={isActive ? "text-green-600" : "text-gray-400"}
               />
 
               {item.label}

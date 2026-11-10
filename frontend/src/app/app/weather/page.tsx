@@ -304,7 +304,7 @@ export default function WeatherPage() {
                 </span>
               </div>
 
-              <h1>{t("weather.title")}</h1>
+              <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">{t("weather.title")}</h1>
 
               <p className="text-sm md:text-base text-gray-500 mt-1.5">
                 {t("weather.subtitle")}
