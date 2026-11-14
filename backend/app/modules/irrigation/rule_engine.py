@@ -681,7 +681,7 @@ class IrrigationRuleEngine:
             days_until_due=max(days_until, 0) if decision == "WAIT" else 0,
             reference_date=reference,
             needs_first_irrigation=first,
-            show_irrigated_button=(first or decision == "IRRIGATE_TODAY"),
+            show_irrigated_button=True,
             rain_adjustment_days=rain_adj,
             rule_type=rule_type, rule_basis=basis,
             reason=" ".join(reason_parts),

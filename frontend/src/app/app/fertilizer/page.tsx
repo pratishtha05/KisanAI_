@@ -3,15 +3,13 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import {
   AlertTriangle,
-  Beaker,
   CheckCircle2,
+  Info,
+  FlaskConical,
   ChevronDown,
   FileText,
-  FlaskConical,
-  Info,
   Leaf,
   RefreshCw,
-  ShieldCheck,
   Sprout,
   Upload,
 } from "lucide-react";
@@ -34,17 +32,26 @@ type Option = { value: string; label: string };
 
 type SoilInput = {
   ph: string;
+  ec: string;
+  organic_carbon_percent: string;
   nitrogen: string;
   phosphorus: string;
   potassium: string;
   sulphur: string;
+  zinc: string;
+  manganese: string;
+  texture: string;
 };
 
 type FarmForm = {
+  crop: string;
   state: string;
   district: string;
   variety: string;
+  stage: string;
   season: string;
+  irrigation_type: string;
+  manure_type: string;
   land_size: string;
   area_unit: "acre" | "hectare";
   previous_crop: string;
@@ -55,7 +62,16 @@ type NutrientMap = Record<string, number | string | null>;
 
 type FertilizerRecommendation = {
   nutrients_kg_per_acre?: NutrientMap;
+  nutrients_kg_per_hectare?: NutrientMap;
+  fertilizer_products_per_acre?: NutrientMap;
+  fertilizer_products_per_tree?: NutrientMap;
   farm_total_nutrients_kg?: NutrientMap;
+  farm_total_products?: NutrientMap | null;
+  farm_total_note?: string;
+  application_timing?: string[];
+  limitations?: string[];
+  message?: string;
+  source_section?: string;
   source?: string | {
     institution?: string;
     publication?: string;
@@ -64,30 +80,28 @@ type FertilizerRecommendation = {
   } | null;
 };
 
-type PlantProtection = {
-  status?: string;
-  message?: string;
-  guidance?: string;
-  recommendations?: string[];
-};
-
 type FertilizerData = {
   fertilizer_status?: string | null;
   fertilizer_recommendation?: FertilizerRecommendation | null;
-  plant_protection?: PlantProtection | null;
   missing_information?: string[] | null;
   warnings?: string[] | null;
   advisories?: string[] | null;
-  requires_expert_confirmation?: boolean;
 };
 
-const initialSoil: SoilInput = { ph: "", nitrogen: "", phosphorus: "", potassium: "", sulphur: "" };
+const initialSoil: SoilInput = {
+  ph: "", ec: "", organic_carbon_percent: "", nitrogen: "", phosphorus: "",
+  potassium: "", sulphur: "", zinc: "", manganese: "", texture: "",
+};
 
 const initialFarmForm: FarmForm = {
+  crop: "",
   state: "",
   district: "",
   variety: "",
+  stage: "",
   season: "",
+  irrigation_type: "",
+  manure_type: "",
   land_size: "",
   area_unit: "acre",
   previous_crop: "",
@@ -108,27 +122,72 @@ const SOIL_STATUS_OPTIONS: Option[] = [
   { value: "excess", label: "Excess" },
 ];
 
-const RICE_VARIETIES: Option[] = [
-  { value: "PR132", label: "PR 132" },
-  { value: "Other", label: "Other / not listed" },
+
+const CROP_OPTIONS: Option[] = [
+  { value: "apple", label: "Apple" },
+  { value: "cassava", label: "Cassava" },
+  { value: "maize", label: "Maize" },
+  { value: "potato", label: "Potato" },
+  { value: "rice", label: "Rice" },
+  { value: "sugarcane", label: "Sugarcane" },
+  { value: "tea", label: "Tea" },
+  { value: "tomato", label: "Tomato" },
+  { value: "wheat", label: "Wheat" },
 ];
 
-const MAIZE_VARIETIES: Option[] = [
-  { value: "PMH1", label: "PMH 1" },
-  { value: "PMH11", label: "PMH 11" },
-  { value: "PMH13", label: "PMH 13" },
-  { value: "PMH14", label: "PMH 14" },
-  { value: "PMH17", label: "PMH 17" },
-  { value: "NK7328", label: "NK 7328" },
-  { value: "DKC9144", label: "DKC 9144" },
-  { value: "Bioseed9788", label: "Bioseed 9788" },
-  { value: "ADV9293", label: "ADV 9293" },
-  { value: "JC12", label: "JC 12" },
-  { value: "PunjabSweetcorn1", label: "Punjab Sweetcorn 1" },
-  { value: "PMH2", label: "PMH 2" },
-  { value: "JC4", label: "JC 4" },
-  { value: "PearlPopcorn", label: "Pearl Popcorn" },
-  { value: "Other", label: "Other / not listed" },
+const VARIETY_OPTIONS_BY_CROP: Record<string, Option[]> = {
+  rice: [
+    { value: "pr132", label: "PR 132" },
+    { value: "pr126", label: "PR 126" },
+    { value: "csr30", label: "CSR 30" },
+    { value: "basmati_36", label: "Basmati - 36 kg N group" },
+    { value: "basmati_54", label: "Basmati - 54 kg N group" },
+  ],
+  maize: [
+    { value: "group_a", label: "PAU Group A varieties" },
+    { value: "group_b", label: "PAU Group B varieties" },
+  ],
+  cassava: [
+    { value: "high_yielding", label: "High-yielding type" },
+    { value: "local_m4", label: "Local / M-4 type" },
+    { value: "general", label: "General / not specified" },
+  ],
+  tomato: [
+    { value: "general", label: "General / standard" },
+    { value: "hybrid", label: "Hybrid" },
+  ],
+  apple: [{ value: "general", label: "General / not specified" }],
+  potato: [{ value: "general", label: "General / not specified" }],
+  sugarcane: [{ value: "general", label: "General / not specified" }],
+  tea: [{ value: "general", label: "General / not specified" }],
+  wheat: [{ value: "general", label: "General / not specified" }],
+};
+
+const STAGE_OPTIONS_BY_CROP: Record<string, Option[]> = {
+  apple: ["Dormant / winter", "Before flowering", "Fruit set", "Fruit development", "After harvest"].map((x) => ({ value: x, label: x })),
+  cassava: ["Land preparation", "Planting", "Establishment", "45-60 days after planting", "Root bulking", "Maturity"].map((x) => ({ value: x, label: x })),
+  maize: ["Land preparation", "Sowing", "Early growth", "Knee-high", "Tasseling / flowering", "Grain filling", "Maturity"].map((x) => ({ value: x, label: x })),
+  potato: ["Land preparation", "Planting", "Emergence", "Earthing-up", "Tuber development", "Maturity"].map((x) => ({ value: x, label: x })),
+  rice: ["Nursery", "Transplanting", "Direct seeding", "Early tillering", "Active tillering", "Panicle initiation", "Flowering", "Grain filling", "Maturity"].map((x) => ({ value: x, label: x })),
+  sugarcane: ["Land preparation", "Planting", "Germination", "Early tillering", "Grand growth", "Maturity", "Ratoon establishment"].map((x) => ({ value: x, label: x })),
+  tea: ["Young plant - year 1", "Young plant - year 2", "Young plant - year 3", "Young plant - year 4+", "Mature / pruned bush"].map((x) => ({ value: x, label: x })),
+  tomato: ["Nursery", "Transplanting", "Establishment", "30 days after planting", "Flowering", "Fruit set", "Harvesting"].map((x) => ({ value: x, label: x })),
+  wheat: ["Land preparation", "Sowing", "Crown root initiation", "Tillering", "Jointing", "Booting", "Flowering", "Grain filling", "Maturity"].map((x) => ({ value: x, label: x })),
+};
+
+const IRRIGATION_OPTIONS: Option[] = [
+  { value: "irrigated", label: "Irrigated" },
+  { value: "rainfed", label: "Rainfed" },
+];
+
+const MANURE_OPTIONS: Option[] = [
+  { value: "fym", label: "Farmyard manure (FYM)" },
+  { value: "pressmud", label: "Pressmud" },
+  { value: "poultry_manure", label: "Poultry manure" },
+  { value: "gobar_gas_slurry", label: "Gobar gas slurry" },
+  { value: "green_manure", label: "Green manure" },
+  { value: "summer_moong_residue", label: "Summer moong residue" },
+  { value: "none", label: "None / not applied" },
 ];
 
 const SEASON_OPTIONS: Option[] = [
@@ -179,17 +238,12 @@ const DISTRICTS: Record<string, string[]> = {
 };
 
 const NUTRIENTS: { key: string; label: string; soilTestOnly: boolean }[] = [
-  { key: "N", label: "Nitrogen (N)", soilTestOnly: false },
-  { key: "P2O5", label: "Phosphorus (P₂O₅)", soilTestOnly: true },
-  { key: "K2O", label: "Potassium (K₂O)", soilTestOnly: true },
+  { key: "N", label: "Nitrogen", soilTestOnly: false },
+  { key: "P2O5", label: "Phosphorus", soilTestOnly: true },
+  { key: "K2O", label: "Potassium", soilTestOnly: true },
 ];
 
 // Items the engine lists as "missing" that this page has no field for.
-const HIDDEN_MISSING = new Set([
-  "Crop growth stage",
-  "Previous fertilizer application history",
-]);
-
 const HECTARE_TO_ACRE = 2.47105;
 const COLLAPSED_NOTES = 4;
 
@@ -206,14 +260,6 @@ function normalizeCrop(crop?: string) {
   return value;
 }
 
-function getSourceText(source: FertilizerRecommendation["source"]) {
-  if (!source) return null;
-  if (typeof source === "string") return source;
-  return [source.institution, source.publication, source.edition, source.region]
-    .filter(Boolean)
-    .join(" | ");
-}
-
 function formatKg(value: number) {
   return Number.isInteger(value) ? String(value) : value.toFixed(2);
 }
@@ -227,15 +273,6 @@ function getErrorMessage(err: unknown, fallback: string) {
   return fallback;
 }
 
-function getFarmerAdvice(status: unknown, crop: string) {
-  if (status === "verified_rate_not_configured") {
-    return `A verified fertilizer dose is not available yet for ${crop} with the details given. Please do not use a general dose. Get your soil tested and ask your local Krishi Vigyan Kendra (KVK) or agriculture officer.`;
-  }
-  if (status === "conditional_baseline_available") {
-    return `A starting-point fertilizer plan is available for your ${crop}. Add soil-test details to make it more suitable for your field.`;
-  }
-  return `Your ${crop} assessment is ready. Add soil information to improve it.`;
-}
 
 /* ------------------------- Reusable UI --------------------------- */
 
@@ -275,6 +312,24 @@ function SelectInput({
         </option>
       ))}
     </select>
+  );
+}
+
+function QuantityList({ values }: { values?: NutrientMap | null }) {
+  if (!values) return null;
+  const entries = Object.entries(values).filter(([, value]) => value !== null && value !== undefined);
+  if (!entries.length) return <p className="text-sm text-gray-500">No product quantities provided.</p>;
+  return (
+    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+      {entries.map(([key, value]) => (
+        <div key={key} className="flex items-center justify-between rounded-lg border border-gray-100 px-3 py-2">
+          <span className="text-sm font-medium text-gray-700">{readableLabel(key.replace(/_kg.*/, "").replace(/_per.*/, "").replace(/_if_.*$/, "").replace(/_.*alternative.*$/i, ""))}</span>
+          <strong className="text-sm text-gray-900">
+            {typeof value === "number" ? `${formatKg(value)} kg` : String(value)}
+          </strong>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -340,21 +395,22 @@ export default function FertilizerPage() {
   const [selectedReport, setSelectedReport] = useState<File | null>(null);
 
   const selectedFarm = farms.find((farm) => String(farm.id) === selectedFarmId);
-  const crop = normalizeCrop(selectedFarm?.crop);
-  const isRice = crop === "rice";
-  const isMaize = crop === "maize";
-  const cropName = selectedFarm?.crop ? readableLabel(selectedFarm.crop) : "your crop";
+  const databaseCrop = normalizeCrop(selectedFarm?.crop);
+  const crop = normalizeCrop(farmForm.crop) || databaseCrop;
+  const cropName = crop ? readableLabel(crop) : "your crop";
 
-  const varietyOptions = isRice ? RICE_VARIETIES : isMaize ? MAIZE_VARIETIES : [];
+  const varietyOptions = VARIETY_OPTIONS_BY_CROP[crop] ?? [];
+  const stageOptions = STAGE_OPTIONS_BY_CROP[crop] ?? [];
   const districtList = DISTRICTS[farmForm.state];
 
   const recommendation = fertilizerData?.fertilizer_recommendation;
-  const hasRates = !!recommendation?.nutrients_kg_per_acre;
-  const farmTotals = recommendation?.farm_total_nutrients_kg;
-  const sourceText = getSourceText(recommendation?.source);
-
-  const farmLabel = (farm: Farm) =>
-    `${farm.crop ? readableLabel(farm.crop) : "Farm"} #${farm.id}`;
+  const hasRates = !!(
+    recommendation?.nutrients_kg_per_acre ||
+    recommendation?.nutrients_kg_per_hectare ||
+    recommendation?.fertilizer_products_per_acre ||
+    recommendation?.fertilizer_products_per_tree
+  );
+  const farmLabel = (farm: Farm) => farm.name?.trim() || (farm.crop ? readableLabel(farm.crop) : "My farm");
 
   /* ------------------------- API calls -------------------------- */
 
@@ -400,6 +456,8 @@ export default function FertilizerPage() {
     setSoil(initialSoil);
     setFarmForm({
       ...initialFarmForm,
+      crop: "",
+      stage: farm?.stage ?? "",
       land_size: knownArea && knownArea > 0 ? String(knownArea) : "",
     });
     setAppliedContext({ state: "", season: "", hectare: false });
@@ -436,6 +494,9 @@ export default function FertilizerPage() {
 
   const updateFarmForm = <K extends keyof FarmForm>(field: K, value: FarmForm[K]) =>
     setFarmForm((previous) => ({ ...previous, [field]: value }));
+
+  const handleCropChange = (value: string) =>
+    setFarmForm((previous) => ({ ...previous, crop: value, variety: "", stage: "" }));
 
   const handleStateChange = (value: string) =>
     setFarmForm((previous) => ({ ...previous, state: value, district: "" }));
@@ -480,10 +541,16 @@ export default function FertilizerPage() {
       setError("");
 
       const payload = {
+        crop: farmForm.crop || null,
         state: farmForm.state || null,
         district: farmForm.district.trim() || null,
         variety: farmForm.variety || null,
+        stage: farmForm.stage || null,
         season: farmForm.season || null,
+        irrigation_type: farmForm.irrigation_type || null,
+        manure_history: farmForm.manure_type
+          ? [{ type: farmForm.manure_type }]
+          : [],
         land_size: landAcres,
         land_unit: "acre",
         previous_crop: farmForm.previous_crop || null,
@@ -549,20 +616,11 @@ export default function FertilizerPage() {
 
   /* ------------------------ Derived content ---------------------- */
 
-  const missingItems = (fertilizerData?.missing_information ?? []).filter(
-    (item) => !HIDDEN_MISSING.has(item)
-  );
-
   const allNotes = (() => {
     const clientNotes: string[] = [];
     if (hasRates && appliedContext.state && appliedContext.state !== "Punjab") {
       clientNotes.push(
         `These rates follow Punjab Agricultural University (PAU) guidance for Punjab. They may not suit ${appliedContext.state}.`
-      );
-    }
-    if (hasRates && appliedContext.season && appliedContext.season !== "Kharif") {
-      clientNotes.push(
-        `These rates come from the Kharif package. Check with your KVK for the ${appliedContext.season} season.`
       );
     }
     if (appliedContext.hectare) {
@@ -579,11 +637,6 @@ export default function FertilizerPage() {
   })();
 
   const visibleNotes = showAllNotes ? allNotes : allNotes.slice(0, COLLAPSED_NOTES);
-
-  const plantProtectionMessage =
-    fertilizerData?.plant_protection?.message ||
-    fertilizerData?.plant_protection?.guidance ||
-    "Check your crop regularly for pests and diseases. If you notice unusual spots, insects or damage, get the problem identified before spraying anything.";
 
   /* ------------------------------ UI ----------------------------- */
 
@@ -689,7 +742,7 @@ export default function FertilizerPage() {
                   </div>
                   <h2 className="text-2xl font-bold text-gray-900">{cropName} nutrient plan</h2>
                   <p className="mt-3 max-w-3xl text-sm leading-6 text-gray-600">
-                    {getFarmerAdvice(fertilizerData?.fertilizer_status, cropName)}
+                    {fertilizerData?.fertilizer_status ? `Fertilizer guidance for ${cropName}. Check the quantities below and follow the suggested application time.` : `Select your crop details and update the recommendation.`}
                   </p>
                 </div>
 
@@ -704,61 +757,53 @@ export default function FertilizerPage() {
                 </button>
               </div>
 
-              {fertilizerData && (fertilizerData.requires_expert_confirmation ?? true) && (
-                <div className="mt-6 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4">
-                  <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-700" />
-                  <div>
-                    <p className="text-sm font-semibold text-amber-900">
-                      Expert confirmation recommended
-                    </p>
-                    <p className="mt-1 text-sm leading-5 text-amber-800">
-                      Please confirm this recommendation with an agricultural expert or local
-                      agriculture officer before applying fertilizer.
-                    </p>
-                  </div>
-                </div>
-              )}
+
             </div>
           </section>
 
           {/* Recommended nutrient rates */}
           <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
-            <div className="mb-6 flex items-start gap-3">
-              <div className="rounded-xl bg-green-50 p-3">
-                <Beaker className="h-5 w-5 text-green-700" />
-              </div>
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">Recommended Nutrient Rates</h2>
-                <p className="mt-1 text-sm text-gray-500">
-                  Suggested nutrient quantities for one acre of land.
-                </p>
-              </div>
+            <div className="mb-6">
+              <h2 className="text-xl font-bold text-gray-900">What to apply</h2>
+              <p className="mt-1 text-sm text-gray-500">Recommended amount for one acre.</p>
             </div>
 
             {hasRates ? (
-              <div className="space-y-6">
-                <div>
-                  <h3 className="mb-3 text-base font-semibold text-gray-900">
-                    Per acre (kg of nutrient)
-                  </h3>
-                  <NutrientGrid values={recommendation?.nutrients_kg_per_acre} />
-                </div>
-
-                {farmTotals && Object.keys(farmTotals).length > 0 && (
-                  <div className="border-t border-gray-100 pt-6">
-                    <h3 className="mb-3 text-base font-semibold text-gray-900">
-                      Total for your farm (kg of nutrient)
-                    </h3>
-                    <NutrientGrid values={farmTotals} />
+              <div className="space-y-5">
+                {recommendation?.fertilizer_products_per_acre && (
+                  <div>
+                    <h3 className="mb-3 text-sm font-semibold text-gray-700">Fertilizer needed per acre</h3>
+                    <QuantityList values={recommendation.fertilizer_products_per_acre} />
                   </div>
                 )}
-
-                <p className="text-xs leading-5 text-gray-500">
-                  These are nutrient quantities, not bags of fertilizer.
-                </p>
-                {sourceText && (
-                  <p className="text-xs leading-5 text-gray-400">Source: {sourceText}</p>
+                {recommendation?.fertilizer_products_per_tree && (
+                  <div>
+                    <h3 className="mb-3 text-sm font-semibold text-gray-700">Fertilizer needed for each tree</h3>
+                    <QuantityList values={recommendation.fertilizer_products_per_tree} />
+                  </div>
                 )}
+                {recommendation?.nutrients_kg_per_acre && (
+                  <div className="border-t border-gray-100 pt-5">
+                    <h3 className="mb-3 text-sm font-semibold text-gray-700">Nutrients needed per acre</h3>
+                    <NutrientGrid values={recommendation.nutrients_kg_per_acre} />
+                  </div>
+                )}
+                {recommendation?.nutrients_kg_per_hectare && !recommendation?.nutrients_kg_per_acre && (
+                  <div className="border-t border-gray-100 pt-5">
+                    <h3 className="mb-3 text-sm font-semibold text-gray-700">Nutrients needed per hectare</h3>
+                    <NutrientGrid values={recommendation.nutrients_kg_per_hectare} />
+                  </div>
+                )}
+                {recommendation?.application_timing?.length ? (
+                  <div className="border-t border-gray-100 pt-5">
+                    <h3 className="mb-3 text-sm font-semibold text-gray-700">When to apply</h3>
+                    <ul className="space-y-2 text-sm text-gray-700">
+                      {recommendation.application_timing.map((item, index) => <li key={index} className="rounded-lg bg-green-50 px-3 py-2">{item}</li>)}
+                    </ul>
+                  </div>
+                ) : null}
+                <p className="border-t border-gray-100 pt-4 text-xs leading-5 text-gray-400">Guidance is based on published agricultural recommendations, including PAU, ICAR and agricultural university sources.
+                </p>
               </div>
             ) : (
               <p className="rounded-xl bg-gray-50 p-4 text-sm leading-6 text-gray-600">
@@ -767,14 +812,14 @@ export default function FertilizerPage() {
             )}
           </section>
 
-          {/* Important notes (engine warnings + advisories)
+          {/* Important notes (engine warnings + advisories) */}
           {allNotes.length > 0 && (
             <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
               <div className="mb-5 flex items-start gap-3">
                 <div className="rounded-xl bg-amber-50 p-3">
                   <AlertTriangle className="h-5 w-5 text-amber-700" />
                 </div>
-                <h2 className="pt-2 text-xl font-bold text-gray-900">Important Notes</h2>
+                <h2 className="pt-2 text-xl font-bold text-gray-900">A few things to remember</h2>
               </div>
 
               <ul className="space-y-3">
@@ -803,40 +848,7 @@ export default function FertilizerPage() {
                 </button>
               )}
             </section>
-          )} */}
-
-          {/* Information still needed */}
-          <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
-            <div className="mb-5 flex items-start gap-3">
-              <div className="rounded-xl bg-amber-50 p-3">
-                <Info className="h-5 w-5 text-amber-700" />
-              </div>
-              <div>
-                <h2 className="text-xl font-bold text-gray-900">Information Still Needed</h2>
-                <p className="mt-1 text-sm text-gray-500">
-                  These details can help improve the assessment.
-                </p>
-              </div>
-            </div>
-
-            {missingItems.length ? (
-              <ul className="space-y-3">
-                {missingItems.map((item, index) => (
-                  <li
-                    key={`${item}-${index}`}
-                    className="flex items-start gap-3 text-sm text-gray-700"
-                  >
-                    <Info className="mt-0.5 h-4 w-4 shrink-0 text-green-700" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="text-sm text-gray-500">
-                No additional information is currently required.
-              </p>
-            )}
-          </section>
+          )}
 
           {/* Soil and farm information */}
           <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
@@ -858,6 +870,15 @@ export default function FertilizerPage() {
                 <h3 className="mb-4 text-base font-semibold text-gray-900">Farm details</h3>
 
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                  <FormField label="Crop">
+                    <SelectInput
+                      value={farmForm.crop}
+                      onChange={handleCropChange}
+                      placeholder={databaseCrop ? `Use my saved crop: ${readableLabel(databaseCrop)}` : "Select crop"}
+                      options={CROP_OPTIONS}
+                    />
+                  </FormField>
+
                   <FormField label="State">
                     <SelectInput
                       value={farmForm.state}
@@ -887,23 +908,22 @@ export default function FertilizerPage() {
                     )}
                   </FormField>
 
-                  <FormField label="Crop variety">
-                    {isRice || isMaize ? (
-                      <SelectInput
-                        value={farmForm.variety}
-                        onChange={(value) => updateFarmForm("variety", value)}
-                        placeholder="Select crop variety"
-                        options={varietyOptions}
-                      />
-                    ) : (
-                      <input
-                        type="text"
-                        value={farmForm.variety}
-                        onChange={(event) => updateFarmForm("variety", event.target.value)}
-                        placeholder="Enter crop variety"
-                        className={inputClass}
-                      />
-                    )}
+                  <FormField label="Crop variety / type">
+                    <SelectInput
+                      value={farmForm.variety}
+                      onChange={(value) => updateFarmForm("variety", value)}
+                      placeholder="Select variety / type"
+                      options={varietyOptions}
+                    />
+                  </FormField>
+
+                  <FormField label="Growth stage">
+                    <SelectInput
+                      value={farmForm.stage}
+                      onChange={(value) => updateFarmForm("stage", value)}
+                      placeholder="Select current stage"
+                      options={stageOptions}
+                    />
                   </FormField>
 
                   <FormField label="Season">
@@ -939,6 +959,24 @@ export default function FertilizerPage() {
                       <option value="acre">Acre</option>
                       <option value="hectare">Hectare</option>
                     </select>
+                  </FormField>
+
+                  <FormField label="Irrigation method">
+                    <SelectInput
+                      value={farmForm.irrigation_type}
+                      onChange={(value) => updateFarmForm("irrigation_type", value)}
+                      placeholder="Select irrigation"
+                      options={IRRIGATION_OPTIONS}
+                    />
+                  </FormField>
+
+                  <FormField label="Organic manure applied">
+                    <SelectInput
+                      value={farmForm.manure_type}
+                      onChange={(value) => updateFarmForm("manure_type", value)}
+                      placeholder="Select if applied"
+                      options={MANURE_OPTIONS}
+                    />
                   </FormField>
                 </div>
               </div>
@@ -984,8 +1022,7 @@ export default function FertilizerPage() {
               <div className="border-t border-gray-100 pt-6">
                 <h3 className="mb-2 text-base font-semibold text-gray-900">Soil test results</h3>
                 <p className="mb-5 text-sm text-gray-500">
-                  Enter the values from your soil test report. Do not guess if you have not tested
-                  your soil.
+                  If you have a soil test report, enter the values shown. Leave unknown details blank.
                 </p>
 
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -1005,10 +1042,10 @@ export default function FertilizerPage() {
 
                   {(
                     [
-                      ["nitrogen", "Nitrogen status"],
-                      ["phosphorus", "Phosphorus status"],
-                      ["potassium", "Potassium status"],
-                      ["sulphur", "Sulphur status"],
+                      ["nitrogen", "Nitrogen in soil"],
+                      ["phosphorus", "Phosphorus in soil"],
+                      ["potassium", "Potassium in soil"],
+                      ["sulphur", "Sulphur in soil"],
                     ] as const
                   ).map(([field, label]) => (
                     <FormField key={field} label={label}>
@@ -1031,6 +1068,7 @@ export default function FertilizerPage() {
                     setSoil(initialSoil);
                     setFarmForm({
                       ...initialFarmForm,
+                      stage: selectedFarm.stage ?? "",
                       land_size: knownArea && knownArea > 0 ? String(knownArea) : "",
                     });
                   }}
@@ -1124,33 +1162,7 @@ export default function FertilizerPage() {
             </p>
           </section>
 
-          {/* Plant protection guidance */}
-          <section className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
-            <div className="flex items-start gap-3">
-              <div className="rounded-xl bg-green-50 p-3">
-                <ShieldCheck className="h-5 w-5 text-green-700" />
-              </div>
 
-              <div className="flex-1">
-                <h2 className="text-xl font-bold text-gray-900">Plant Protection Guidance</h2>
-                <p className="mt-3 text-sm leading-6 text-gray-600">{plantProtectionMessage}</p>
-
-                {(fertilizerData?.plant_protection?.recommendations ?? []).length > 0 && (
-                  <ul className="mt-4 space-y-2">
-                    {fertilizerData?.plant_protection?.recommendations?.map((item, index) => (
-                      <li
-                        key={`${item}-${index}`}
-                        className="flex items-start gap-2 text-sm text-gray-700"
-                      >
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-700" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          </section>
         </>
       )}
 
