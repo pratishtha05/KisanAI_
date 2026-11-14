@@ -106,8 +106,9 @@ def _build_farm_data(
         land_size = request.land_size
         land_unit = request.land_unit.strip().lower()
 
+    selected_crop = request.crop or farm.crop
     return FarmData(
-        crop=farm.crop,
+        crop=selected_crop,
         location=request.location,
         state=request.state,
         district=request.district,
@@ -148,8 +149,10 @@ async def get_fertilizer_recommendation(
     farm: Farm,
     request: FertilizerRequest,
 ) -> dict:
-    if not farm.crop:
-        raise ValueError("Crop information is missing from this farm.")
+    selected_crop = request.crop or farm.crop
+
+    if not selected_crop:
+        raise ValueError("Please select a crop or add one to your farm profile.")
 
     weather, weather_note = await _get_farm_weather(farm)
 

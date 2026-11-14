@@ -27,7 +27,8 @@ class SoilInput(BaseModel):
 
 
 class FertilizerRequest(BaseModel):
-    # Additional farm and crop details not currently stored in the Farm model.
+    crop: Optional[str] = None  # Explicit crop override
+
     state: Optional[str] = None
     district: Optional[str] = None
     location: Optional[str] = None
@@ -36,8 +37,6 @@ class FertilizerRequest(BaseModel):
     season: Optional[str] = None
     stage: Optional[str] = None
 
-    # Supply land_size and land_unit together if farm-level
-    # nutrient quantities are required.
     land_size: Optional[float] = Field(default=None, gt=0)
     land_unit: Optional[str] = None
 
